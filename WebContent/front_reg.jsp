@@ -57,51 +57,56 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-<title>用户注册</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta content="都学网,在线联考学习,管理类课程,在线课堂,远程教育,在线学习,视频课程,公开课,直播课堂,免费听课,名师网络课程,名师网课,管理类联考" name="keywords">
-<meta content="都学网是国内第一家针对于管理类联考的在线实用学习平台,主要为学习者提供优质的、碎片式的管理类联考相关视频课程,为报考管理类联考的考生提供最低价格、最高质量的一站式学习服务。" name="description">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/group1.0.css">
-<script src="js/jquery-1.9.1.min.js"></script>
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-<![endif]-->
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <meta name="description" content="">
+		  <meta name="keywords" content="饺耳、美食">
+		<title>注册页面</title>
+		<link href="css/_main.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		
+		<!--[if it iE8]>
+			<p class="tixin">为了达到最佳观看效果，请升级到最新浏览器</p>
+        -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body style="min-height: 1000px;">
-	<div class="container">
-	<!--上部内容开始-->
-	<div class="row">
-	<div class="col-md-10 col-md-offset-1">
-	<div class="center-box center-box2">
-		<div class="register-wrap">
-			<div class="logobox">
-			<a href="http://www.doxue.com" alt=""><img src="images/logo.png" width="110" height="41" alt=""/></a>
-			</div>
-			<h3 class="mt30">博客账号</h3>
-			<div class="register-main">
+			<div class="login-box register-box">
+			<div class="container" style="padding: 70px 0;">
+				<div class="col-md-4  col-md-offset-4">
+					<div class="center mb30">
+						<img src="img/logo_03.jpg"  style="display: inline-block; margin-bottom: 20px;"/>
+						<p style="font-size: 18px;">饺耳舵爷账号注册</p>
+					</div>
 				<form class="form" action="front_reg.jsp" method="POST">
 					<input type="hidden" name="opt" value="addsave">
 					<input type="hidden" name="usertype" value="<%= param.get("usertype")==null?"":param.get("usertype") %>">
 					<input type="text" style="visibility: hidden;" readOnly="true" class="text"  autocomplete="off" name="id"
 		                   onpaste="return false;" value="<%= param.get("id")==null?"":param.get("id") %>">
-					<div class="form-group">
+					<div class="input-group input-group-lg">
+					<span class="input-group-addon glyphicon glyphicon-user"></span>
 					    <label class="sr-only" for="">用户名</label>
 					    <input type="text"   class="form-control"  autocomplete="off" name="username"
 		                   onpaste="return false;" placeholder="请输入用户名" value="<%= param.get("username")==null?"":param.get("username") %>">
 				   	</div>
-				   	<div class="form-group">
+				   	<div class="input-group input-group-lg">
+				   	<span class="input-group-addon glyphicon glyphicon-lock"></span>
 					    <label class="sr-only" for="">手机号</label>
 					    <input type="text"  class="form-control" id="phone"  name="phone" placeholder="请输入手机号" value="<%= param.get("phone")==null?"":param.get("phone") %>">
 				   	</div>
 				   <div class="warning" style="display: none;"><span class="glyphicon glyphicon-info-sign"></span>请输入正确的手机号</div>
-					<div class="form-group">
+					<div class="input-group input-group-lg">
+					<span class="input-group-addon glyphicon glyphicon-lock"></span>
 					    <label class="sr-only" for="">邮箱</label>
 					    <input type="text"  class="form-control"  name="mail" placeholder="请输入邮箱" value="<%= param.get("mail")==null?"":param.get("mail") %>">
 				   	</div>
@@ -115,39 +120,26 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 						</div>
 				  </div>  -->
 			  	 
-			  	 	<div class="form-group">
+			  	 	<div class="input-group input-group-lg">
+			  	 	<span class="input-group-addon glyphicon glyphicon-lock"></span>
 				    <label class="sr-only" for="">请设置密码</label>
 				    <input type="password"  class="form-control"  style="ime-mode:disabled;"
 	                   onpaste="return  false" autocomplete="off" name="password" placeholder="请设置密码" value="<%= param.get("password")==null?"":param.get("password") %>">
 				   </div>
-				   <div class="form-group">
+				  <div class="input-group input-group-lg">
+				  <span class="input-group-addon glyphicon glyphicon-lock"></span>
 				    <label class="sr-only" for="">请确认密码</label>
-				    <input type="password"  class="form-control"  onpaste="return  false" name="password2"
+				    <input type="password" class="form-control"  onpaste="return  false" name="password2"
 	                   autocomplete="off" placeholder="请确认密码" value="<%= param.get("password2")==null?"":param.get("password2") %>">
 				   </div>
 				   <div class="warning" style="display: none;"><span class="glyphicon glyphicon-info-sign"></span>密码输入有误</div>
-				   <input type="submit" Name="Action" Value="立即注册"  class="btn btn-success mt20"  tabindex="25" onclick="test()">
+				   <input type="submit" Name="Action" Value="立即注册"  class="btn btn-danger btn-lg"  tabindex="25" onclick="test()" style="width: 100%; margin-bottom: 20px;">
 			  </form>
-			   <p class="mt20 color-999">点击“立即注册”即表示您同意并愿意遵守都学网<a href="">用户协议</a>和<a href="">隐私政策</a></p>
-			   <p class="Already-user center color-999">已经注册会员？<a href="front_login.jsp">登录</a></p> 
+					<p class="center a-hover color-999999 mb10">点击“立即注册”即表示您同意并愿意遵守饺耳<a href="" target="_blank">用户协议</a></p>
+					<p class="center a-hover color-999999">已有账号<a href="front_login.jsp" target="_blank">立即登录</a></p>
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	
-	<!--上部内容end-->
-	</div>
-	<div class="row">
-		<!--底部版权信息内容开始-->
-	
-		<div class="copyright center">
-			<p><a href="">常见问题</a></p>
-			<p class="color-999">© 2015-2016 都学网络科技（北京）有限公司 版权所有 京ICP备15015012号-2</p>
-		</div>
-	
-	<!--底部版权信息内容end-->
-	</div>
-</div>	
 	
 	<!--获取验证码部分JS-->
 	<script>
