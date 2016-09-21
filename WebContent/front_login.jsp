@@ -8,23 +8,21 @@
 HashMap<String,String> param= G.getParamMap(request);
 HashMap<String,Object> myparam=new HashMap<String,Object>();
 List<String> errors=new ArrayList<String>();
-System.out.println("1");
 if(param.get("opt")!=null && param.get("opt").equals("login")){
-	System.out.println("2");
 	if(param.get("str")==null || param.get("str").equals("") || param.get("password")==null || param.get("password").equals("")){//如果用户名 或密码填写的空值 则报错
 		errors.add("用户名密码错误");
 	}
-	if(errors.size()==0){System.out.println("3");
+	if(errors.size()==0){
 		String password2 = DesUtils.encrypt(param.get("password")); // DesUtils加密
 		//String password2 = param.get("password");
 		System.out.println(password2);
 		List<Mapx<String, Object>> listAll = DB.getRunner().query("select userid from user where password=? ",new MapxListHandler(), password2);
-		if(listAll==null || listAll.size()==0){System.out.println("4");
+		if(listAll==null || listAll.size()==0){
 			errors.add("用户名密码错误");
 		}else{//登陆成功
-			System.out.println("5");
 			G.setCookie("token", G.getToken(listAll.get(0).getInt("userid"),param.get("password")), response);
 			response.sendRedirect("front_index.jsp");
+			session.setAttribute("username", param.get("str"));
 			return;
 		}
 	}

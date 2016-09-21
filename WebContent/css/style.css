@@ -8,14 +8,14 @@ img{ display: block;}
 .clearfix { zoom:1; }
 .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
 a{ color: #313131; text-decoration: none;}
-a:hover{text-decoration: none;}
+a:hover{text-decoration: none; color: #FF9900;}//9-21add
 .cursor{ cursor: pointer;}
-.color-ff0000{ color: #ff0000;}
+.color-dd2727{ color: #dd2727;}
 .color-ff6600{ color: #ff6600;}
 .color-ff9900{ color: #ff9900;}
 .color-666666{ color: #666666;}
 .color-999999{ color: #999999;}
-.bg_color-ff0000{ background: #ff0000;}
+.bg_color-dd2727{ background: #dd2727;}
 .bg_color-ff6600{ background: #ff6600;}
 .mb10{margin-bottom: 10px;}
 .mb15{ margin-bottom: 15px;}
@@ -27,6 +27,7 @@ a:hover{text-decoration: none;}
 .m_r_l-10{margin: 0 10px;}
 .width200{ width: 200px!important;}
 .center{ text-align: center;}
+.just-line1{ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 /*弹性盒子*/
 .cell{
   display: -webkit-box; /*Safari and Chrome */
@@ -83,12 +84,15 @@ a:hover{text-decoration: none;}
 .header .head .tell{ margin-left: 100px; padding-top: 20px;}
 .header .head .tell p{line-height: 40px; font-size: 16px; background: url(../img/icon_01.png) no-repeat 0 5px; padding-left: 40px;}
 .header .head .tell p span{ font-weight: 700; font-size: 36px; color: #FF6600;}
-.header .head .search{ width: 360px; padding-top: 25px;}
-.header .head .search .input-group{ width: 240px;}
+/*add-9-21*/
+.header .head .search{ width: 450px; padding-top: 25px;}
+.header .head .search .input-group{ width: 240px; margin-right: 20px;}
+.header .head .search .input-group input[type="text"]{ width: 190px;}
+.header .head .search .input-group input[type="submit"]{ padding: 9px 10px; width: 48px;}
 .header .head .search .resiter{ font-size: 16px; padding-top: 8px;}
 .header .head .search .resiter a{ margin: 0 5px;}
 /*导航部分css*/
-.navbar{ height: 50px; background: #ff0000; border: 0; margin-bottom: 0; border-radius:0;}
+.navbar{ height: 50px; background: #dd2727; border: 0; margin-bottom: 0; border-radius:0;}
 .nav2{ position:relative; z-index:1;  }
 .nav2 a{ color:#fff; }
 .nav2 .nLi{ float:left;  position:relative; display:inline;  }
@@ -104,9 +108,9 @@ a:hover{text-decoration: none;}
 /*主体部分*/
 .mainbox{ margin-top: 20px;}
 .main-left{ padding-right: 50px;}
-.main-left .title-nav{border-bottom: 1px solid #FF0000; height: 40px; margin-bottom: 10px;}
+.main-left .title-nav{border-bottom: 1px solid #dd2727; height: 40px; margin-bottom: 10px;}
 .main-left .title-nav-item{ float: left; padding: 0 20px; cursor: pointer; font-size: 16px; font-weight: 600; line-height: 38px;}
-.main-left .title-nav .active{ color: #FF0000; border-bottom: 3px solid #FF6600; }
+.main-left .title-nav .active{ color: #dd2727; border-bottom: 3px solid #FF6600; }
 .cell-list .cell{ padding: 30px 0; border-bottom: 1px dashed #ccc;}
 .cell-list .cell .pic{ width: 240px; margin-right: 40px; position: relative;}
 .cell-list .cell .pic img{ width: 100%;}
@@ -138,13 +142,13 @@ a:hover{text-decoration: none;}
 .celan5 img{ width: 100%;}
 /*下部合作伙伴*/
 .pataner{padding:10px 15px; }
-.pataner h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #FF0000; background: url(../img/icon_01.png) no-repeat 0 -350px; font-weight: 700;}
+.pataner h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #dd2727; background: url(../img/icon_01.png) no-repeat 0 -350px; font-weight: 700;}
 .pataner ul{ padding: 30px 0;}
 .pataner ul li{ float: left; margin-right: 20px;}
 .pataner ul li img:hover{ opacity: 0.8;}
 /*下部友情链接*/
 .link{padding:10px 15px;}
-.link h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #FF0000; background: url(../img/icon_01.png) no-repeat 0 -418px; font-weight: 700;}
+.link h4{line-height: 40px; padding-left: 50px; border-bottom: 1px solid #dd2727; background: url(../img/icon_01.png) no-repeat 0 -418px; font-weight: 700;}
 .link p{ padding: 30px 0;}
 .link p a{ margin-right: 20px;}
 .link p a:hover{ color: #FF9900;}
@@ -158,13 +162,13 @@ a:hover{text-decoration: none;}
 .footer .cell .cell_primary span{ margin: 0 10px;}
 .footer .cell .icon-link{ margin-top: 20px;}
 .footer .cell .icon-link a{position: relative; display: inline-block; margin-right: 20px; width: 30px; height: 30px;  border: 1px solid #ffffff; border-radius: 4px;}
-.footer .cell .icon-link a:hover{ background: #FF0000; border-color:#FF0000;}
+.footer .cell .icon-link a:hover{ background: #dd2727; border-color:#dd2727;}
 .footer .cell .icon-link img{position: absolute; right: 0; left: 0; top: 0; bottom: 0; margin: auto;}
 .footer .cell .ewm-box{ width: 180px;}
 .footer .cell .ewm-box img{ width: 100%;}
 .footer .cell .ewm-box p{ margin-top: 10px;}
 .footer .cell .ewm-box a{ display: inline-block; padding: 3px 7px; background: #FFFFFF; margin-right: 9px;}
-.footer .cell .ewm-box a:hover{background: #FF0000; color: #FFFFFF;}
+.footer .cell .ewm-box a:hover{background: #dd2727; color: #FFFFFF;}
 .footer .cell .ewm-box a:last-child{ margin-right: 0;}
 /*video弹出层*/
 .video-box{ width: 920px; height: 517px; background: #FFFFFF;}
@@ -175,7 +179,7 @@ a:hover{text-decoration: none;}
 .article-word p{ margin-bottom: 20px; color: #666; text-indent: 2em;}
 .lable{ text-align: right; margin-bottom: 20px;}
 .lable a{display: inline-block; padding: 3px 10px; color: #ffffff; background: #FF6600; margin-right: 15px;}
-.next-article-tilte a:hover{color: #ff0000;}
+.next-article-tilte a:hover{color: #dd2727;}
 /*发表评论*/
 .evaluate{ margin-bottom: 40px;}
 .evaluate h4{line-height: 40px; padding-left: 50px;  background: url(../img/icon-01.png) no-repeat 0 -485px; font-weight: 700; margin-bottom: 20px;}
@@ -187,20 +191,29 @@ a:hover{text-decoration: none;}
     background: #fafafa;
     padding: 20px;} 
 .submit{ text-align: right;}
-.submit a{ display: inline-block; padding: 5px 20px; background: #ff0000; color: #FFFFFF; margin-bottom: 30px;}
+.submit a{ display: inline-block; padding: 5px 20px; background: #dd2727; color: #FFFFFF; margin-bottom: 30px;}
 .evaluate-list .cell{ padding: 20px 0; border-bottom:1px dashed #ccc;}
 .evaluate-list .cell .pic-tx{ width: 40px; margin-right: 30px;}
 /*博客内页css样式结束*/
 /*百科问答css开始*/
 .banner-inner{ width: 100%; height: 480px; background: url(../img/banner01.jpg) no-repeat center center;}
 .baike-navbar{ padding-right: 50px; padding-top: 30px;}
-.baike-navbar h4{height: 40px; line-height: 38px; font-weight: bold; border: 1px solid #ff0000;border-radius: 6px 0 0 6px; top: 0;}
-.baike-navbar h4 span{ margin-right: 20px; display: inline-block; background: #ff0000; color: #FFFFFF; padding: 10px 15px; border-radius: 6px 0 0 6px; top: 0;}
-.baike-navbar ul{ padding-top: 15px;}
-.baike-navbar li{ line-height: 32px;  margin-bottom: 15px;}
-.baike-navbar li a{ display: block; padding-left: 30px; background: #FFba00; color: #FFFFFF;}
-.baike-navbar li a.active{background: #ff0000;}
-.baike-navbar li a:hover{ background: #ff0000;}
+/* add-9-21*/
+.baike-navbar h4{  font-weight: bold;}
+h4.baike-title-top{height: 40px; line-height: 38px; border: 1px solid #dd2727;border-radius: 6px 0 0 6px; top: 0;}
+h4.baike-title-top span{ margin-right: 20px; display: inline-block; background: #dd2727; color: #FFFFFF; padding: 10px 15px; border-radius: 6px 0 0 6px; top: 0;}
+.baike-navbar .baike-title-nav{ padding-top:15px; margin-bottom:30px;}
+.baike-navbar .baike-title-nav li{ line-height: 32px;  margin-bottom: 15px;}
+.baike-navbar .baike-title-nav li a{ display: block; padding-left: 30px; background: #FFba00; color: #FFFFFF;}
+.baike-navbar .baike-title-nav li a.active{background: #dd2727;}
+.baike-navbar .baike-title-nav li a:hover{ background: #dd2727;}
+h4.icon-hotword{ line-height: 40px; padding-left: 50px; background: url(../img/icon-01.png) no-repeat 0 -780px; margin-bottom: 10px;}
+.hotword{ margin-bottom: 30px;}
+.hotword li{ line-height: 30px;}
+h4.icon-recommend{line-height: 40px; padding-left: 50px; background: url(../img/icon-01.png) no-repeat 0 -840px; margin-bottom: 15px;}
+.celan5 li{width: calc((100% - 15px) / 2); margin-right: 15px; float: left; text-align: center; margin-bottom: 15px;}
+.celan5 li.mr0{ margin-right: 0;}
+.celan5 li img{ width: 100%; margin-bottom: 5px;}
 /*百科问答css结束*/
 /*百科问答内页开始*/
 .baike-banner{width: 100%; height: 200px; background: url(../img/baike-banner02.jpg) no-repeat center center;}
@@ -230,9 +243,9 @@ table.recommend a{ color: #666666;}
 /*登录页面开始*/
 .login-box{ margin-top: 150px;}
 .login-box .container{ box-shadow: 0 0 40px rgba(0,0,0,0.3);}
-.login-box .glyphicon{ top: 0; color: #ff0000;}
-.login-box .input-group-addon{ background: #fff; /*border: 1px solid #ff0000;*/}
-/*.login-box .form-control{border: 1px solid #ff0000; border-left: 0;} */
+.login-box .glyphicon{ top: 0; color: #dd2727;}
+.login-box .input-group-addon{ background: #fff; /*border: 1px solid #dd2727;*/}
+/*.login-box .form-control{border: 1px solid #dd2727; border-left: 0;} */
 .input-group{ margin-bottom: 20px;}
 .a-hover a{color: #337ab7;}
 .a-hover a:hover{color: #FF6600;}

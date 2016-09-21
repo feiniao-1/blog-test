@@ -1037,6 +1037,7 @@ public class G {
 			return null;
 		}
 		Mapx<String, Object> result = list.get(0);
+		System.out.println("result+++"+result);
 		return result;
 	}
 
