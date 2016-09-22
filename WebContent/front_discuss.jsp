@@ -27,7 +27,12 @@ System.out.println("jishu"+jishu);
 }
 //设置随机数
 int  val = (int)(Math.random()*10000)+1;
-int url_canshu=Integer.parseInt(jishu);
+int url_canshu;
+if(jishu==null){
+	url_canshu=Integer.parseInt("1");
+}else{	
+	url_canshu=Integer.parseInt(jishu);
+}
 //显示评论信息
 int useridh=10049;
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from discuss where  userid=? order by discussid desc limit 1",new MapxListHandler(),useridh);

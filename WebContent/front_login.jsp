@@ -4,7 +4,10 @@
 <%@ page import="com.jx.common.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="org.apache.commons.dbutils.QueryRunner"%>
+
 <% 
+//退出
+session.removeAttribute("username");
 HashMap<String,String> param= G.getParamMap(request);
 HashMap<String,Object> myparam=new HashMap<String,Object>();
 List<String> errors=new ArrayList<String>();
@@ -14,16 +17,20 @@ if(param.get("opt")!=null && param.get("opt").equals("login")){
 	}
 	if(errors.size()==0){
 		String password2 = DesUtils.encrypt(param.get("password")); // DesUtils加密
-		//String password2 = param.get("password");
 		System.out.println(password2);
-		List<Mapx<String, Object>> listAll = DB.getRunner().query("select userid from user where password=? ",new MapxListHandler(), password2);
-		if(listAll==null || listAll.size()==0){
-			errors.add("用户名密码错误");
-		}else{//登陆成功
+		List<Mapx<String, Object>> listAll = DB.getRunner().query("select password ,userid from user where username=? ",new MapxListHandler(), param.get("str"));
+		if((listAll==null || listAll.size()==0)){
+		System.out.println("用户名不存在");
+			errors.add("用户名不存在");
+		}else if(listAll.get(0).getStringView("password").equals(password2)){//登陆成功
+			System.out.println(" password YES");
 			G.setCookie("token", G.getToken(listAll.get(0).getInt("userid"),param.get("password")), response);
 			response.sendRedirect("front_index.jsp");
 			session.setAttribute("username", param.get("str"));
 			return;
+		}else{
+			System.out.println(" password NO");
+			errors.add("密码错误");
 		}
 	}
 	myparam.put("errorStr", G.toErrorStr(errors));

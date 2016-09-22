@@ -54,8 +54,6 @@ if(Integer.parseInt(index_page)==1){
 }
 //用户信息
 //List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
-//导航信息
-List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daohang_type where parentid=0", new MapxListHandler());
 
 %>
 
@@ -91,116 +89,7 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<!--顶部开始-->
-        <div class="header">
-        	<div class="container">
-        		<div class="row">
-	        		<div class="top clearfix">
-	        				<div class="dropdown fr">
-							  <a class="dropdown-toggle" href="" id="dropdownMenu1" data-toggle="dropdown">
-							            更多语言
-							    <span class="caret"></span>
-							  </a>
-							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言1</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言2</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言3</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言4</a></li>
-							  </ul>
-							</div>
-	        				<p class="fr">选择语言：<a href="" target="_blank">简体中文</a><span>|</span><a href="" target="_blank">繁体中文</a><span>|</span><a href="" target="_blank">English</a><span>|</span></p>
-	        		</div>
-        		</div>
-        		<div class="row">
-	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="front_index.jsp"><img src="img/logo_03.jpg"></a></div>
-	        			<div class="tell fl">
-	        				<p>24小时服务热线：<span>400-8000-888</span></p>
-	        			</div>
-	        			<div class="search fr">
-	        				<div class="resiter fr">
-								<%if(flag==1){ %>
-								<span class="glyphicon glyphicon-user"></span><a><%=username %></a>
-								<%}else{ %>
-								<span class="glyphicon glyphicon-user"></span><a href="front_login.jsp" target="_blank">登陆</a>/<a href="front_reg.jsp" target="_blank">注册</a>
-							<%} %>
-							</div>
-	        				<div class="input-group fr">
-							 <form action="front_index.jsp" method="post">
-							  <input type="text" class="form-control" name="search">
-							  <input class="input-group-addon cursor" type="submit" name="search_submit" value="搜索" >
-							</form>
-							</div>
-	        			</div>
-	        		</div>
-        		</div>
-        	</div>
-        </div>	
-        <!--顶部结束-->
-        <!--导航部分开始-->
-        <div class="navbar">
-        	<div class="container">
-        		<div class="row">
-			    	<ul id="nav2" class="nav2 clearfix">
-						<li class="nLi">
-							<h3><a href="" target="_blank">首页</a></h3>
-						</li>
-						<% 	for(int i=0;i<top_daohang.size();i++){%>
-						<li class="nLi">
-						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
-								<ul class="sub">
-								<%//top二级导航
-								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
-								for(int j=0;j<top_er.size();j++){
-								%>
-									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
-								<%}%>
-								</ul>
-						</li>
-						<%}%>
-						<li class="nLi on">
-								<h3><a href="" target="_blank">饺耳博客</a></h3>
-						</li>
-					</ul>
-
-
-        		</div>
-		    </div>
-		</div>
-        <!--导航部分结束-->
-        <!--banner图部分开始-->
-        <div id="homepage-feature" class="carousel slide">
-						<ol class="carousel-indicators">
-							<li data-target="#homepage-feature" data-slide-to="0" class="active"> </li>
-							<li data-target="#homepage-feature" data-slide-to="1"> </li>
-							<li data-target="#homepage-feature" data-slide-to="2"> </li>
-							<li data-target="#homepage-feature" data-slide-to="3"> </li>
-						</ol>
-						<!--图片板块-->
-						<div class="carousel-inner">
-							<div class="item active">
-								<img src="img/banner01.jpg" alt="图片1"/>
-							</div>
-							<div class="item">
-								<img src="img/banner02.jpg" alt="图片2"/>
-							</div>
-							<div class="item">
-								<img src="img/banner03.jpg" alt="图片3"/>
-							</div>
-							<div class="item">
-								<img src="img/banner04.jpg" alt="图片4"/>
-							</div>
-						</div>
-						<!--左右控制按钮 -->
-						<a class="left carousel-control" href="#homepage-feature" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left"></span>
-						</a>
-						<a class="right carousel-control" href="#homepage-feature" data-slide="next">
-							<span class="glyphicon glyphicon-chevron-right"></span>
-						</a>
-		</div>
-        <!--banner图部分结束-->
+		<%@ include file="header.jsp"%>
         <!--博客主体内容开始-->
         <div class="mainbox">
          <div class="container">
@@ -232,12 +121,13 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 								
 								searchtj=new String(request.getParameter("search").getBytes("iso-8859-1"),"utf-8");
 								//搜索信息统计
-								//String searchSql="select count(1) from search_count where searchname="+searchtj;
-								//List<Mapx<String,Object>> searchSqls =  DB.getRunner().query(searchSql, new MapxListHandler());
-								//System.out.println("searchSqls"+searchSqls);
-								//DB.getRunner().update("update admin_user set money = ? where id=?",money,user.getInt("id") );
-								//DB.getRunner().update("insert into search_count(searchname,searchtj) values(?,?)",searchtj,);
-								System.out.println("search yes");
+								List<Mapx<String, Object>> searchSql= DB.getRunner().query("select searchtj,count(1) from search_count where searchname=?", new MapxListHandler(),searchtj);
+								if(searchSql.get(0).getInt("count(1)").equals(0)){
+									DB.getRunner().update("insert into search_count(searchname,searchtj) values(?,?)",searchtj,1);
+								}else{
+									DB.getRunner().update("update search_count set searchtj = ? where searchname=?",searchSql.get(0).getInt("searchtj")+1,searchtj );	
+								}
+								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
 								String xinwenSql="select author,title,img1,content, createtime ,type from news where  (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler());
@@ -252,9 +142,9 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-													<a href="" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											<a href="front_index-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 											<div class="bdsharebuttonbox bd-share">
@@ -279,9 +169,9 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-													<a href="" class="line3 color-666666"><%=one.getStringView("content") %></a>
+													<a href="front_index-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
@@ -299,8 +189,8 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=2">2</a></li>
 								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=3">3</a></li>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=5">5</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=6">6</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=<%=count_page-1%>"><%=count_page-1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=<%=count_page%>"><%=count_page%></a></li>
 								    <li><a href="${pageContext.request.contextPath}/front_index.jsp?page=<%=plus%>">&raquo;</a></li>
 								  </ul>
 								</div>
@@ -532,15 +422,18 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 		         			<div class="celan celan4">
 		         				<h4>你可能感兴趣</h4>
 		         				<ul class="keyword-first clearfix">
-		         					<li class="bqa-width"><a href="" class="bg_color-dd2727">饺耳</a></li>
-		         					<li class="bqa-width"><a href="" class="bg_color-ff6600">饺耳</a></li>
-		         					<li class="bqa-width"><a href="" class="bg_color-dd2727">饺耳</a></li>
-		         					<li class="bqa-width mr0"><a href="" class="bg_color-ff6600">饺耳</a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727">饺耳</a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600">饺耳</a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727">饺耳</a></li>
-		         					<li class="bqc-width"><a href="" class="bg_color-ff6600">饺耳</a></li>
-		         					<li class="bqc-width mr0"><a href="" class="bg_color-dd2727">饺耳</a></li>
+		         				<%List<Mapx<String, Object>> targ=DB.getRunner().query("select  substring(searchname,1,4) as searchname from search_count order by searchtj desc limit 9",new MapxListHandler());
+		         				
+		         				%>
+		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(0).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(1).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(2).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(3).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(4).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="" class="bg_color-ff6600"><%=targ.get(5).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(6).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(7).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(8).getStringView("searchname") %></a></li>
 		         				</ul>
 		         			</div>
 		         			<!--右边-板块五开始-->
