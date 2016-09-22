@@ -39,7 +39,7 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
         		</div>
         		<div class="row">
 	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="front_index.jsp"><img src="img/logo_03.jpg"></a></div>
+	        			<div class="logo fl"><a href="front_index.jsp?page=0"><img src="img/logo_03.jpg"></a></div>
 	        			<div class="tell fl">
 	        				<p>24小时服务热线：<span>400-8000-888</span></p>
 	        			</div>
@@ -52,7 +52,7 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 							<%} %>
 							</div>
 	        				<div class="input-group fr">
-							 <form action="front_index.jsp" method="post">
+							 <form action="front_index.jsp?page=0" method="post">
 							  <input type="text" class="form-control" name="search">
 							  <input class="input-group-addon cursor" type="submit" name="search_submit" value="搜索" >
 							</form>
@@ -69,7 +69,7 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
         		<div class="row">
 			    	<ul id="nav2" class="nav2 clearfix">
 						<li class="nLi">
-							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+							<h3><a href="front_index.jsp?page=0" target="_blank">首页</a></h3>
 						</li>
 						<% 	for(int i=0;i<top_daohang.size();i++){%>
 						<li class="nLi">

@@ -264,7 +264,6 @@ if(Integer.parseInt(index_page)==1){
 								  </ul>
 								</div>
 							</div>
-						</div>
          		</div>
          		<!--右边部分结束-->
          	</div>

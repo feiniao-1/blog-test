@@ -136,7 +136,7 @@ if(Integer.parseInt(index_page)==1){
 	         		<div class="col-md-9">
 	         			<div class="main-left">
 	         			<div class="title-nav clearfix">
-							<div class="title-nav-item active"><a href="front_index.jsp">全部</a></div>
+							<div class="title-nav-item active"><a href="front_index.jsp?page=0">全部</a></div>
 							<div class="title-nav-item">link13</div>
 							<div class="title-nav-item">link14</div>
 							<div class="title-nav-item">link15</div>
@@ -174,9 +174,9 @@ if(Integer.parseInt(index_page)==1){
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="front_index-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp?page=0" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-											<a href="front_index-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											<a href="front_index-inner.jsp?page=0" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 											<div class="bdsharebuttonbox bd-share">
@@ -201,9 +201,9 @@ if(Integer.parseInt(index_page)==1){
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="front_index-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp?page=0" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-													<a href="front_index-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
+													<a href="front_index-inner.jsp?page=0" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>

@@ -218,7 +218,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         				<!--评价部分开始-->
 	         				<div class="evaluate">
 	         					<h4>发表评论</h4>
-	         					<form id="form_tj" action="front_index-inner.jsp?jishu=<%=val%>" method="post"  class="clearfix mb20">
+	         					<form id="form_tj" action="front_index-inner.jsp?page=0&jishu=<%=val%>" method="post"  class="clearfix mb20">
 		         					<textarea placeholder="写出你的点评" id="discuss_content" rows="5" cols="35" name="content"></textarea>
 		         					<input type="submit" Name="Action" value="发表评论" class="submit-fb" >
 	         					</form>
