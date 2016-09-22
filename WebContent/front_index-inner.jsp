@@ -139,6 +139,38 @@ if(Integer.parseInt(discuss_page)==0){
 		</div>
 		<!--视频弹出层结束-->
 		<%@ include file="header.jsp"%>
+		        <!--banner图部分开始-->
+        <div id="homepage-feature" class="carousel slide">
+						<ol class="carousel-indicators">
+							<li data-target="#homepage-feature" data-slide-to="0" class="active"> </li>
+							<li data-target="#homepage-feature" data-slide-to="1"> </li>
+							<li data-target="#homepage-feature" data-slide-to="2"> </li>
+							<li data-target="#homepage-feature" data-slide-to="3"> </li>
+						</ol>
+						<!--图片板块-->
+						<div class="carousel-inner">
+							<div class="item active">
+								<img src="img/banner01.jpg" alt="图片1"/>
+							</div>
+							<div class="item">
+								<img src="img/banner02.jpg" alt="图片2"/>
+							</div>
+							<div class="item">
+								<img src="img/banner03.jpg" alt="图片3"/>
+							</div>
+							<div class="item">
+								<img src="img/banner04.jpg" alt="图片4"/>
+							</div>
+						</div>
+						<!--左右控制按钮 -->
+						<a class="left carousel-control" href="#homepage-feature" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#homepage-feature" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+		</div>
+        <!--banner图部分结束-->
         <!--博客主体内容开始-->
         <div class="mainbox">
          <div class="container">
@@ -219,8 +251,8 @@ if(Integer.parseInt(discuss_page)==0){
 								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=1">2</a></li>
 								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=2">3</a></li>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page-1%>"><%=count_page-1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page%>"><%=count_page+1%></a></li>
 								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=plus%>">»</a></li>
 								  </ul>
 								</div>

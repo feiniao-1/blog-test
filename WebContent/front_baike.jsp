@@ -4,16 +4,59 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="org.apache.commons.dbutils.QueryRunner"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
+HashMap<String,String> param= G.getParamMap(request);
+
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
+System.out.println(df.format(new Date()));// new Date()为获取当前系统时间  
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
 String pageType = null;
 String userType = null;
+//验证用户登陆
+String username = (String)session.getAttribute("username");
+System.out.println("当前登录用户"+username);
+List<Mapx<String, Object>> useridc= DB.getRunner().query("SELECT userid FROM user where username=?", new MapxListHandler(),username);
 int flag=0;
-if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.getStringView("status").equals("有效")){
+if(username==null){
 	
 }else{
 	flag=1;
+}
+//搜索属性
+String searchtj;
+//获取页数信息
+String index_page;
+if(request.getParameter("page")==null){
+	index_page=String.valueOf(1);
+}else{
+	index_page=request.getParameter("page");
+}
+int page_ye=Integer.parseInt(index_page)*5;
+
+/*统计 新闻数及 页数*/
+String sqlPreCount = "select count(1) as count from news where newstype=? and (del is NULL or del <>1)  order BY newsid DESC ";
+List<Mapx<String,Object>> sqlPreCount1 =  DB.getRunner().query(sqlPreCount, new MapxListHandler(),"baike");
+//总商品数量
+int total = sqlPreCount1.get(0).getInt("count");
+//商品页数
+int count_page=total/5;
+System.out.println("count_page"+count_page);
+
+int plus;
+int minus;
+//下一页
+if(Integer.parseInt(index_page)==count_page){
+	plus=count_page;
+}else{
+	plus =Integer.parseInt(index_page)+1;
+}
+//上一页
+if(Integer.parseInt(index_page)==1){
+	minus =1;	
+}else{
+	minus =Integer.parseInt(index_page)-1;
 }
 %>
 <!DOCTYPE html>
@@ -48,117 +91,38 @@ if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.g
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<!--顶部开始-->
-        <div class="header">
-        	<div class="container">
-        		<div class="row">
-	        		<div class="top clearfix">
-	        				<div class="dropdown fr">
-							  <a class="dropdown-toggle" href="" id="dropdownMenu1" data-toggle="dropdown">
-							            更多语言
-							    <span class="caret"></span>
-							  </a>
-							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言1</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言2</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言3</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言4</a></li>
-							  </ul>
+		<%@ include file="header.jsp"%>
+		        <!--banner图部分开始-->
+        <div id="homepage-feature" class="carousel slide">
+						<ol class="carousel-indicators">
+							<li data-target="#homepage-feature" data-slide-to="0" class="active"> </li>
+							<li data-target="#homepage-feature" data-slide-to="1"> </li>
+							<li data-target="#homepage-feature" data-slide-to="2"> </li>
+							<li data-target="#homepage-feature" data-slide-to="3"> </li>
+						</ol>
+						<!--图片板块-->
+						<div class="carousel-inner">
+							<div class="item active">
+								<img src="img/banner01.jpg" alt="图片1"/>
 							</div>
-	        				<p class="fr">选择语言：<a href="" target="_blank">简体中文</a><span>|</span><a href="" target="_blank">繁体中文</a><span>|</span><a href="" target="_blank">English</a><span>|</span></p>
-	        		</div>
-        		</div>
-        		<div class="row">
-	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="index.html"><img src="img/logo_03.jpg"></a></div>
-	        			<div class="tell fl">
-	        				<p>24小时服务热线：<span>400-8000-888</span></p>
-	        			</div>
-	        			<div class="search fr">
-	        				<div class="resiter fr">
-								<%if(flag==1){ %>
-								<span class="glyphicon glyphicon-user"></span><a></a>
-								<%}else{ %>
-								<span class="glyphicon glyphicon-user"></span><a href="front_login.jsp" target="_blank">登陆</a>/<a href="front_reg.jsp" target="_blank">注册</a>
-							<%} %>
+							<div class="item">
+								<img src="img/banner02.jpg" alt="图片2"/>
 							</div>
-	        				<div class="input-group fr">
-							 <form action="front_index.jsp" method="post">
-							  <input type="text" class="form-control" name="search">
-							  <input class="input-group-addon cursor" type="submit" name="搜索" value="搜索" >
-							</form>
+							<div class="item">
+								<img src="img/banner03.jpg" alt="图片3"/>
 							</div>
-	        			</div>
-	        		</div>
-        		</div>
-        	</div>
-        </div>	
-        <!--顶部结束-->
-        <!--导航部分开始-->
-        <div class="navbar">
-        	<div class="container">
-        		<div class="row">
-			    	<ul id="nav2" class="nav2 clearfix">
-						<li class="nLi">
-							<h3><a href="" target="_blank">首页</a></h3>
-						</li>
-						<li class="nLi">
-								<h3><a href="" target="_blank">新闻</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi">
-						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank">link</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi ">
-								<h3><a href="" target="_blank">link</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi on">
-								<h3><a href="" target="_blank">百科问答</a></h3>
-								<!--<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>-->
-						</li>
-						<li class="nLi">
-								<h3><a href="" target="_blank">饺耳博客</a></h3>
-						</li>
-					</ul>
-
-
-        		</div>
-		    </div>
+							<div class="item">
+								<img src="img/banner04.jpg" alt="图片4"/>
+							</div>
+						</div>
+						<!--左右控制按钮 -->
+						<a class="left carousel-control" href="#homepage-feature" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#homepage-feature" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
 		</div>
-        <!--导航部分结束-->
-        <!--banner图部分开始-->
-        <div class="banner-inner"></div>
         <!--banner图部分结束-->
         <!--博客主体内容开始-->
         <div class="mainbox">
@@ -173,75 +137,44 @@ if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.g
          		<!--左边部分开始-->
 	         		<div class="col-md-3">
 	         			<div class="baike-navbar">
-	         				<!--百科导航部分开始-->
-	         				<h4><span class="glyphicon glyphicon-book"></span>百科问答</h4>
-	         				<ul>
+	         				<!--左边百科导航部分开始-->
+	         				<h4 class="baike-title-top"><span class="glyphicon glyphicon-book"></span>百科问答</h4>
+	         				<ul class="baike-title-nav">
 	         					<li><a href="" class="active">家常菜做法大全</a></li>
 	         					<li><a href="">青菜做法大全</a></li>
 	         					<li><a href="">水果做法大全</a></li>
 	         					<li><a href="">煲汤做法大全</a></li>
 	         				</ul>
+	         				<!--百科导航部分结束-->
 	         				<h4 class="icon-hotword">热门搜索</h4>
 	         				<ul class="hotword">
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺/西红柿鸡蛋水饺/三鲜饺子/素饺子</a></li>
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺</a></li>
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺</a></li>
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺</a></li>
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺</a></li>
-	         					<li class="just-line1"><a href="" target="_blank">饺耳店长推荐金牌水饺</a></li>
+	         					<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title from news where newstype=?  order by newsid desc limit 6", new MapxListHandler(),"baike");
+		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
+		         					<li class="just-line1"><a href="" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
+		         				<%} %>
 	         				</ul>
 	         				<h4 class="icon-recommend">饺耳推荐</h4>
+	         				<%
+	         				//最新推荐
+	         				
+	         				%>
 	         				<div class="celan5">
 	         					<ul class="clearfix">
+		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,6) as  title from news where newstype=? order by newsid desc limit 8", new MapxListHandler(),"baike");
+		         				for(int index_tp=0;index_tp<8;index_tp++){ 
+		         				if((index_tp%2)!=0){%>
+		         					<li class="mr0"> 
+		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>">
+		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
+		         						</a>
+		         					</li>
+		         					<%}else{ %>
 		         					<li>
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
+		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>">
+		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         						</a>
 		         					</li>
-		         					<li class="mr0">
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li>
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li class="mr0">
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li>
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li class="mr0">
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li>
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					<li class="mr0">
-		         						<a href="" target="_blank">
-			         						<img src="img/cai05_03.jpg">
-			         						<p>西红柿鸡蛋水饺</p>
-		         						</a>
-		         					</li>
-		         					
+		         					<%} }%>
 		         				</ul>
 		         				</div>
 	         				<!--百科导航部分结束-->
@@ -251,116 +184,87 @@ if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.g
 	         		<div class="col-md-9">
 	         			<div class="main-right">
 		         			<div class="cell-list">
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">金牌水饺-做法大全 | 做法详解 9.12</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+							<%
+							//判断是否是搜索显示
+							if(param.get("search_submit")!=null && param.get("search_submit").equals("搜索")){
+								
+								searchtj=new String(request.getParameter("search").getBytes("iso-8859-1"),"utf-8");
+								//搜索信息统计
+								List<Mapx<String, Object>> searchSql= DB.getRunner().query("select searchtj,count(1) from search_count where searchname=?", new MapxListHandler(),searchtj);
+								if(searchSql.get(0).getInt("count(1)").equals(0)){
+									DB.getRunner().update("insert into search_count(searchname,searchtj) values(?,?)",searchtj,1);
+								}else{
+									DB.getRunner().update("update search_count set searchtj = ? where searchname=?",searchSql.get(0).getInt("searchtj")+1,searchtj );	
+								}
+								System.out.println("search yes"+"searchSql"+searchSql);
+								//获取新闻资讯的信息
+								String xinwenSql="select author,title,img1,content, createtime ,type from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"baike");
+								for(int i=0;i<xinwens.size();i++){
+									Mapx<String,Object> one = xinwens.get(i);
+									//获取文章作者
+									List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+								%>
+									<div class="cell">
+										<div class="pic">
+											<img src="<%=one.getStringView("img1") %>">
+											<span class="pic-tilte">资讯</span>
+										</div>
+										<div class="cell_primary">
+											<a href="front_baike-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<p class="mb20">
+											<a href="front_baike-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											</p>
+											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+											<div class="bdsharebuttonbox bd-share">
+												<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-										<span class="pic-tilte">新闻</span>
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.12</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+								<%}
+							}else{
+								System.out.println("search no");
+								//获取新闻资讯的信息
+								String xinwenSql="select author,title,img1,content, createtime ,type from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"baike");
+								for(int i=0;i<xinwens.size();i++){
+									Mapx<String,Object> one = xinwens.get(i);
+									//获取文章作者
+									List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
+								%>
+									<div class="cell">
+										<div class="pic">
+											<img src="<%=one.getStringView("img1") %>">
+											<span class="pic-tilte">资讯</span>
+										</div>
+										<div class="cell_primary">
+											<a href="front_baike-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<p class="mb20">
+													<a href="front_baike-inner.jsp" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											</p>
+											
+											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
+											<div class="bdsharebuttonbox bd-share">
+												<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.12</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.12</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/cai01_03.jpg">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="" target="_blank"><h3 class="color-dd2727 mb15">Morketing移动互联网观察  | 每日早报9.12</h3></a>	
-										<p class="mb20">
-												<a href="" class="line3 color-666666">全球移动营销第一平台Morketing全球移动营销第一平台Morketing,全球
-												移动营销第一平台Morketing,全球移动营销第一平台Morketing,,每周一至
-												周五晨间时分为您提供移动互联网观察早欢迎您的关注...</a>
-										</p>
-										
-										<p class="color-666666">来自：恶魔圣典<span>|</span>2016-9-10<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
+							<%} }%>
 								<!--分页内容标签开始-->
 								<div class="nav-page">
 								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=<%=minus%>">&laquo;</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=2">3</a></li>
+								    <li><a>...</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_baike.jsp?page=<%=plus%>">&raquo;</a></li>
 								  </ul>
 								</div>
 							</div>
-	         			</div>
+						</div>
          		</div>
          		<!--右边部分结束-->
          	</div>

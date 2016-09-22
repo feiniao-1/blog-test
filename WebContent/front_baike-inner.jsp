@@ -4,13 +4,20 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="org.apache.commons.dbutils.QueryRunner"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
+System.out.println(df.format(new Date()));// new Date()为获取当前系统时间  
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
 String pageType = null;
 String userType = null;
+//验证用户登陆
+String username = (String)session.getAttribute("username");
+System.out.println("当前登录用户"+username);
+List<Mapx<String, Object>> useridc= DB.getRunner().query("SELECT userid FROM user where username=?", new MapxListHandler(),username);
 int flag=0;
-if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.getStringView("status").equals("有效")){
+if(username==null){
 	
 }else{
 	flag=1;
@@ -48,115 +55,7 @@ if(user==null || !user.getStringView("shenhe").equals("审核通过") || !user.g
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<!--顶部开始-->
-        <div class="header">
-        	<div class="container">
-        		<div class="row">
-	        		<div class="top clearfix">
-	        				<div class="dropdown fr">
-							  <a class="dropdown-toggle" href="" id="dropdownMenu1" data-toggle="dropdown">
-							            更多语言
-							    <span class="caret"></span>
-							  </a>
-							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言1</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言2</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言3</a></li>
-							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言4</a></li>
-							  </ul>
-							</div>
-	        				<p class="fr">选择语言：<a href="" target="_blank">简体中文</a><span>|</span><a href="" target="_blank">繁体中文</a><span>|</span><a href="" target="_blank">English</a><span>|</span></p>
-	        		</div>
-        		</div>
-        		<div class="row">
-	        		<div class="head clearfix">
-	        			<div class="logo fl"><a href="index.html"><img src="img/logo_03.jpg"></a></div>
-	        			<div class="tell fl">
-	        				<p>24小时服务热线：<span>400-8000-888</span></p>
-	        			</div>
-	        			<div class="search fr">
-	        				<div class="resiter fr">
-								<%if(flag==1){ %>
-								<span class="glyphicon glyphicon-user"></span><a></a>
-								<%}else{ %>
-								<span class="glyphicon glyphicon-user"></span><a href="front_login.jsp" target="_blank">登陆</a>/<a href="front_reg.jsp" target="_blank">注册</a>
-							<%} %>
-							</div>
-	        				<div class="input-group fr">
-							 <form action="front_index.jsp" method="post">
-							  <input type="text" class="form-control" name="search">
-							  <input class="input-group-addon cursor" type="submit" name="搜索" value="搜索" >
-							</form>
-							</div>
-	        			</div>
-	        		</div>
-        		</div>
-        	</div>
-        </div>	
-        <!--顶部结束-->
-        <!--导航部分开始-->
-        <div class="navbar">
-        	<div class="container">
-        		<div class="row">
-			    	<ul id="nav2" class="nav2 clearfix">
-						<li class="nLi">
-							<h3><a href="" target="_blank">首页</a></h3>
-						</li>
-						<li class="nLi">
-								<h3><a href="" target="_blank">新闻</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi">
-						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank">link</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi ">
-								<h3><a href="" target="_blank">link</a></h3>
-								<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>
-						</li>
-						<li class="nLi on">
-								<h3><a href="" target="_blank">百科问答</a></h3>
-								<!--<ul class="sub">
-									<li><a href="#">新闻首页</a></li>
-									<li><a href="#">新闻人物</a></li>
-									<li><a href="#">新闻电视</a></li>
-									<li><a href="#">新闻图片</a></li>
-									<li><a href="#">新闻视频</a></li>
-									<li><a href="# ">新闻专题</a></li>
-								</ul>-->
-						</li>
-						<li class="nLi">
-								<h3><a href="" target="_blank">饺耳博客</a></h3>
-						</li>
-					</ul>
-
-
-        		</div>
-		    </div>
-		</div>
-        <!--导航部分结束-->
+		<%@ include file="header.jsp"%>
         <!--banner图部分开始-->
         <div class="baike-banner"></div>
         <!--banner图部分结束-->
