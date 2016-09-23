@@ -107,7 +107,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 %>
 </head>
 <body>
-填写博客信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a></span><br>
+填写博客信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a>/<a href="front_index.jsp?page=0">首页</a></span><br>
 <form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
 图片*：<br><input type="text" Name="img1"  placeholder="图片名"><br>
