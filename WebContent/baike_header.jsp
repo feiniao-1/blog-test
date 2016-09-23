@@ -8,7 +8,9 @@
 
 //导航信息
 List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daohang_type where parentid=0", new MapxListHandler());
-
+//String url1 = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI()+"?"+request.getQueryString(); 
+//获取用户角色
+List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user where username=?", new MapxListHandler(), username);
 %>
 <!DOCTYPE html >
 <html>
@@ -45,17 +47,22 @@ List<Mapx<String, Object>> top_daohang= DB.getRunner().query("SELECT * FROM daoh
 	        			</div>
 	        			<div class="search fr">
 	        				<div class="resiter fr">
-								<%if(flag==1){ %>
-								<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>
-								<%}else{ %>
+								<%if(flag==1){
+									if(juese.get(0).getStringView("userrole").equals("管理员")){
+									%>
+									<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>/<a href="admin_baike_edit.jsp">用户中心</a>
+									<%}else{ %>
+									<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>
+								<%}}else{ %>
 								<span class="glyphicon glyphicon-user"></span><a href="front_login.jsp" target="_blank">登陆</a>/<a href="front_reg.jsp" target="_blank">注册</a>
 							<%} %>
 							</div>
 	        				<div class="input-group fr">
-							 <form action="front_index.jsp?page=0" method="post">
+							 <form action="front_baike.jsp?page=0" method="post">
 							  <input type="text" class="form-control" name="search">
 							  <input class="input-group-addon cursor" type="submit" name="search_submit" value="搜索" >
-							</form>
+							 </form>
+							
 							</div>
 	        			</div>
 	        		</div>

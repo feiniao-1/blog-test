@@ -9,7 +9,13 @@
 HashMap<String,String> param= G.getParamMap(request);
 //获取url
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
-System.out.println("url"+url);
+String url1 = request.getRequestURI(); 
+
+System.out.println("url=="+url+";;;url1=="+url1);
+String url3=request.getRequestURI().toString(); //得到相对url 
+String url2=request.getRequestURI().toString(); //得到绝对URL
+
+System.out.println("url3=="+url3+";;;;url2=="+url2);
 //验证用户登陆
 String username = (String)session.getAttribute("username");
 int flag=0;
@@ -89,7 +95,7 @@ if(Integer.parseInt(index_page)==1){
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<%@ include file="header.jsp"%>
+		<%@ include file="boke_header.jsp"%>
 		        <!--banner图部分开始-->
         <div id="homepage-feature" class="carousel slide">
 						<ol class="carousel-indicators">
@@ -127,7 +133,7 @@ if(Integer.parseInt(index_page)==1){
          <div class="container">
            <div class="row">
          		<ol class="breadcrumb">
-				  <li><a href="#">饺耳</a></li>
+				  <li><a href="front_index.jsp?page=0">饺耳</a></li>
 				  <li class="active">饺耳博客</li>
 				</ol>
          	</div>
@@ -149,34 +155,37 @@ if(Integer.parseInt(index_page)==1){
 							<div class="tab-inner cell-list">
 							<%
 							//判断是否是搜索显示
-							if(param.get("search_submit")!=null && param.get("search_submit").equals("搜索")){
-								
-								searchtj=new String(request.getParameter("search").getBytes("iso-8859-1"),"utf-8");
-								//搜索信息统计
-								List<Mapx<String, Object>> searchSql= DB.getRunner().query("select searchtj,count(1) from search_count where searchname=?", new MapxListHandler(),searchtj);
-								if(searchSql.get(0).getInt("count(1)").equals(0)){
-									DB.getRunner().update("insert into search_count(searchname,searchtj) values(?,?)",searchtj,1);
+							if((param.get("search_submit")!=null && param.get("search_submit").equals("搜索"))||request.getParameter("searchname")!=null){
+								if(request.getParameter("searchname")!=null){
+									searchtj=new String(request.getParameter("searchname").getBytes("iso-8859-1"),"utf-8");
 								}else{
-									DB.getRunner().update("update search_count set searchtj = ? where searchname=?",searchSql.get(0).getInt("searchtj")+1,searchtj );	
+									searchtj=new String(request.getParameter("search").getBytes("iso-8859-1"),"utf-8");
+								}
+								//搜索信息统计
+								List<Mapx<String, Object>> searchSql= DB.getRunner().query("select searchtj,count(1) from search_count where searchname=? and searchtype=?", new MapxListHandler(),searchtj,"boke");
+								if(searchSql.get(0).getInt("count(1)").equals(0)){
+									DB.getRunner().update("insert into search_count(searchname,searchtj,searchtype) values(?,?,?)",searchtj,1,"boke");
+								}else{
+									DB.getRunner().update("update search_count set searchtj = ? where searchname=? and searchtype=?",searchSql.get(0).getInt("searchtj")+1,searchtj ,"boke");	
 								}
 								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
-								String xinwenSql="select author,title,img1,content, createtime ,type from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,title,img1,content, createtime ,type,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
 									//获取文章作者
 									List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),one.getIntView("author"));
-								%>
+								%> 
 									<div class="cell">
 										<div class="pic">
 											<img src="<%=one.getStringView("img1") %>">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="front_index-inner.jsp?page=0" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-											<a href="front_index-inner.jsp?page=0" class="line3 color-666666"><%=one.getStringView("content") %></a>
+											<a href="front_index-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
 											<div class="bdsharebuttonbox bd-share">
@@ -188,7 +197,7 @@ if(Integer.parseInt(index_page)==1){
 							}else{
 								System.out.println("search no");
 								//获取新闻资讯的信息
-								String xinwenSql="select author,title,img1,content, createtime ,type from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,title,img1,content, createtime ,type ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -201,9 +210,9 @@ if(Integer.parseInt(index_page)==1){
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
-											<a href="front_index-inner.jsp?page=0" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
+											<a href="front_index-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" target="_blank"><h3 class="color-dd2727 mb15"><%=one.getStringView("title") %></h3></a>	
 											<p class="mb20">
-													<a href="front_index-inner.jsp?page=0" class="line3 color-666666"><%=one.getStringView("content") %></a>
+													<a href="front_index-inner.jsp?page=0&tagid=<%=one.getIntView("tagid") %>" class="line3 color-666666"><%=one.getStringView("content") %></a>
 											</p>
 											
 											<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span>|</span><%=one.getIntView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600"></span><%=one.getIntView("count") %></p>
@@ -418,16 +427,16 @@ if(Integer.parseInt(index_page)==1){
 		         			<div class="celan celan1">
 		         				<h4>图片集</h4>
 		         				<ul class="clearfix">
-		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title from news where newstype=? order by newsid desc limit 9", new MapxListHandler(),"boke");
+		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? order by newsid desc limit 9", new MapxListHandler(),"boke");
 		         				for(int index_tp=0;index_tp<9;index_tp++){ 
 		         				if((index_tp%3)!=0){%>
 		         					<li> 
-		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
+		         						<a href="front_index-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%}else{ %>
 		         					<li  class="mr0">
-		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
+		         						<a href="front_index-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%} }%>
@@ -437,9 +446,9 @@ if(Integer.parseInt(index_page)==1){
 		         			<div class="celan celan2">
 		         				<h4>最新文章</h4>
 		         				<ul>
-		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title from news where newstype=?  order by newsid desc limit 6", new MapxListHandler(),"boke");
+		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=?  order by newsid desc limit 6", new MapxListHandler(),"boke");
 		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
-		         					<li><a href="" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
+		         					<li><a href="front_index-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
 		         				<%} %>
 		         				</ul>
 		         			</div>
@@ -454,18 +463,18 @@ if(Integer.parseInt(index_page)==1){
 		         			<div class="celan celan4">
 		         				<h4>你可能感兴趣</h4>
 		         				<ul class="keyword-first clearfix">
-		         				<%List<Mapx<String, Object>> targ=DB.getRunner().query("select  substring(searchname,1,4) as searchname from search_count order by searchtj desc limit 9",new MapxListHandler());
+		         				<%List<Mapx<String, Object>> targ=DB.getRunner().query("select  substring(searchname,1,4) as searchname from search_count where searchtype=? order by searchtj desc limit 9",new MapxListHandler(),"boke");
 		         				
 		         				%>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(0).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(1).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(2).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(3).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(4).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-ff6600"><%=targ.get(5).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(6).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(7).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(8).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(0).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(0).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(1).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(1).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(2).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(2).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(3).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(3).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(4).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(4).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(5).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(5).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(6).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(6).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(7).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(7).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(8).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(8).getStringView("searchname") %></a></li>
 		         				</ul>
 		         			</div>
 		         			<!--右边-板块五开始-->

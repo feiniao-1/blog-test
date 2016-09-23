@@ -55,7 +55,7 @@ if(username==null){
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<%@ include file="header.jsp"%>
+		<%@ include file="baike_header.jsp"%>
         <!--banner图部分开始-->
         <div class="baike-banner"></div>
         <!--banner图部分结束-->
@@ -64,8 +64,8 @@ if(username==null){
          <div class="container">
          <div class="row">
          		<ol class="breadcrumb">
-				  <li><a href="#">饺耳</a></li>
-				  <li><a href="#">百科问答</a></li>
+				  <li><a href="front_baike.jsp?page=0">饺耳</a></li>
+				  <li><a href="front_baike.jsp?page=0">百科问答</a></li>
 				  <li class="active">词条详情</li>
 				</ol>
          	</div>
@@ -74,7 +74,7 @@ if(username==null){
 	         		<div class="col-md-9">
 	         			<div class="main-left">
 	         				<div class="baike-content">
-	         				<%List<Mapx<String, Object>> baikexx=DB.getRunner().query("SELECT title,content1,img1,step1,step2,step3,step4,chinaname,Englishname,maining,function,`character`,usetime,tag1,tag2,tag3,tag4 FROM `baike_article` where articleid=?", new MapxListHandler(), "10");
+	         				<%List<Mapx<String, Object>> baikexx=DB.getRunner().query("SELECT title,content1,img1,step1,step2,step3,step4,chinaname,Englishname,maining,function,`character`,usetime,tag1,tag2,tag3,tag4 FROM `baike_article` where tagid=?", new MapxListHandler(), request.getParameter("tagid"));
 	         				%>
 		         				<h3><%=baikexx.get(0).getStringView("title") %></h3><!--关键词条-->
 		         				<P class="color-666666 mb20 word-introduce"><%=baikexx.get(0).getStringView("content1") %></P>
@@ -106,7 +106,7 @@ if(username==null){
 		         				<div class="cell-list" style="position: relative; padding-bottom: 60px; margin-bottom: 30px;">
 		         					<div class="cell">
 		         						<div class="pic width200">
-		         							<img src="img/food-sj.png">
+		         							<img src="<%=baikexx.get(0).getStringView("img1") %>">
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">1</span>步骤一</h4>
@@ -116,7 +116,7 @@ if(username==null){
 		         					</div>
 		         					<div class="cell">
 		         						<div class="pic width200">
-		         							<img src="img/food-sj.png">
+		         							<img src="<%=baikexx.get(0).getStringView("img2") %>">
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">2</span>步骤二</h4>
@@ -126,7 +126,7 @@ if(username==null){
 		         					</div>
 		         					<div class="cell">
 		         						<div class="pic width200">
-		         							<img src="img/food-sj.png">
+		         							<img src="<%=baikexx.get(0).getStringView("img3") %>">
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">3</span>步骤三</h4>
@@ -136,7 +136,7 @@ if(username==null){
 		         					</div>
 		         					<div class="cell">
 		         						<div class="pic width200">
-		         							<img src="img/food-sj.png">
+		         							<img src="<%=baikexx.get(0).getStringView("img4") %>">
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">4</span>步骤四</h4>

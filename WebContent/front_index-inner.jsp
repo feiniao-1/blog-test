@@ -26,7 +26,7 @@ if(username==null){
 	flag=1;
 }
 //文章信息
-List<Mapx<String, Object>> article=DB.getRunner().query("select author,title,content1,content2,tag1,tag2,tag3,tag4,img1,createtime from article where articleid=1", new MapxListHandler());
+List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,tag1,tag2,tag3,tag4,img1,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
 //获取文章作者
 List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),article.get(0).getStringView("author"));
 //获取当前url
@@ -56,9 +56,15 @@ if(request.getParameter("page")==null){
 }
 int page_ye=Integer.parseInt(discuss_page)*5;
 //显示评论信息
+int canshu_url;
 int useridh=10049;
-List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from discuss where  userid=? order by discussid desc limit 1",new MapxListHandler(),useridh);
-int canshu_url=showdiscuss1.get(0).getInt("canshu_url");
+List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from discuss where  articleid=? order by discussid desc limit 1",new MapxListHandler(),article.get(0).getStringView("articleid"));
+System.out.println("showdiscuss1"+showdiscuss1.size());
+if(showdiscuss1.size()==0){
+	canshu_url=1;
+}else{
+	canshu_url=showdiscuss1.get(0).getInt("canshu_url");
+}
 //获取评论信息
 System.out.println(request.getMethod());//获取request方法 POST or GET
 HashMap<String,String> param= G.getParamMap(request);
@@ -69,7 +75,7 @@ String content;
 			content=new String(request.getParameter("content").getBytes("iso-8859-1"),"utf-8");
 			if(content.equals("")||content.equals(null)){
 			}else{
-				DB.getRunner().update("insert into discuss(discusscontent,visitor,canshu_url,discusstime,userid) values(?,?,?,?,?)",content,useridc.get(0).getIntView("userid"),url_canshu,df.format(new Date()),10049);
+				DB.getRunner().update("insert into discuss(discusscontent,visitor,canshu_url,discusstime,userid,articleid) values(?,?,?,?,?,?)",content,useridc.get(0).getIntView("userid"),url_canshu,df.format(new Date()),10049,article.get(0).getStringView("articleid"));
 				content=null;
 			}
 		}else{
@@ -78,7 +84,7 @@ String content;
 			%>
 			<script type="text/javascript" language="javascript">
 					alert("请登录");                                            // 弹出错误信息
-					window.location='front_index-inner.jsp' ;                            // 跳转到登录界面
+					window.location='front_index-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>' ;                            // 跳转到登录界面
 			</script>
 		<%
 		}
@@ -87,7 +93,7 @@ String content;
 	}
 
 //显示评论信息
-List<Mapx<String,Object>> showdiscuss = DB.getRunner().query("select discusscontent as sh_discuss,userid as sh_userid,visitor as sh_visitor,canshu_url as canshu_url ,substring(discusstime,1,19) as discusstime from discuss where  userid=? order by discussid desc limit "+page_ye+",5",new MapxListHandler(),10049);
+List<Mapx<String,Object>> showdiscuss = DB.getRunner().query("select discusscontent as sh_discuss,userid as sh_userid,visitor as sh_visitor,canshu_url as canshu_url ,substring(discusstime,1,19) as discusstime from discuss where  articleid=? order by discussid desc limit "+page_ye+",5",new MapxListHandler(),article.get(0).getStringView("articleid"));
 
 /*统计 评论数及 页数*/
 String sqlPreCount = "select count(1) as count from discuss where  (del is NULL or del <>1) and userid=? order BY discussid DESC ";
@@ -144,7 +150,7 @@ if(Integer.parseInt(discuss_page)==0){
 			<video id="vPlayer" controls="controls"  width="100%" heigh="517" poster="img/video-bg.jpg" src="video/example.mp4"></video>
 		</div>
 		<!--视频弹出层结束-->
-		<%@ include file="header.jsp"%>
+		<%@ include file="boke_header.jsp"%>
 		        <!--banner图部分开始-->
         <div id="homepage-feature" class="carousel slide">
 						<ol class="carousel-indicators">
@@ -182,8 +188,8 @@ if(Integer.parseInt(discuss_page)==0){
          <div class="container">
           <div class="row">
          		<ol class="breadcrumb">
-				  <li><a href="#">饺耳</a></li>
-				  <li><a href="#">饺耳博客</a></li>
+				  <li><a href="front_index.jsp?page=0">饺耳</a></li>
+				  <li><a href="front_index.jsp?page=0">饺耳博客</a></li>
 				  <li class="active">博客详情</li>
 				</ol>
          	</div>
@@ -208,7 +214,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         						<p><%=article.get(0).getStringView("content1") %></p>
 	         					</div>
 	         					<div class="article-pic mb20">
-	         						<img src="img/pic20.jpg">
+	         						<img src="<%=article.get(0).getStringView("img1") %>">
 	         					</div>
 	         					<div class="article-word">
 	         						<%=article.get(0).getStringView("content2") %>
@@ -224,7 +230,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         				<!--评价部分开始-->
 	         				<div class="evaluate">
 	         					<h4>发表评论</h4>
-	         					<form id="form_tj" action="front_index-inner.jsp?page=0&jishu=<%=val%>" method="post"  class="clearfix mb20">
+	         					<form id="form_tj" action="front_index-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>" method="post"  class="clearfix mb20">
 		         					<textarea placeholder="写出你的点评" id="discuss_content" rows="5" cols="35" name="content"></textarea>
 		         					<input type="submit" Name="Action" value="发表评论" class="submit-fb" >
 	         					</form>
@@ -267,22 +273,23 @@ if(Integer.parseInt(discuss_page)==0){
 	         		    </div>
          		    </div>
          		<!--右边部分开始-->
+         		
 	         		<div class="col-md-3">
 	         			<div class="main-right">
 		         			<!--右边-板块一开始-->
 		         			<div class="celan celan1">
 		         				<h4>图片集</h4>
 		         				<ul class="clearfix">
-		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,8) as  title from news  order by newsid desc limit 9", new MapxListHandler());
+		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? order by newsid desc limit 9", new MapxListHandler(),"boke");
 		         				for(int index_tp=0;index_tp<9;index_tp++){ 
 		         				if((index_tp%3)!=0){%>
 		         					<li> 
-		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
+		         						<a href="front_index-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%}else{ %>
-		         					<li class="mr0">
-		         						<a href="" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
+		         					<li  class="mr0">
+		         						<a href="front_index-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%} }%>
@@ -292,9 +299,9 @@ if(Integer.parseInt(discuss_page)==0){
 		         			<div class="celan celan2">
 		         				<h4>最新文章</h4>
 		         				<ul>
-		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title from news  order by newsid desc limit 6", new MapxListHandler());
+		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=?  order by newsid desc limit 6", new MapxListHandler(),"boke");
 		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
-		         					<li><a href="" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
+		         					<li><a href="front_index-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
 		         				<%} %>
 		         				</ul>
 		         			</div>
@@ -309,18 +316,18 @@ if(Integer.parseInt(discuss_page)==0){
 		         			<div class="celan celan4">
 		         				<h4>你可能感兴趣</h4>
 		         				<ul class="keyword-first clearfix">
-		         				<%List<Mapx<String, Object>> targ=DB.getRunner().query("select  substring(searchname,1,4) as searchname from search_count order by searchtj desc limit 9",new MapxListHandler());
+		         				<%List<Mapx<String, Object>> targ=DB.getRunner().query("select  substring(searchname,1,4) as searchname from search_count where searchtype=? order by searchtj desc limit 9",new MapxListHandler(),"boke");
 		         				
 		         				%>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(0).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(1).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(2).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(3).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(4).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-ff6600"><%=targ.get(5).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-dd2727"><%=targ.get(6).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width"><a href="" class="bg_color-ff6600"><%=targ.get(7).getStringView("searchname") %></a></li>
-		         					<li class="bqb-width mr0"><a href="" class="bg_color-dd2727"><%=targ.get(8).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(0).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(0).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(1).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(1).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(2).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(2).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(3).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(3).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(4).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(4).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(5).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(5).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(6).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(6).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width"><a href="front_index.jsp?page=0&searchname=<%=targ.get(7).getStringView("searchname") %>" class="bg_color-ff6600"><%=targ.get(7).getStringView("searchname") %></a></li>
+		         					<li class="bqb-width mr0"><a href="front_index.jsp?page=0&searchname=<%=targ.get(8).getStringView("searchname") %>" class="bg_color-dd2727"><%=targ.get(8).getStringView("searchname") %></a></li>
 		         				</ul>
 		         			</div>
 		         			<!--右边-板块五开始-->

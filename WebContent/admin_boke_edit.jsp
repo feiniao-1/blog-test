@@ -47,6 +47,7 @@ SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间  
 //设置随机数
 int  val = (int)(Math.random()*10000)+1;
+int tagid=(int)new Date().getTime()/1000+(int)(Math.random()*10000)+1;
 int url_canshu;
 if(jishu==null){
 	url_canshu=Integer.parseInt("1");
@@ -70,6 +71,7 @@ String tag1;
 String tag2;
 String tag3;
 String tag4;
+String img1;
 System.out.println("url_canshu:"+url_canshu+"canshu_url"+canshu_url);
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
@@ -80,6 +82,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	tag2=new String(request.getParameter("tag2").getBytes("iso-8859-1"),"utf-8");
 	tag3=new String(request.getParameter("tag3").getBytes("iso-8859-1"),"utf-8");
 	tag4=new String(request.getParameter("tag4").getBytes("iso-8859-1"),"utf-8");
+	img1=new String(request.getParameter("img1").getBytes("iso-8859-1"),"utf-8");
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))||(content2.equals("")||content2.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
@@ -88,8 +91,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			</script>
 		<%
 	}else{
-		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1) values(?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,"img/cai01_03.jpg");
-		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1) values(?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke","img/cai01_03.jpg");
+		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,tagid) values(?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,tagid);
+		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid);
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -106,9 +109,10 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <body>
 填写博客信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a></span><br>
 <form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
-标题：<br><input type="text" Name="title"  placeholder="标题"><br>
-描述：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
-内容：<br><textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
+标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
+图片*：<br><input type="text" Name="img1"  placeholder="图片名"><br>
+描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
+内容*：<br><textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
 词条标签（选填）：<br>
 <input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 <input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">

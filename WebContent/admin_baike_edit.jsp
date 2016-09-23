@@ -47,6 +47,7 @@ SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间  
 //设置随机数
 int  val = (int)(Math.random()*10000)+1;
+int tagid=(int)new Date().getTime()/1000+(int)(Math.random()*10000)+1;
 int url_canshu;
 if(jishu==null){
 	url_canshu=Integer.parseInt("1");
@@ -79,6 +80,10 @@ String step1;
 String step2;
 String step3;
 String step4;
+String img1;
+String img2;
+String img3;
+String img4;
 System.out.println("url_canshu:"+url_canshu+"canshu_url"+canshu_url);
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
@@ -98,6 +103,10 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	step2=new String(request.getParameter("step2").getBytes("iso-8859-1"),"utf-8");
 	step3=new String(request.getParameter("step3").getBytes("iso-8859-1"),"utf-8");
 	step4=new String(request.getParameter("step4").getBytes("iso-8859-1"),"utf-8");
+	img1=new String(request.getParameter("img1").getBytes("iso-8859-1"),"utf-8");
+	img2=new String(request.getParameter("img2").getBytes("iso-8859-1"),"utf-8");
+	img3=new String(request.getParameter("img3").getBytes("iso-8859-1"),"utf-8");
+	img4=new String(request.getParameter("img4").getBytes("iso-8859-1"),"utf-8");
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
@@ -106,8 +115,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			</script>
 		<%
 	}else{
-		DB.getRunner().update("insert into baike_article(author,title,content1,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,chinaname,Englishname,maining,function,`character`,usetime,step1,step2,step3,step4) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,"img/cai01_03.jpg",chinaname,Englishname,maining,function,character,usetime,step1,step2,step3,step4);
-		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1) values(?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"baike","img/cai01_03.jpg");
+		DB.getRunner().update("insert into baike_article(author,title,content1,createtime,tag1,tag2,tag3,tag4,canshu_url,chinaname,Englishname,maining,function,`character`,usetime,step1,step2,step3,step4,img1,img2,img3,img4,tagid) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,chinaname,Englishname,maining,function,character,usetime,step1,step2,step3,step4,img1,img2,img3,img4,tagid);
+		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"baike",img1,tagid);
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -134,10 +143,18 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 特色：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="character"  placeholder="特色" style="width:150px;"><br>
 用时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="usetime"  placeholder="用时" style="width:150px;"><br>
 做法：<br>
-步骤一：<br><textarea id="discuss_content" rows="3" cols="35" name="step1" placeholder="步骤一" ></textarea><br>
-步骤二：<br><textarea id="discuss_content" rows="3" cols="35" name="step2" placeholder="步骤二" ></textarea><br>
-步骤三：<br><textarea id="discuss_content" rows="3" cols="35" name="step3" placeholder="步骤三" ></textarea><br>
-步骤四：<br><textarea id="discuss_content" rows="3" cols="35" name="step4" placeholder="步骤四" ></textarea><br>
+步骤一：<br>
+图片*：<br><input type="text" Name="img1"  placeholder="图片名1"><br>
+<textarea id="discuss_content" rows="3" cols="35" name="step1" placeholder="步骤一" ></textarea><br>
+步骤二：<br>
+图片：<br><input type="text" Name="img2"  placeholder="图片名2"><br>
+<textarea id="discuss_content" rows="3" cols="35" name="step2" placeholder="步骤二" ></textarea><br>
+步骤三：<br>
+图片：<br><input type="text" Name="img3"  placeholder="图片名3"><br>
+<textarea id="discuss_content" rows="3" cols="35" name="step3" placeholder="步骤三" ></textarea><br>
+步骤四：<br>
+图片：<br><input type="text" Name="img4"  placeholder="图片名4"><br>
+<textarea id="discuss_content" rows="3" cols="35" name="step4" placeholder="步骤四" ></textarea><br>
 关键词（选填）：<br>
 <input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 <input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
