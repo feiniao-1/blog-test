@@ -74,29 +74,31 @@ if(username==null){
 	         		<div class="col-md-9">
 	         			<div class="main-left">
 	         				<div class="baike-content">
-		         				<h3>金牌水饺</h3><!--关键词条-->
-		         				<P class="color-666666 mb20 word-introduce">饺子是中国东汉南阳医圣张仲景发明的，它的历史沿革经历了漫长的过程，明朝末年张自烈做了很好的说明：“水饺耳，即段成式食品，汤中牢丸，或谓粉角，北方人读角为娇，因呼饺饵，伪为饺儿。”在包饺子时，人们常常将金如意、糖、花生、枣和栗子等包进馅里。吃到如意、吃到糖的人，来年的日子更甜美，吃到花生的人将健康长寿，吃到枣和栗子的人将早生贵子。有些地区的人家在吃饺子的同时，还要配些副食以示吉利。比如吃豆腐，象征全家幸福；吃柿饼，象征事事如意；吃三鲜菜，象征三阳开泰。南方有些地方过年时会打散鸡蛋后加热做外皮包上肉馅称之为蛋饺。</P>
+	         				<%List<Mapx<String, Object>> baikexx=DB.getRunner().query("SELECT title,content1,img1,step1,step2,step3,step4,chinaname,Englishname,maining,function,`character`,usetime,tag1,tag2,tag3,tag4 FROM `baike_article` where articleid=?", new MapxListHandler(), "10");
+	         				%>
+		         				<h3><%=baikexx.get(0).getStringView("title") %></h3><!--关键词条-->
+		         				<P class="color-666666 mb20 word-introduce"><%=baikexx.get(0).getStringView("content1") %></P>
 		         				<!--简介-->
 		         				<h4 class="icon-zy">摘要</h4>
 		         				<table width="100%" border="1" cellspacing="0" class="mb30 table-zy">
 		         					<tbody>
 		         						<tr>
 		         							<td>中文名</td>
-		         							<td>金牌水饺</td>
+		         							<td><%=baikexx.get(0).getStringView("chinaname") %></td>
 		         							<td>英文名</td>
-		         							<td>njhvud</td>
+		         							<td><%=baikexx.get(0).getStringView("Englishname") %></td>
 		         						</tr>
 		         						<tr>
 		         							<td>主要食材</td>
-		         							<td>面皮、蒜、葱、酱油、小尖椒</td>
+		         							<td><%=baikexx.get(0).getStringView("maining") %></td>
 		         							<td>功效</td>
-		         							<td>养胃</td>
+		         							<td><%=baikexx.get(0).getStringView("function") %></td>
 		         						</tr>
 		         						<tr>
 		         							<td>特色</td>
-		         							<td>香嫩、油而不腻</td>
+		         							<td><%=baikexx.get(0).getStringView("character") %></td>
 		         							<td>用时</td>
-		         							<td>一个小时左右</td>
+		         							<td><%=baikexx.get(0).getStringView("usetime") %></td>
 		         						</tr>
 		         					</tbody>
 		         				</table>
@@ -108,10 +110,7 @@ if(username==null){
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">1</span>步骤一</h4>
-		         							<p>1，豆角焯水，过凉，切碎，香葱切碎，姜磨泥
-												2，猪肉剁碎，加葱姜剁均匀
-												3，和豇豆末，木耳丝，混合均匀
-												4，加，盐，味精，胡椒粉，老抽生抽，食用油，糖，搅拌均匀，分三次打进六汤匙水。静置二十分钟即可备用。
+		         							<p><%=baikexx.get(0).getStringView("step1") %>
 		         							</p>
 		         						</div>
 		         					</div>
@@ -121,10 +120,7 @@ if(username==null){
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">2</span>步骤二</h4>
-		         							<p>1，豆角焯水，过凉，切碎，香葱切碎，姜磨泥
-												2，猪肉剁碎，加葱姜剁均匀
-												3，和豇豆末，木耳丝，混合均匀
-												4，加，盐，味精，胡椒粉，老抽生抽，食用油，糖，搅拌均匀，分三次打进六汤匙水。静置二十分钟即可备用。
+		         							<p><%=baikexx.get(0).getStringView("step2") %>
 		         							</p>
 		         						</div>
 		         					</div>
@@ -134,10 +130,7 @@ if(username==null){
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">3</span>步骤三</h4>
-		         							<p>1，豆角焯水，过凉，切碎，香葱切碎，姜磨泥
-												2，猪肉剁碎，加葱姜剁均匀
-												3，和豇豆末，木耳丝，混合均匀
-												4，加，盐，味精，胡椒粉，老抽生抽，食用油，糖，搅拌均匀，分三次打进六汤匙水。静置二十分钟即可备用。
+		         							<p><%=baikexx.get(0).getStringView("step3") %>
 		         							</p>
 		         						</div>
 		         					</div>
@@ -147,10 +140,7 @@ if(username==null){
 		         						</div>
 		         						<div class="cell_primary">
 		         							<h4 class="mb10"><span class="step">4</span>步骤四</h4>
-		         							<p>1，豆角焯水，过凉，切碎，香葱切碎，姜磨泥
-												2，猪肉剁碎，加葱姜剁均匀
-												3，和豇豆末，木耳丝，混合均匀
-												4，加，盐，味精，胡椒粉，老抽生抽，食用油，糖，搅拌均匀，分三次打进六汤匙水。静置二十分钟即可备用。
+		         							<p><%=baikexx.get(0).getStringView("step4") %>
 		         							</p>
 		         						</div>
 		         					</div>
@@ -198,7 +188,11 @@ if(username==null){
 			         				<p><a href="" target="_blank">4.饺子的菜谱做法大全  ．香哈网[引用日期2014-05-24]</a></p>
 		         				</div>
 		         				<h4 class="mb10">关键词</h4>
-		         				<p class="about-word"><a href="" target="" class="mr20">西红柿鸡蛋水饺</a><a href="" target="" class="mr20">西红柿鸡蛋水饺</a><a href="" target="" class="mr20">西红柿鸡蛋水饺</a><a href="" target="" class="mr20">西红柿鸡蛋水饺</a></p>
+		         				<p class="about-word">
+		         				<a href="" target="" class="mr20"><%=baikexx.get(0).getStringView("tag1") %></a>
+		         				<a href="" target="" class="mr20"><%=baikexx.get(0).getStringView("tag2") %></a>
+		         				<a href="" target="" class="mr20"><%=baikexx.get(0).getStringView("tag3") %></a>
+		         				<a href="" target="" class="mr20"><%=baikexx.get(0).getStringView("tag4") %></a></p>
 	         					<h4 class="mb10">链接</h4>
 	         					<p class="about-link"><a href="" target="" class="mr20">饺耳水饺</a><a href="" target="" class="mr20">多野火锅</a><a href="" target="" class="mr20">寰宇汇智</a></p>
 	         				</div>
@@ -218,27 +212,16 @@ if(username==null){
 		         			</div>
 		         			<h4  class="icon-tj">推荐</h4>
 		         			<table width="100%" border="0" cellspacing="0" class="recommend">
+		         			
 		         				<tbody>
+		         			<%List<Mapx<String, Object>> baiketitle=DB.getRunner().query("SELECT substring(title,1,6) as title FROM `baike_article` order by articleid desc limit 8", new MapxListHandler());
+		         			for(int i=0;i<baiketitle.size();i=i+2){
+	         				%>
 		         					<tr>
-		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
-		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
+		         						<td width="50%"><a href="" target="_blank"><%=baiketitle.get(i).getStringView("title") %></a></td>
+		         						<td width="50%"><a href="" target="_blank"><%=baiketitle.get(i+1).getStringView("title") %></a></td>
 		         					</tr>
-		         					<tr>
-		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
-		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
-		         					</tr>
-		         					<tr>
-		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
-		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
-		         					</tr>
-		         					<tr>
-		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
-		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
-		         					</tr>
-		         					<tr>
-		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
-		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
-		         					</tr>
+		         					<%} %>
 		         				</tbody>
 		         			</table>
 	         			</div>
@@ -251,35 +234,7 @@ if(username==null){
        </div>  
         <!--博客主体内容结束-->
         <!--页面底部板块开始-->
-        <div class="footer">
-        	<div class="container">
-        		<div class="row">
-        			<div class="cell">
-        				<div class="logo"><a href="" target="_blank"><img src="img/logo02_03.png"></a></div>
-        				<div class="cell_primary">
-        					<p class="foot-link">
-        						<a href="" target="_blank">首页</a><span>|</span>
-        						<a href="" target="_blank">关于我们</a><span>|</span>
-        						<a href="" target="_blank">最新资讯</a><span>|</span>
-        						<a href="" target="_blank">百科问题</a>
-        					</p>
-        					<p>© Copyright © 2008-2016.Designed By David 京ICP备15008545号</p>
-        					<p><a href="" target="_blank">技术支持：寰宇汇智文化传播有限公司</a></p>
-        					<p class="icon-link">
-        						<a href="" target="_blank"><img src="img/wb-icon_03.png"></a>
-        						<a href="" target="_blank"><img src="img/kj-icon_03.png"></a>
-        						<a href="" target="_blank"><img src="img/rr-icon_03.png"></a>
-        						<a href="" target="_blank"><img src="img/wx-icon_03.png"></a>
-        					</p>
-        				</div>
-        				<div class="ewm-box">
-        					<img src="img/ewm02_03.jpg">
-        					<p><a href="" target="_blank">RSS</a><a href="" target="_blank">XML</a><a href="" target="_blank">Newslater</a></p>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </div>
+		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
         <!--返回顶部-->
 		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">

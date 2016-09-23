@@ -12,7 +12,7 @@
 <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
-<title>Insert title here</title>
+<title>博客编辑</title>
   
 <%
 //获取当前url
@@ -34,7 +34,12 @@ String username = (String)session.getAttribute("username");
 List<Mapx<String, Object>> useridc= DB.getRunner().query("SELECT userid FROM user where username=?", new MapxListHandler(),username);
 int flag=0;
 if(username==null){
-	
+	%>
+	<script type="text/javascript" language="javascript">
+			alert("请登录");                                            // 弹出错误信息
+			window.location='front_login.jsp' ;                            // 跳转到登录界面
+	</script>
+<%
 }else{
 	flag=1;
 }
@@ -84,7 +89,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 		<%
 	}else{
 		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1) values(?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,"img/cai01_03.jpg");
-		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1) values(?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke","img/cai01_03.jpg");
+		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1) values(?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke","img/cai01_03.jpg");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -99,7 +104,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 %>
 </head>
 <body>
-填写文章信息<br>
+填写博客信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a></span><br>
 <form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 标题：<br><input type="text" Name="title"  placeholder="标题"><br>
 描述：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
