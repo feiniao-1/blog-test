@@ -13,7 +13,10 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <title>百科编辑</title>
-  
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>  
 <%
 //获取当前url
 String path = request.getContextPath();
@@ -131,7 +134,12 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 %>
 </head>
 <body>
-填写百科信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a>/<a href="front_index.jsp?page=0">首页</a></span><br>
+<div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px; margin-bottom:50px;">
+    <div class="row">
+<h3>填写百科信息</h3>
+        <br/>
+        <span style="margin-left:500px;">
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
 <form id="form_tj" action="admin_baike_edit.jsp?jishu=<%=val%>" method="post" >
 标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
 描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
@@ -162,5 +170,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <input type="text" Name="tag4"  placeholder="标签4" style="width:50px;"><br>
 <input type="submit" Name="Action" value="发表文章" >
 </form>
+</div>
+</div>
 </body>
 </html>

@@ -78,7 +78,7 @@ if(param.get("opt")!=null && param.get("opt").equals("login")){
 						</div>
 						<div class="input-group input-group-lg">
 						  <span class="input-group-addon glyphicon glyphicon-lock"></span>
-						  <input type="text" class="form-control" placeholder="请输入密码" tabIndex=2 autocomplete="off" name="password">
+						  <input type="password" class="form-control" placeholder="请输入密码" tabIndex=2 autocomplete="off" name="password">
 						</div>
 						<div class="warning" style="display: none;"><span class="glyphicon glyphicon-info-sign"></span>密码输入有误</div>
 						<input class="btn btn-danger btn-lg"  onclick="checkPhone()" type="submit" value="立即登录" style="width: 100%; margin-bottom: 20px;">

@@ -13,14 +13,21 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <title>博客编辑</title>
-  
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String jishu = "";
+String fileName = "";
+String fullName = "";
 try{
 jishu = request.getParameter("jishu");
+fileName = request.getParameter("fileName");
+fullName = request.getParameter("fullName");
 System.out.println("jishu"+jishu);
 }catch(Exception e){
 	
@@ -72,7 +79,7 @@ String tag2;
 String tag3;
 String tag4;
 String img1;
-System.out.println("url_canshu:"+url_canshu+"canshu_url"+canshu_url);
+System.out.println("url_canshu:"+url_canshu+";canshu_url:"+canshu_url+";提交前img:"+(String)session.getAttribute("fullName1"));
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	title=new String(request.getParameter("title").getBytes("iso-8859-1"),"utf-8");
@@ -82,7 +89,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	tag2=new String(request.getParameter("tag2").getBytes("iso-8859-1"),"utf-8");
 	tag3=new String(request.getParameter("tag3").getBytes("iso-8859-1"),"utf-8");
 	tag4=new String(request.getParameter("tag4").getBytes("iso-8859-1"),"utf-8");
-	img1=new String(request.getParameter("img1").getBytes("iso-8859-1"),"utf-8");
+	img1="upload/"+(String)session.getAttribute("fullName1");
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))||(content2.equals("")||content2.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
@@ -93,6 +100,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	}else{
 		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,tagid) values(?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,tagid);
 		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid);
+		session.removeAttribute("fullName1");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -107,18 +115,48 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 %>
 </head>
 <body>
-填写博客信息 <span style="margin-left:200px;"><a href="admin_boke_edit.jsp">发表博客</a>/<a  href="admin_baike_edit.jsp">发表百科</a>/<a href="front_index.jsp?page=0">首页</a></span><br>
-<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
-标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
-图片*：<br><input type="text" Name="img1"  placeholder="图片名"><br>
-描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
-内容*：<br><textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
-词条标签（选填）：<br>
-<input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
-<input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
-<input type="text" Name="tag3"  placeholder="标签3" style="width:50px;">
-<input type="text" Name="tag4"  placeholder="标签4" style="width:50px;"><br>
-<input type="submit" Name="Action" value="发表文章" >
-</form>
+<div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px;">
+    <div class="row">
+<h3>填写博客信息</h3>
+        <br/>
+        <span style="margin-left:500px;">
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+     <!-- 图片上传start -->
+ 	 <form action="${pageContext.request.contextPath }/uploadServlet" method="post" enctype="multipart/form-data" >
+ 	 <div>
+		<input type="file" name="attr_file" style="float:left;">
+		<%if(fullName==null){
+			session.removeAttribute("fullName1");
+		}else{
+			if(fileName=="") {%>
+				<script type="text/javascript" language="javascript">
+				document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+			</script>
+			<%}else{ %>
+						<script type="text/javascript" language="javascript">
+				document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+				
+			</script>
+			<%
+			session.setAttribute("fullName1", fullName);
+			} %>
+		<%}%>
+		<input type="submit" value="上传"  style="float:left;">  	
+		</div>
+  	 </form><br>
+	<!-- 图片上传end -->
+	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
+		标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
+		描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
+		内容*：<br><textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
+		词条标签（选填）：<br>
+		<input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
+		<input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
+		<input type="text" Name="tag3"  placeholder="标签3" style="width:50px;">
+		<input type="text" Name="tag4"  placeholder="标签4" style="width:50px;"><br>
+		<input type="submit" Name="Action" value="发表文章" >
+	</form>
+  </div>
+</div>
 </body>
 </html>

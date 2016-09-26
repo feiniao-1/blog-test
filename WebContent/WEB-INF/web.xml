@@ -80,6 +80,14 @@
     <servlet-name>Callback1</servlet-name>
     <servlet-class>com.servlet.CallbackdlServlet</servlet-class>
   </servlet>
+      <servlet>
+    <servlet-name>UploadServlet1</servlet-name>
+    <servlet-class>com.uploaddown.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DownServlet1</servlet-name>
+    <servlet-class>com.uploaddown.DownServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>NotifyServlet</servlet-name>
     <url-pattern>/notifyServlet</url-pattern>
@@ -103,6 +111,15 @@
     <servlet-mapping>
     <servlet-name>Callback1</servlet-name>
     <url-pattern>/callback1</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UploadServlet1</servlet-name>
+    <url-pattern>/uploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownServlet1</servlet-name>
+    <url-pattern>/down</url-pattern>
   </servlet-mapping>
   <filter>
     <display-name>CommonFilter</display-name>
