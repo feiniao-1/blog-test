@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -28,10 +30,17 @@ public class UploadServlet extends HttpServlet {
 	private String uri;
 	String fileName;
 	String fullName;
-
+	String url;
+	String fhurl;
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		url = request.getParameter("url");
+		if(url.equals("boke")){
+			fhurl="admin_boke_edit.jsp";
+		}else if(url.equals("baike")){
+			fhurl="admin_baike_edit.jsp";
+		}
+		System.out.println("url="+url+";attr_file2="+request.getParameter("attr_file2"));
 		try {
 			// 1. 创建文件上传工厂类
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -108,7 +117,12 @@ public class UploadServlet extends HttpServlet {
 		} catch (Exception e) {
 			//request.setAttribute("message", "文件上传Servlet处理失败，请联系管理员！");
 			//uri = "/upload.jsp?fileName="+fileName;
-			response.sendRedirect("admin_boke_edit.jsp?fileName="+fileName+"&fullName="+fullName);
+			if(url.equals("boke")){
+				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName);
+			}else if(url.equals("baike")){
+				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName"+request.getParameter("shuzi")+"="+fullName+"&shuzi="+request.getParameter("shuzi"));
+			}
+
 			e.printStackTrace();
 		}
 		

@@ -74,7 +74,7 @@ if(username==null){
 	         		<div class="col-md-9">
 	         			<div class="main-left">
 	         				<div class="baike-content">
-	         				<%List<Mapx<String, Object>> baikexx=DB.getRunner().query("SELECT title,content1,img1,step1,step2,step3,step4,chinaname,Englishname,maining,function,`character`,usetime,tag1,tag2,tag3,tag4 FROM `baike_article` where tagid=?", new MapxListHandler(), request.getParameter("tagid"));
+	         				<%List<Mapx<String, Object>> baikexx=DB.getRunner().query("SELECT title,content1,img1,img2,img3,img4,step1,step2,step3,step4,chinaname,Englishname,maining,function,`character`,usetime,tag1,tag2,tag3,tag4 FROM `baike_article` where tagid=?", new MapxListHandler(), request.getParameter("tagid"));
 	         				%>
 		         				<h3><%=baikexx.get(0).getStringView("title") %></h3><!--关键词条-->
 		         				<P class="color-666666 mb20 word-introduce"><%=baikexx.get(0).getStringView("content1") %></P>

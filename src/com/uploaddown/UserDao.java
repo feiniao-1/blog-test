@@ -28,6 +28,7 @@ public class UserDao {
 
 	/**
 	 * 2. 查看全部信息
+	 * @return 
 	 */
 	public static List<User> getAll(){
 		try {
@@ -41,6 +42,7 @@ public class UserDao {
 
 	/**
 	 * 3. 主键查询
+	 * @return 
 	 */
 	public static User findById(int id){
 		try {

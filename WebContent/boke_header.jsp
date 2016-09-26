@@ -78,10 +78,10 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 						<li class="nLi">
 							<h3><a href="front_index.jsp?page=0" target="_blank">首页</a></h3>
 						</li>
-						<% 	for(int i=0;i<top_daohang.size();i++){%>
+						 <% 	for(int i=0;i<top_daohang.size();i++){%>
 						<li class="nLi">
 						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
+								 <h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
 								<ul class="sub">
 								<%//top二级导航
 								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
@@ -89,11 +89,11 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 								%>
 									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
 								<%}%>
-								</ul>
+								</ul> 
 						</li>
 						<%}%>
 						<li class="nLi on">
-								<h3><a href="" target="_blank">饺耳博客</a></h3>
+								<h3><a href="front_baike.jsp?page=0" target="_blank">博客</a></h3>
 						</li>
 					</ul>
 

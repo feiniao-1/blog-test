@@ -12,7 +12,7 @@
   <body>
   	 <form action="${pageContext.request.contextPath }/uploadServlet" method="post" enctype="multipart/form-data">
 		名称：<input type="text" name="userName"> <br/>
-		文件：<input type="file" name="attr_file"> <br/>
+		文件：<input type="file" name="attr_file"  multiple > <br/>
 		
 		<input type="submit" value="提交">  	 
   	 </form>

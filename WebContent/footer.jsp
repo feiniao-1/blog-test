@@ -19,10 +19,10 @@
         				<div class="logo"><a href="" target="_blank"><img src="img/logo02_03.png"></a></div>
         				<div class="cell_primary">
         					<p class="foot-link">
-        						<a href="" target="_blank">首页</a><span>|</span>
-        						<a href="" target="_blank">关于我们</a><span>|</span>
-        						<a href="" target="_blank">最新资讯</a><span>|</span>
-        						<a href="" target="_blank">百科问题</a>
+        						<a href="front_index.jsp?page=0" target="_blank">首页</a><span>|</span>
+        						<a href="#" target="_blank">关于我们</a><span>|</span>
+        						<a href="#" target="_blank">最新资讯</a><span>|</span>
+        						<a href="front_baike.jsp?page=0" target="_blank">百科问题</a>
         					</p>
         					<p>© Copyright © 2008-2016.Designed By David 京ICP备15008545号</p>
         					<p><a href="" target="_blank">技术支持：寰宇汇智文化传播有限公司</a></p>

@@ -22,9 +22,28 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String jishu = "";
+String fileName = "";
+String fullName1 = "";
+String fullName2 = "";
+String fullName3 = "";
+String fullName4 = "";
+String shuzi="";
 try{
 jishu = request.getParameter("jishu");
-System.out.println("jishu"+jishu);
+fileName = request.getParameter("fileName");
+fullName1 = request.getParameter("fullName1");
+fullName2 = request.getParameter("fullName2");
+fullName3 = request.getParameter("fullName3");
+fullName4 = request.getParameter("fullName4");
+if(request.getParameter("shuzi")!=null){
+	System.out.println("YES");
+	shuzi = request.getParameter("shuzi");
+}else{
+	System.out.println("NO");
+	shuzi ="";
+}
+//shuzi= request.getParameter("shuzi");
+System.out.println("shuzi"+shuzi);
 }catch(Exception e){
 	
 }
@@ -62,7 +81,6 @@ if(jishu==null){
 int dluserid=10196;
 //显示博客信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from baike_article where  author=? order by articleid desc limit 1",new MapxListHandler(),dluserid);
-System.out.println();
 int canshu_url=showdiscuss1.get(0).getInt("canshu_url");
 //编辑保存博客信息
 System.out.println(request.getMethod());//获取request方法 POST or GET
@@ -106,10 +124,11 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	step2=new String(request.getParameter("step2").getBytes("iso-8859-1"),"utf-8");
 	step3=new String(request.getParameter("step3").getBytes("iso-8859-1"),"utf-8");
 	step4=new String(request.getParameter("step4").getBytes("iso-8859-1"),"utf-8");
-	img1=new String(request.getParameter("img1").getBytes("iso-8859-1"),"utf-8");
-	img2=new String(request.getParameter("img2").getBytes("iso-8859-1"),"utf-8");
-	img3=new String(request.getParameter("img3").getBytes("iso-8859-1"),"utf-8");
-	img4=new String(request.getParameter("img4").getBytes("iso-8859-1"),"utf-8");
+	img1="upload/"+(String)session.getAttribute("fullName1");
+	img2="upload/"+(String)session.getAttribute("fullName2");
+	img3="upload/"+(String)session.getAttribute("fullName3");
+	img4="upload/"+(String)session.getAttribute("fullName4");
+	System.out.println("img1="+img1+"<br>img2="+img2+"<br>img3="+img3+"<br>img4="+img4);
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
@@ -120,6 +139,11 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	}else{
 		DB.getRunner().update("insert into baike_article(author,title,content1,createtime,tag1,tag2,tag3,tag4,canshu_url,chinaname,Englishname,maining,function,`character`,usetime,step1,step2,step3,step4,img1,img2,img3,img4,tagid) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,chinaname,Englishname,maining,function,character,usetime,step1,step2,step3,step4,img1,img2,img3,img4,tagid);
 		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"baike",img1,tagid);
+		session.removeAttribute("fullName1");
+		session.removeAttribute("fullName2");
+		session.removeAttribute("fullName3");
+		session.removeAttribute("fullName4");
+		System.out.println("数据写入成功");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -134,12 +158,122 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 %>
 </head>
 <body>
-<div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px; margin-bottom:50px;">
+<div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px;">
     <div class="row">
-<h3>填写百科信息</h3>
-        <br/>
+<h3>填写博客信息</h3><br>
+
         <span style="margin-left:500px;">
         <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+        说明：请先上传图片，后填写博客信息。
+        <br/>
+     <!-- 图片上传start 1 -->
+ 	  	 <br/>
+ 	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=1" method="post" enctype="multipart/form-data">
+ 	 <div style="margin-left:-100px;">
+		<input type="file" name="attr_file1" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:100px;">
+			<%if(shuzi!=null&&shuzi.equals("1")){
+				if(fullName1==null){
+					//session.removeAttribute("fullName1");
+				}else{
+					if(fileName==""){%>
+						<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+					</script>
+					<%}else{ %>
+								<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+						
+					</script>
+					<%
+					session.setAttribute("fullName1", fullName1);
+					} %>
+				<%}
+			}%>
+		<input type="submit" value="上传">  	</div>
+  	 </form><br>
+	<!-- 图片上传end  1-->
+	     <!-- 图片上传start 2 -->
+ 	  	 <br/>
+ 	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=2" method="post" enctype="multipart/form-data">
+ 	 <div style="margin-left:-100px;">
+		<input type="file" name="attr_file2" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:100px;">
+		<%if(shuzi!=null&&shuzi.equals("2")){
+			if(fullName2==null){
+				//session.removeAttribute("fullName2");
+			}else{
+				if(fileName=="") {%>
+					<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+				</script>
+				<%}else{ %>
+							<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+					
+				</script>
+				<%
+				session.setAttribute("fullName2", fullName2);
+				} %>
+			<%}
+		}%>
+		<input type="submit" value="上传">  	</div>
+  	 </form><br>
+	<!-- 图片上传end  2-->
+	<!-- 图片上传start 3 -->
+ 	  	 <br/>
+ 	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=3" method="post" enctype="multipart/form-data">
+ 	 <div style="margin-left:-100px;">
+		<input type="file" name="attr_file2" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:100px;">
+		<%if(shuzi!=null&&shuzi.equals("3")){
+			if(fullName3==null){
+				//session.removeAttribute("fullName3");
+			}else{
+				if(fileName=="") {%>
+					<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+				</script>
+				<%}else{ %>
+							<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+					
+				</script>
+				<%
+				session.setAttribute("fullName3", fullName3);
+				} %>
+			<%}
+		}%>
+		<input type="submit" value="上传">  	</div>
+  	 </form><br>
+	<!-- 图片上传end  3-->
+	<!-- 图片上传start 4 -->
+ 	  	 <br/>
+ 	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=4" method="post" enctype="multipart/form-data">
+ 	 <div style="margin-left:-100px;">
+		<input type="file" name="attr_file2" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:100px;">
+		<%if(shuzi!=null&&shuzi.equals("4")){
+			if(fullName4==null){
+				//session.removeAttribute("fullName4");
+			}else{
+				if(fileName=="") {%>
+					<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+				</script>
+				<%}else{ %>
+							<script type="text/javascript" language="javascript">
+					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+					
+				</script>
+				<%
+				session.setAttribute("fullName4", fullName4);
+				} %>
+			<%}
+		}%>
+		<input type="submit" value="上传">  	</div>
+  	 </form><br>
+	<!-- 图片上传end  4-->
 <form id="form_tj" action="admin_baike_edit.jsp?jishu=<%=val%>" method="post" >
 标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
 描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
@@ -152,16 +286,12 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 用时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="usetime"  placeholder="用时" style="width:150px;"><br>
 做法：<br>
 步骤一：<br>
-图片*：<br><input type="text" Name="img1"  placeholder="图片名1"><br>
 <textarea id="discuss_content" rows="3" cols="35" name="step1" placeholder="步骤一" ></textarea><br>
 步骤二：<br>
-图片：<br><input type="text" Name="img2"  placeholder="图片名2"><br>
 <textarea id="discuss_content" rows="3" cols="35" name="step2" placeholder="步骤二" ></textarea><br>
 步骤三：<br>
-图片：<br><input type="text" Name="img3"  placeholder="图片名3"><br>
 <textarea id="discuss_content" rows="3" cols="35" name="step3" placeholder="步骤三" ></textarea><br>
 步骤四：<br>
-图片：<br><input type="text" Name="img4"  placeholder="图片名4"><br>
 <textarea id="discuss_content" rows="3" cols="35" name="step4" placeholder="步骤四" ></textarea><br>
 关键词（选填）：<br>
 <input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
