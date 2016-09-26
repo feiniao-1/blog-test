@@ -45,6 +45,7 @@ if(param.get("opt")!=null && param.get("opt").equals("login")){
 		  <meta name="description" content="">
 		  <meta name="keywords" content="饺耳、美食">
 		<title>登陆页面</title>
+		<link href="img/logo_03.jpg" rel="SHORTCUT ICON">
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>

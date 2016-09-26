@@ -73,6 +73,7 @@ if(Integer.parseInt(index_page)==1){
 		  <meta name="keywords" content="饺耳、美食">
 		<title>饺耳博客</title>
 		<!--<link href="css/bootstrap.css" rel="stylesheet">-->
+		<link href="img/logo_03.jpg" rel="SHORTCUT ICON">
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>

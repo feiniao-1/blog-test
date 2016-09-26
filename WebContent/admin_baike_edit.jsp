@@ -13,6 +13,7 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <title>百科编辑</title>
+<link href="img/logo_03.jpg" rel="SHORTCUT ICON">
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
@@ -164,7 +165,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 
         <span style="margin-left:500px;">
         <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
-        说明：请先上传图片，后填写博客信息。
+        说明：请先上传图片，后填写主体信息。
         <br/>
      <!-- 图片上传start 1 -->
  	  	 <br/>

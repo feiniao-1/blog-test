@@ -13,7 +13,7 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <title>Insert title here</title>
-  
+  <link href="img/logo_03.jpg" rel="SHORTCUT ICON">
 <%
 //获取当前url
 String path = request.getContextPath();
