@@ -17,7 +17,7 @@
 		<property name="password">mysql123</property>
 		<!-- <property name="password">root</property> -->
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://139.129.27.119:3306/blog?useUnicode=true&amp;characterEncoding=UTF8</property>
+		<property name="jdbcUrl">jdbc:mysql://139.129.27.119:3306/blogtest?useUnicode=true&amp;characterEncoding=UTF8</property>
 		<property name="preferredTestQuery">SELECT 1</property>
 		<property name="idleConnectionTestPeriod">18000</property>
 		<property name="testConnectionOnCheckout">true</property>

@@ -127,9 +127,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
      <!-- 图片上传start  -->
  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=boke" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">
+ 	 <div style="margin-left:-100px;">图片格式：79*60
 		<input type="file" name="attr_file" style="display:inline-block;"></div>
-		<div style="margin-top:-25px;margin-left:100px;">
+		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(fullName==null){
 			session.removeAttribute("fullName1");
 		}else{

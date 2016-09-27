@@ -93,7 +93,7 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 						</li>
 						<%}%>
 						<li class="nLi on">
-								<h3><a href="front_baike.jsp?page=0" target="_blank">博客</a></h3>
+								<h3><a href="front_index.jsp?page=0" target="_blank">博客</a></h3>
 						</li>
 					</ul>
 

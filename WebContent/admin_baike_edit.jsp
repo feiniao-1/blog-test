@@ -170,9 +170,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
      <!-- 图片上传start 1 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=1" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">
+ 	 <div style="margin-left:-100px;">图片格式：79*60
 		<input type="file" name="attr_file1" style="display:inline-block;"></div>
-		<div style="margin-top:-25px;margin-left:100px;">
+		<div style="margin-top:-25px;margin-left:200px;">
 			<%if(shuzi!=null&&shuzi.equals("1")){
 				if(fullName1==null){
 					//session.removeAttribute("fullName1");
@@ -201,9 +201,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	     <!-- 图片上传start 2 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=2" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">
+ 	 <div style="margin-left:-100px;">图片格式：79*60
 		<input type="file" name="attr_file2" style="display:inline-block;"></div>
-		<div style="margin-top:-25px;margin-left:100px;">
+		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("2")){
 			if(fullName2==null){
 				//session.removeAttribute("fullName2");
@@ -232,9 +232,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传start 3 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=3" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">
-		<input type="file" name="attr_file2" style="display:inline-block;"></div>
-		<div style="margin-top:-25px;margin-left:100px;">
+ 	 <div style="margin-left:-100px;">图片格式：79*60
+		<input type="file" name="attr_file3" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("3")){
 			if(fullName3==null){
 				//session.removeAttribute("fullName3");
@@ -263,9 +263,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传start 4 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=4" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">
-		<input type="file" name="attr_file2" style="display:inline-block;"></div>
-		<div style="margin-top:-25px;margin-left:100px;">
+ 	 <div style="margin-left:-100px;">图片格式：79*60
+		<input type="file" name="attr_file4" style="display:inline-block;"></div>
+		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("4")){
 			if(fullName4==null){
 				//session.removeAttribute("fullName4");
