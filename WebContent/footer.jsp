@@ -12,17 +12,18 @@
 </head>
 <body>
  <!--页面底部板块开始-->
-        <div class="footer">
+                <div class="footer">
         	<div class="container">
         		<div class="row">
         			<div class="cell">
         				<div class="logo"><a href="" target="_blank"><img src="img/logo02_03.png"></a></div>
         				<div class="cell_primary">
         					<p class="foot-link">
-        						<a href="front_index.jsp?page=0" target="_blank">首页</a><span>|</span>
-        						<a href="#" target="_blank">关于我们</a><span>|</span>
-        						<a href="#" target="_blank">最新资讯</a><span>|</span>
-        						<a href="front_baike.jsp?page=0" target="_blank">百科问题</a>
+        						<a href="front_index.jsp" target="_blank">首页</a><span>|</span>
+        						<a href="" target="_blank">联系我们</a><span>|</span>
+        						<a href="front_baike.jsp?page=0" target="_blank">百科问答</a><span>|</span>
+        						<a href="" target="_blank">人才招聘</a><span>|</span>
+        						<a href="" target="_blank">网站地图</a>
         					</p>
         					<p>© Copyright © 2008-2016.Designed By David 京ICP备15008545号</p>
         					<p><a href="" target="_blank">技术支持：寰宇汇智文化传播有限公司</a></p>
@@ -35,7 +36,7 @@
         				</div>
         				<div class="ewm-box">
         					<img src="img/ewm02_03.jpg">
-        					<p><a href="" target="_blank">RSS</a><a href="" target="_blank">XML</a><a href="" target="_blank">Newslater</a></p>
+        					<p><a href="" target="_blank">RSS</a><a href="" target="_blank">XML</a><a href="" target="_blank">Newsletter</a></p>
         				</div>
         			</div>
         		</div>

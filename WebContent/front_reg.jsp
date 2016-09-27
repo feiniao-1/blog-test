@@ -48,8 +48,8 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 					password = DesUtils.encrypt(password);
 					DB.getRunner().update("insert into user(userid,username,password,shenhe,status,createtime,phone,mail) values(?,?,?,?,?,?,?,?)", id,name,password,"审核通过","有效",df.format(new Date()),phone,mail);
 					myparam.put("addResult", "1");
-					out.print("<script>alert('注册成功'); window.location='front_index.jsp?page=0' </script>");
-					//response.sendRedirect("front_index.jsp");
+					out.print("<script>alert('注册成功'); window.location='front_index.jsp' </script>");
+					//response.sendRedirect("front_boke.jsp");
 				}
 			}
 		}

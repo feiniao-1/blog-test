@@ -121,13 +121,13 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <h3>填写博客信息</h3><br>
 
         <span style="margin-left:500px;">
-        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
         说明：请先上传图片，后填写主体信息。
         <br/>
      <!-- 图片上传start  -->
  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=boke" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">图片格式：79*60
+ 	 <div style="margin-left:-100px;">图片格式：<span style="color:red;">79*60</span>
 		<input type="file" name="attr_file" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(fullName==null){
@@ -146,13 +146,17 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			session.setAttribute("fullName1", fullName);
 			} %>
 		<%}%>
-		<input type="submit" value="上传">  	</div>
+		<input type="submit" value="上传"></div>
   	 </form><br>
 	<!-- 图片上传end -->
+	<div style="margin-left:-360px;width:320px;margin-bottom:-120px;"><br>(<span style="color:red;"><b>说明</b></span>：开头空格2个字符：<br><%out.println("&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;");%><br>
+		回车：<%out.println("&ltbr&gt");%>
+			<br> 本文档不能直接识别 空格和回车，如有需要请复制使用 如上提示)<br></div>
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 		标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
 		描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
-		内容*：<br><textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
+		内容*(<span style="color:red;">填写前注意左侧提示</span>)：<br>
+		<textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
 		词条标签（选填）：<br>
 		<input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 		<input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">

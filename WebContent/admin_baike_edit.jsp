@@ -164,13 +164,13 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <h3>填写博客信息</h3><br>
 
         <span style="margin-left:500px;">
-        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_index.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
         说明：请先上传图片，后填写主体信息。
         <br/>
      <!-- 图片上传start 1 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=1" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">图片格式：79*60
+ 	 <div style="margin-left:-100px;">图片格式：<span style="color:red;">79*60</span>
 		<input type="file" name="attr_file1" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 			<%if(shuzi!=null&&shuzi.equals("1")){
@@ -201,7 +201,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	     <!-- 图片上传start 2 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=2" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">图片格式：79*60
+ 	 <div style="margin-left:-100px;">
 		<input type="file" name="attr_file2" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("2")){
@@ -232,7 +232,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传start 3 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=3" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">图片格式：79*60
+ 	 <div style="margin-left:-100px;">
 		<input type="file" name="attr_file3" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("3")){
@@ -263,7 +263,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传start 4 -->
  	  	 <br/>
  	 <form action="${pageContext.request.contextPath }/uploadServlet?url=baike&shuzi=4" method="post" enctype="multipart/form-data">
- 	 <div style="margin-left:-100px;">图片格式：79*60
+ 	 <div style="margin-left:-100px;">
 		<input type="file" name="attr_file4" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(shuzi!=null&&shuzi.equals("4")){
@@ -291,7 +291,10 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
 	<!-- 图片上传end  4-->
-<form id="form_tj" action="admin_baike_edit.jsp?jishu=<%=val%>" method="post" >
+	<div style="margin-left:-360px;width:320px;margin-bottom:-120px;"><br>(<span style="color:red;"><b>说明</b></span>：开头空格2个字符：<br><%out.println("&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;");%><br>
+		回车：<%out.println("&ltbr&gt");%>
+			<br> 本文档不能直接识别 空格和回车，如有需要请复制使用 如上提示)<br></div>
+<form id="form_tj" action="admin_baike_edit.jsp?jishu=<%=val%>" method="post" style="margin-top:-100px;">
 标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
 描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
 摘要(选填)：<br>
@@ -301,7 +304,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 功效：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="function"  placeholder="功效" style="width:150px;"><br>
 特色：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="character"  placeholder="特色" style="width:150px;"><br>
 用时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="usetime"  placeholder="用时" style="width:150px;"><br>
-做法：<br>
+做法(<span style="color:red;">填写前注意左侧提示</span>)：<br>
 步骤一：<br>
 <textarea id="discuss_content" rows="3" cols="35" name="step1" placeholder="步骤一" ></textarea><br>
 步骤二：<br>
