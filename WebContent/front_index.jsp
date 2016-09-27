@@ -11,11 +11,8 @@ HashMap<String,String> param= G.getParamMap(request);
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
 String url1 = request.getRequestURI(); 
 
-System.out.println("url=="+url+";;;url1=="+url1);
 String url3=request.getRequestURI().toString(); //得到相对url 
 String url2=request.getRequestURI().toString(); //得到绝对URL
-
-System.out.println("url3=="+url3+";;;;url2=="+url2);
 //验证用户登陆
 String username = (String)session.getAttribute("username");
 int flag=0;
@@ -27,7 +24,7 @@ if(username==null){
 //获取页数信息
 String index_page;
 if(request.getParameter("page")==null){
-	index_page=String.valueOf(1);
+	index_page=String.valueOf(0);
 }else{
 	index_page=request.getParameter("page");
 }

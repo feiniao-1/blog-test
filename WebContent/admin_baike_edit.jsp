@@ -182,15 +182,19 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 						document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
 					</script>
 					<%}else{ %>
-								<script type="text/javascript" language="javascript">
-						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
-						
-					</script>
 					<%
 					session.setAttribute("fullName1", fullName1);
 					} %>
 				<%}
 			}%>
+			<%
+			if((String)session.getAttribute("fullName1")!=null){%>
+					<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+						
+					</script>
+			<%}else{ %>
+			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
 	<!-- 图片上传end  1-->
@@ -209,15 +213,19 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
 				</script>
 				<%}else{ %>
-							<script type="text/javascript" language="javascript">
-					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
-					
-				</script>
 				<%
 				session.setAttribute("fullName2", fullName2);
 				} %>
 			<%}
 		}%>
+					<%
+			if((String)session.getAttribute("fullName2")!=null){%>
+					<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+						
+					</script>
+			<%}else{ %>
+			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
 	<!-- 图片上传end  2-->
@@ -236,15 +244,19 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
 				</script>
 				<%}else{ %>
-							<script type="text/javascript" language="javascript">
-					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
-					
-				</script>
 				<%
 				session.setAttribute("fullName3", fullName3);
 				} %>
 			<%}
 		}%>
+					<%
+			if((String)session.getAttribute("fullName3")!=null){%>
+					<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+						
+					</script>
+			<%}else{ %>
+			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
 	<!-- 图片上传end  3-->
@@ -263,15 +275,19 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 					document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
 				</script>
 				<%}else{ %>
-							<script type="text/javascript" language="javascript">
-					document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
-					
-				</script>
 				<%
 				session.setAttribute("fullName4", fullName4);
 				} %>
 			<%}
 		}%>
+					<%
+			if((String)session.getAttribute("fullName4")!=null){%>
+					<script type="text/javascript" language="javascript">
+						document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+						
+					</script>
+			<%}else{ %>
+			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
 	<!-- 图片上传end  4-->

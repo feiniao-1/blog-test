@@ -27,6 +27,10 @@ if(username==null){
 }
 //文章信息
 List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,tag1,tag2,tag3,tag4,img1,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
+System.out.println(article);
+//当前文章的下一条文章信息
+List<Mapx<String, Object>> articlenext=DB.getRunner().query("select title,tagid from article where articleid<? order by articleid desc limit 1", new MapxListHandler(),article.get(0).getIntView("articleid"));
+System.out.println(articlenext);
 //获取文章作者
 List<Mapx<String, Object>> authorxx= DB.getRunner().query("SELECT username FROM user where userid=?", new MapxListHandler(),article.get(0).getStringView("author"));
 //获取当前url
@@ -225,7 +229,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag2") %></a>
 	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag3") %></a>
 	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag4") %></a></p>
-	         					<h4 class="next-article-tilte"><a href="" target="_blank">下一篇：多视角下的ChinaJoyBTOB：相映成趣的国内外游戏厂商们</a></h4>
+	         					<h4 class="next-article-tilte"><a href="front_index-inner.jsp?page=0&tagid=<%=articlenext.get(0).getIntView("tagid")%>" target="_blank">下一篇：<%=articlenext.get(0).getStringView("title") %></a></h4>
 	         				</div>
 	         				<!--文章部分结束-->
 	         				<!--评价部分开始-->
