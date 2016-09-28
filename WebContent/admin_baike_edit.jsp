@@ -129,6 +129,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	img2="upload/"+(String)session.getAttribute("fullName2");
 	img3="upload/"+(String)session.getAttribute("fullName3");
 	img4="upload/"+(String)session.getAttribute("fullName4");
+	System.out.println("img1"+img1);
 	System.out.println("img1="+img1+"<br>img2="+img2+"<br>img3="+img3+"<br>img4="+img4);
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))){
 		%>

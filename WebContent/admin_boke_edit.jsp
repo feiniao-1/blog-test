@@ -91,6 +91,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	tag3=new String(request.getParameter("tag3").getBytes("iso-8859-1"),"utf-8");
 	tag4=new String(request.getParameter("tag4").getBytes("iso-8859-1"),"utf-8");
 	img1="upload/"+(String)session.getAttribute("fullName1");
+	System.out.println("img1"+img1);
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))||(content2.equals("")||content2.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
