@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.jx.common.*"%>
 <%@ page import="java.util.*"%>
@@ -10,7 +10,24 @@ HashMap<String,String> param= G.getParamMap(request);
 //获取url
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
 String url1 = request.getRequestURI(); 
+/*char[] jiequhou;
+int q=0;
+for(int n=0;n<jiequ.length;n++){
+	System.out.println(jiequ[n]);
+	if(jiequ[n]=='f'){
+		for(int m=n;m<jiequ.length;m++){
+			jiequhou[q]=jiequ[m];
+		q++;
+		}
+	}
+}*/
 
+System.out.println("url1"+url1);
+if(url1.matches("^index$")){
+	System.out.println("YES");
+}else{
+	System.out.println("NO");
+}
 String url3=request.getRequestURI().toString(); //得到相对url 
 String url2=request.getRequestURI().toString(); //得到绝对URL
 //验证用户登陆
@@ -69,7 +86,7 @@ if(Integer.parseInt(index_page)==1){
 		  <meta name="keywords" content="饺耳、美食">
 		<title>饺耳首页</title>
 		<!--<link href="css/bootstrap.css" rel="stylesheet">-->
-		<link href="img/tx.png" type="image/x-icon" rel="shortcut icon" />	
+		<link href="img/toubiao.png" rel="SHORTCUT ICON">
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>
@@ -94,6 +111,38 @@ if(Integer.parseInt(index_page)==1){
 		</div>
 				<!--视频弹出层结束-->
 		<%@ include file="boke_header.jsp"%>
+		<!--导航部分开始-->
+        <div class="navbar">
+        	<div class="container">
+        		<div class="row">
+			    	<ul id="nav2" class="nav2 clearfix">
+						<li class="nLi on">
+							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+						</li>
+						 <% 	for(int i=0;i<top_daohang.size();i++){%>
+						<li class="nLi">
+						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
+								 <h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
+								<ul class="sub">
+								<%//top二级导航
+								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
+								for(int j=0;j<top_er.size();j++){
+								%>
+									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
+								<%}%>
+								</ul> 
+						</li>
+						<%}%>
+						<li class="nLi on">
+								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
+						</li>
+					</ul>
+
+
+        		</div>
+		    </div>
+		</div>
+        <!--导航部分结束-->
 		        <!--banner图部分开始-->
         <div id="homepage-feature" class="carousel slide">
 						<ol class="carousel-indicators">
@@ -133,7 +182,7 @@ if(Integer.parseInt(index_page)==1){
          	<!--产品展示开始-->
          		<div class="product-scroll bg_color-fff">
          			<div class="title">
-         				<p>出自饺耳世家厨师手中的每个饺子形状都不完全相同，食客迟到的每个饺子都一定是独一无二的.</p>
+         				<p>出自饺耳世家厨师手中的每个饺子形状都不完全相同，食客吃到的每个饺子都一定是独一无二的.</p>
          			</div>
          			<div class="picMarquee-left">
 						<div class="bd">
@@ -163,7 +212,7 @@ if(Integer.parseInt(index_page)==1){
 									</div>
 								</li>
 								<li>
-									<div class="pic"><a href="" target="_blank"><img src="img/food-sj.png" /></a></div>
+									<div class="pic"><a href="" target="_blank"><img src="img/big-pic05_03.jpg" /></a></div>
 									<div class="foodname">
 										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
 									</div>

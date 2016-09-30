@@ -25,8 +25,9 @@
         						<a href="" target="_blank">人才招聘</a><span>|</span>
         						<a href="" target="_blank">网站地图</a>
         					</p>
-        					<p>© Copyright © 2008-2016.Designed By David 京ICP备15008545号</p>
-        					<p><a href="" target="_blank">技术支持：寰宇汇智文化传播有限公司</a></p>
+        					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
+        					<p><a href="" target="_blank">技术支持：寰宇汇智（北京）文化传媒有限公司  </a></p>
+        					<p><a href="" target="_blank">DESIGN BY IWISDOMS TEAM </a></p>
         					<p class="icon-link">
         						<a href="" target="_blank"><img src="img/wb-icon_03.png"></a>
         						<a href="" target="_blank"><img src="img/kj-icon_03.png"></a>

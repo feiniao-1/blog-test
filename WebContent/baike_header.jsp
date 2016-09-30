@@ -43,7 +43,7 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 	        		<div class="head clearfix">
 	        			<div class="logo fl"><a href="index.html"><img src="img/logo_03.jpg"></a></div>
 	        			<div class="tell fl">
-	        				<p><span>010-80440188</span></p>
+	        				<p><span>010-8044<strong>0188</strong></span></p>
 	        			</div>
 	        			<div class="search fr">
 	        				<div class="resiter fr">
@@ -70,37 +70,6 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
         	</div>
         </div>	
         <!--顶部结束-->
-        <!--导航部分开始-->
-        <div class="navbar">
-        	<div class="container">
-        		<div class="row">
-			    	<ul id="nav2" class="nav2 clearfix">
-						<li class="nLi">
-							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
-						</li>
-						<% 	for(int i=0;i<top_daohang.size();i++){%>
-						<li class="nLi">
-						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
-								<ul class="sub">
-								<%//top二级导航
-								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
-								for(int j=0;j<top_er.size();j++){
-								%>
-									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
-								<%}%>
-								</ul>
-						</li>
-						<%}%>
-						<li class="nLi on">
-								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
-						</li>
-					</ul>
-
-
-        		</div>
-		    </div>
-		</div>
-        <!--导航部分结束-->
+        
 </body>
 </html>

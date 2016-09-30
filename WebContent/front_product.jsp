@@ -68,6 +68,7 @@ if(Integer.parseInt(index_page)==1){
 		  <meta name="description" content="">
 		  <meta name="keywords" content="饺耳、美食">
 		<title>饺耳产品页面</title>
+		<link href="img/toubiao.png" rel="SHORTCUT ICON">
 		<!--<link href="css/bootstrap.css" rel="stylesheet">-->
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">

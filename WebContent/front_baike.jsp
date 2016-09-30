@@ -69,7 +69,7 @@ if(Integer.parseInt(index_page)==1){
 		  <meta name="keywords" content="饺耳、美食">
 		<title>百科问答</title>
 		<!--<link href="css/bootstrap.css" rel="stylesheet">-->
-		<link href="img/logo_03.jpg" rel="SHORTCUT ICON">
+		<link href="img/toubiao.png" rel="SHORTCUT ICON">
 		<link href="css/_main.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/jquery-1.11.1.min.js"></script>
@@ -93,6 +93,38 @@ if(Integer.parseInt(index_page)==1){
 		</div>
 		<!--视频弹出层结束-->
 		<%@ include file="baike_header.jsp"%>
+		<!--导航部分开始-->
+        <div class="navbar">
+        	<div class="container">
+        		<div class="row">
+			    	<ul id="nav2" class="nav2 clearfix">
+						<li class="nLi">
+							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+						</li>
+						<% 	for(int i=0;i<top_daohang.size();i++){%>
+						<li class="nLi">
+						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
+								<h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
+								<ul class="sub">
+								<%//top二级导航
+								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
+								for(int j=0;j<top_er.size();j++){
+								%>
+									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
+								<%}%>
+								</ul>
+						</li>
+						<%}%>
+						<li class="nLi">
+								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
+						</li>
+					</ul>
+
+
+        		</div>
+		    </div>
+		</div>
+        <!--导航部分结束-->
 		        <!--banner图部分开始-->
         <div id="homepage-feature" class="carousel slide">
 						<ol class="carousel-indicators">
@@ -165,13 +197,13 @@ if(Integer.parseInt(index_page)==1){
 		         				for(int index_tp=0;index_tp<8;index_tp++){ 
 		         				if((index_tp%2)!=0){%>
 		         					<li class="mr0"> 
-		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>">
+		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg">
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         						</a>
 		         					</li>
 		         					<%}else{ %>
 		         					<li>
-		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>">
+		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg">
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         						</a>
 		         					</li>
@@ -207,7 +239,7 @@ if(Integer.parseInt(index_page)==1){
 								%>
 									<div class="cell">
 										<div class="pic">
-											<img src="<%=one.getStringView("img1") %>">
+											<img src="img/240.jpg">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
@@ -234,7 +266,7 @@ if(Integer.parseInt(index_page)==1){
 								%>
 									<div class="cell">
 										<div class="pic">
-											<img src="<%=one.getStringView("img1") %>">
+											<img src="img/240.jpg">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
