@@ -40,7 +40,7 @@ public class UploadServlet extends HttpServlet {
 		}else if(url.equals("baike")){
 			fhurl="admin_baike_edit.jsp";
 		}
-		System.out.println("url="+url+";attr_file2="+request.getParameter("attr_file2"));
+		System.out.println("url="+url+";attr_file2="+request.getParameter("attr_file2")+";;photoname"+request.getParameter("photoname"));
 		try {
 			// 1. 创建文件上传工厂类
 			DiskFileItemFactory factory = new DiskFileItemFactory();

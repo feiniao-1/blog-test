@@ -9,7 +9,6 @@ img{ display: block;}
 .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
 a{ color: #313131; text-decoration: none;}
 a:hover{text-decoration: none; color: #FF9900;}/*9-21add*/
-a:link,a:visited{text-decoration: none;}
 .txt-indent{ text-indent: 2em;}
 .dash-line{ padding-bottom: 20px; border-bottom: 1px dashed #CCCCCC;}
 .cursor{ cursor: pointer;}

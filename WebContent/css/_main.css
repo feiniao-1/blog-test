@@ -6303,18 +6303,20 @@ button.close {
   line-height: 1;
   width: 100%;/*add*/
 }
-@media only screen and (min-width: 993px){
+/*add2016-9-29*/
+/*@media only screen and (min-width: 993px){
 	.carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  height: 400px;/*add*/
+  height: 400px;
+}*/
 }
-}
-@media only screen and (min-width: 1400px){
+/*add*/
+/*@media only screen and (min-width: 1400px){
 	.carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  height: 480px;/*add*/
+  height: 480px;
 }
-}
+}*/
 @media all and (transform-3d), (-webkit-transform-3d) {
   .carousel-inner > .item {
     -webkit-transition: -webkit-transform .6s ease-in-out;

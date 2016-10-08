@@ -88,6 +88,42 @@ if(Integer.parseInt(index_page)==1){
 	</head>
 	<body>
 		<%@ include file="boke_header.jsp"%>
+		<!--导航部分开始-->
+        <div class="navbar">
+        	<div class="container">
+        		<div class="row">
+			    	<ul id="nav2" class="nav2 clearfix">
+						<li class="nLi">
+							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+						</li>
+						<li class="nLi ">
+								<h3><a href="#" target="_blank">饺耳咨讯</a></h3>
+						<li class="nLi on">
+								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+						 <% 	for(int i=2;i<top_daohang.size();i++){%>
+						<li class="nLi">
+						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
+								 <h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
+								<ul class="sub">
+								<%//top二级导航
+								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
+								for(int j=0;j<top_er.size();j++){
+								%>
+									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
+								<%}%>
+								</ul> 
+						</li>
+						<%}%>
+						<li class="nLi">
+								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
+						</li>
+					</ul>
+
+
+        		</div>
+		    </div>
+		</div>
+        <!--导航部分结束-->
 		        <!--banner图部分开始-->
         <div class="product-banner"></div>
         <!--banner图部分结束-->
@@ -116,7 +152,7 @@ if(Integer.parseInt(index_page)==1){
 			    	<div class="product-list">
 			    		<ul class="clearfix">
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -126,7 +162,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -136,7 +172,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -146,7 +182,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -156,7 +192,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -166,7 +202,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -176,7 +212,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -186,7 +222,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -196,7 +232,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -206,7 +242,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
@@ -216,7 +252,7 @@ if(Integer.parseInt(index_page)==1){
 			    				</a>
 			    			</li>
 			    			<li>
-			    				<a href="" target="_blank">
+			    				<a href="front_product-inner.jsp" target="_blank">
 				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
 				    				<div class="txt">
 				    					<h4>金牌水饺</h4>
