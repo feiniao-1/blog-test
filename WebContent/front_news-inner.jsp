@@ -153,109 +153,41 @@ if(Integer.parseInt(index_page)==1){
          		<!--左边部分开始-->
 	         	<div class="col-md-9">
 	         			<div class="main-left">
-	         				<h4 class="icon-zx" style="border-bottom: 1px solid #DD2727;">新闻资讯</h4>
-	         				<!--板块一内容-->
-							<div class="tab-inner cell-list">
-								<div class="cell">
-									<div class="pic">
-										<img src="img/pic22.jpg" class="img-responsive">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="front_news-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3></a>	
-										<p class="mb20">
-												<a href="front_news-inner.jsp" class="line3 color-666666">国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。
-													它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望……</a>
-										</p>
-										<p class="color-666666">来自：新华社<span>|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
+	         				<!--文章部分开始-->
+	         				<div class="article">
+	         					<h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3>
+	         					<div class="cell mb20">
+	         						<div class="cell_primary">
+	         							<p class="color-666666">来自：新华网<span class="m_r_l-10">|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600 m_r_l-10"></span>1377</p>
+	         						</div>
+	         						<div class="cell_primary">
+	         							<div class="bdsharebuttonbox fr">
 											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/pic22.jpg" class="img-responsive">
-										<span class="pic-tilte">新闻</span>
-									</div>
-									<div class="cell_primary">
-										<a href=front_news-inner.jsp"" target="_blank"><h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3></a>	
-										<p class="mb20">
-												<a href="front_news-inner.jsp" class="line3 color-666666">国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。
-													它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望……</a>
-										</p>
-										<p class="color-666666">来自：新华社<span>|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/pic22.jpg" class="img-responsive">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="front_news-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3></a>	
-										<p class="mb20">
-												<a href="front_news-inner.jsp" class="line3 color-666666">国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。
-													它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望……</a>
-										</p>
-										<p class="color-666666">来自：新华社<span>|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/pic22.jpg" class="img-responsive">
-										<span class="pic-tilte">新闻</span>
-									</div>
-									<div class="cell_primary">
-										<a href="front_news-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3></a>	
-										<p class="mb20">
-												<a href="front_news-inner.jsp" class="line3 color-666666">国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。
-													它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望……</a>
-										</p>
-										<p class="color-666666">来自：新华社<span>|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<div class="cell">
-									<div class="pic">
-										<img src="img/pic22.jpg" class="img-responsive">
-										<span class="pic-tilte">资讯</span>
-									</div>
-									<div class="cell_primary">
-										<a href="front_news-inner.jsp" target="_blank"><h3 class="color-dd2727 mb15">习近平致信祝贺“中国天眼”落成启用</h3></a>	
-										<p class="mb20">
-												<a href="front_news-inner.jsp" class="line3 color-666666">国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。
-													它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望……</a>
-										</p>
-										<p class="color-666666">来自：新华社<span>|</span>2016-9-27<span class="glyphicon glyphicon-eye-open color-ff6600"></span>1377</p>
-										<div class="bdsharebuttonbox bd-share">
-											<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-										</div>
-									</div>
-								</div>
-								<!--分页内容标签开始-->
-								<div class="nav-page">
-								  <ul class="pagination">
-								    <li><a href="#">&laquo;</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">...</a></li>
-								    <li><a href="#">9</a></li>
-								    <li><a href="#">10</a></li>
-								    <li><a href="#">&raquo;</a></li>
-								  </ul>
-								</div>
-							</div>
-							<!--板块一内容结束-->
+	         						</div>
+	         					</div>
+	         					<div class="article-pic mb20">
+	         						<img src="img/big-pic08_03.jpg" class="img-responsive">
+	         					</div>
+	         					<div class="article-word">
+	         						<p> 国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。</p>
+	         					</div>
+	         					<div class="article-pic mb20">
+	         						<img src="img/big-pic08_03.jpg" class="img-responsive">
+	         					</div>
+	         					<div class="article-word">
+	         						<p> 国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。</p>
+	         					</div>
+	         					<div class="article-pic mb20">
+	         						<img src="img/big-pic08_03.jpg" class="img-responsive">
+	         					</div>
+	         					<div class="article-word">
+	         						<p> 国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。国家重大科技基础设施500米口径球面射电望远镜今天落成启用。习近平指出，500米口径球面射电望远镜是具有我国自主知识产权、世界重大单口径、最灵敏的射电望远镜。它的落成启用，对我国在科学前沿实现重大原创突破、加快创新驱动发展具有重要意义。</p>
+	         					</div>
+	         					<p class="lable color-ff6600">词条标签：<a href="" target="_blank">习主席</a><a href="" target="_blank">军事热点</a><a href="" target="_blank">互联网</a><a href="" target="_blank">美食</a></p>
+	         				</div>
+	         				<h4 class="next-article-tilte mb50"><a href="" target="_blank">下一篇：多视角下的ChinaJoyBTOB：相映成趣的国内外游戏厂商们</a></h4>
+	         				<!--文章部分结束-->
 						</div>
          		</div>
          		<!--右边部分开始-->

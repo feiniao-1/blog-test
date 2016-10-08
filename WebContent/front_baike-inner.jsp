@@ -57,30 +57,40 @@ if(username==null){
 		</div>
 		<!--视频弹出层结束-->
 		<%@ include file="baike_header.jsp"%>
-        <!--banner图部分开始-->
-        <div class="baike-banner"></div>
         <!--导航部分开始-->
         <div class="navbar">
         	<div class="container">
         		<div class="row">
 			    	<ul id="nav2" class="nav2 clearfix">
 						<li class="nLi">
-							<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+								<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
 						</li>
-						<% 	for(int i=0;i<top_daohang.size();i++){%>
+						<li class="nLi ">
+								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
+						</li>
 						<li class="nLi">
-						<!-- 假设当前频道为“预告片”，手动或后台程序添加titOnClassName类名（默认是'on'），相当于设置参数defaultIndex:1。若同时设置参数returnDefault:true，则鼠标移走后0.3秒返回当前频道 -->
-								<h3><a href="" target="_blank"><%=top_daohang.get(i).getStringView("name") %></a></h3>
+								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-								<%//top二级导航
-								List<Mapx<String, Object>> top_er= DB.getRunner().query("SELECT * FROM daohang_type where parentid=?", new MapxListHandler(),top_daohang.get(i).getStringView("id"));
-								for(int j=0;j<top_er.size();j++){
-								%>
-									<li><a href="#"><%=top_er.get(j).getStringView("name") %></a></li>
-								<%}%>
+									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
+									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
+									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
 								</ul>
 						</li>
-						<%}%>
+						<li class="nLi">
+								<h3><a href="about-us.html" target="_blank">关于饺耳</a></h3>
+								<ul class="sub">
+									<li><a href="about-us.html">公司介绍</a></li>
+									<li><a href="about-us.html">公司文化</a></li>
+									<li><a href="about-us.html">店铺活动</a></li>
+									<li><a href="about-us.html">人才招聘</a></li>
+									<li><a href="about-us.html">联系我们</a></li>
+								</ul>
+						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
 						<li class="nLi">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
@@ -91,6 +101,8 @@ if(username==null){
 		    </div>
 		</div>
         <!--导航部分结束-->
+        <!--banner图部分开始-->
+        <div class="baike-banner"></div>
         <!--banner图部分结束-->
         <!--博客主体内容开始-->
         <div class="mainbox">
