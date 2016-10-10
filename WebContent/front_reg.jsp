@@ -85,9 +85,9 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 			<div class="login-box register-box">
 			<div class="container" style="padding: 70px 0;">
 				<div class="col-md-4  col-md-offset-4">
-					<div class="center mb30">
+					<div class="center ">
 						<img src="img/logo_03.jpg"  style="display: inline-block; margin-bottom: 20px;"/>
-						<p style="font-size: 18px;">饺耳舵爷账号注册</p>
+						<p style="font-size: 18px;">饺耳世家账号注册</p>
 					</div>
 				<form class="form" action="front_reg.jsp" method="POST">
 					<input type="hidden" name="opt" value="addsave">

@@ -36,7 +36,7 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 							    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">语言4</a></li>
 							  </ul>
 							</div>
-	        				<p class="fr">选择语言：<a href="" target="_blank">简体中文</a><span>|</span><a href="" target="_blank">繁体中文</a><span>|</span><a href="" target="_blank">English</a><span>|</span></p>
+	        				<p class="fr">选择语言：<a href="" >简体中文</a><span>|</span><a href="" >繁体中文</a><span>|</span><a href="" >English</a><span>|</span></p>
 	        		</div>
         		</div>
         		<div class="row">

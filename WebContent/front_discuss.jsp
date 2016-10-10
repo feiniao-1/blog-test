@@ -14,6 +14,10 @@
 <META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
 <title>Insert title here</title>
   <link href="img/logo_03.jpg" rel="SHORTCUT ICON">
+  <script type="text/javascript" src="js/nicEdit.js"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
 <%
 //获取当前url
 String path = request.getContextPath();
@@ -72,6 +76,5 @@ List<Mapx<String,Object>> showdiscuss = DB.getRunner().query("select discusscont
             <%=user_xinxi.get(0).getString("username") %>&nbsp&nbsp<%=showdiscuss_1.getStringView("sh_discuss") %><br>
             
     	<%} %> 
-
 </body>
 </html>

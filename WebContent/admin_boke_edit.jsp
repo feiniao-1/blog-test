@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="js/nicEdit.js"></script>
+<script type="text/javascript">
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
@@ -150,14 +154,11 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 		<input type="submit" value="上传"></div>
   	 </form><br>
 	<!-- 图片上传end -->
-	<div style="margin-left:-360px;width:320px;margin-bottom:-120px;"><br>(<span style="color:red;"><b>说明</b></span>：开头空格2个字符：<br><%out.println("&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;");%><br>
-		回车：<%out.println("&ltbr&gt");%>
-			<br> 本文档不能直接识别 空格和回车，如有需要请复制使用 如上提示)<br></div>
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 		标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
-		描述*：<br><textarea id="discuss_content" rows="3" cols="35" name="content1" placeholder="描述" ></textarea><br>
-		内容*(<span style="color:red;">填写前注意左侧提示</span>)：<br>
-		<textarea id="discuss_content" rows="10" cols="65" name="content2" placeholder="填写内容" ></textarea><br>
+		描述*：<br><center><textarea id="discuss_content" rows="3" cols="105" name="content1" placeholder="描述" ></textarea><br></center>
+		内容*：<br>
+		<center><textarea id="discuss_content" rows="10" cols="105" name="content2" placeholder="填写内容" ></textarea><br></center>
 		词条标签（选填）：<br>
 		<input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 		<input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
