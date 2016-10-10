@@ -202,6 +202,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName1") %>" width="50px" height="50px"><br></center> 
 	<!-- 图片上传end  1-->
 	     <!-- 图片上传start 2 -->
  	  	 <br/>
@@ -233,6 +234,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName2") %>" width="50px" height="50px"><br></center> 
 	<!-- 图片上传end  2-->
 	<!-- 图片上传start 3 -->
  	  	 <br/>
@@ -264,6 +266,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName3") %>" width="50px" height="50px"><br></center> 
 	<!-- 图片上传end  3-->
 	<!-- 图片上传start 4 -->
  	  	 <br/>
@@ -294,7 +297,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%}else{ %>
 			<%} %>
 		<input type="submit" value="上传">  	</div>
-  	 </form><br><BR>
+  	 </form><br>
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName4") %>" width="50px" height="50px"><br></center> <BR>
   	 <br><BR>
   	 <br><BR>
   	 

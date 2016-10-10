@@ -94,7 +94,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	tag2=new String(request.getParameter("tag2").getBytes("iso-8859-1"),"utf-8");
 	tag3=new String(request.getParameter("tag3").getBytes("iso-8859-1"),"utf-8");
 	tag4=new String(request.getParameter("tag4").getBytes("iso-8859-1"),"utf-8");
-	img1="upload/"+(String)session.getAttribute("fullName1");
+	img1="upload/"+(String)session.getAttribute("fullName1boke");
 	System.out.println("img1"+img1);
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))||(content2.equals("")||content2.equals(null))){
 		%>
@@ -106,7 +106,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	}else{
 		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,tagid) values(?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,tagid);
 		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid);
-		session.removeAttribute("fullName1");
+		session.removeAttribute("fullName1boke");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出错误信息
@@ -118,7 +118,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 }
 }
 
-%>
+%> 
 </head>
 <body>
 <div class="panel panel-default container box-shadow"  style="text-align:center; padding-top:50px; margin-top:50px;">
@@ -136,7 +136,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 		<input type="file" name="attr_file" style="display:inline-block;"></div>
 		<div style="margin-top:-25px;margin-left:200px;">
 		<%if(fullName==null){
-			session.removeAttribute("fullName1");
+			session.removeAttribute("fullName1boke");
 		}else{
 			if(fileName=="") {%>
 				<script type="text/javascript" language="javascript">
@@ -148,11 +148,12 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 				
 			</script>
 			<%
-			session.setAttribute("fullName1", fullName);
+			session.setAttribute("fullName1boke", fullName);
 			} %>
 		<%}%>
 		<input type="submit" value="上传"></div>
-  	 </form><br>
+  	 </form>
+  	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName1boke") %>" width="50px" height="50px"><br></center> 
 	<!-- 图片上传end -->
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 		标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
