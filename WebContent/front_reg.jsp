@@ -25,7 +25,7 @@ if(opt.equals("add")){//创建用户
 System.out.println(param.get("id"));
 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
-///保存用户注册信息 -start  下面定义的变量 仅在此处使用
+///保存用户注册信息 -start  下面定义的变量 仅在此处使用     
 if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 	List<String> errors = new ArrayList<String>();
 			int id = Integer.parseInt(param.get("id"));
@@ -38,7 +38,7 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 				System.out.println(errors);%>
 				<script type="text/javascript" language="javascript">
 					alert("<%=errors%>");                                            // 弹出错误信息
-					window.location='front_reg.jsp' ;                            // 跳转到登录界面
+					//window.location='front_reg.jsp' ; 
 				</script>
 			<%}else{//普通验证通过，继续确认
 				if(!password.equals(password2)){
@@ -105,6 +105,11 @@ if(param.get("Action")!=null && param.get("Action").equals("立即注册")){
 					    <label class="sr-only" for="">手机号</label>
 					    <input type="text"  class="form-control" id="phone"  name="phone" placeholder="请输入手机号" value="<%= param.get("phone")==null?"":param.get("phone") %>">
 				   	</div>
+			<%if(false) {%>
+			<script type="text/javascript" language="javascript">
+				document.write('<span style="color:red;margin-top:-5px;">请输入正确的手机号</span>'); // 手机号验证
+			</script>
+			<%}%>
 				   <div class="warning" style="display: none;"><span class="glyphicon glyphicon-info-sign"></span>请输入正确的手机号</div>
 					<div class="input-group input-group-lg">
 					<span class="input-group-addon glyphicon glyphicon-lock"></span>

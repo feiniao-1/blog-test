@@ -396,7 +396,8 @@ public class G {
 	/**
      * 正则表达式：验证手机号
      */
-    public static final String REGEX_MOBILE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    //public static final String REGEX_MOBILE ="^((13[0-9])|(14[5,7,9])|(15[^4,\\D])|(17[0,1,3,5-8])|(18[0-9]))\\d{8}$";
+	public static final String REGEX_MOBILE ="^1[3|4|5|8][0-9]\\d{8}$";
     /**
      * 校验手机号
      * 
@@ -438,7 +439,7 @@ public class G {
 				return null;
 			}else{ //手机号匹配验证有问题
 				System.out.println("手机号"+value+"=="+isMobile(value));
-				if(isMobile(value)){
+				if(!isMobile(value)){  //by hyc  2016-10-10
 					list.add("手机号码有误");
 				return null;
 				}
@@ -448,7 +449,7 @@ public class G {
 			if (value == null || value.trim().equals("")) {
 				list.add("请输入有效的E_mail");
 				return null;
-			}else{ //手机号匹配验证有问题
+			}else{ //E_mail匹配验证有问题
 				System.out.println("邮箱"+value+"=="+isMobile1(value));
 				if(!isMobile1(value)){
 					list.add("请输入有效的E_mail");
