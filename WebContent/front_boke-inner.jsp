@@ -88,7 +88,7 @@ String content;
 			%>
 			<script type="text/javascript" language="javascript">
 					alert("请登录");                                            // 弹出错误信息
-					window.location='front_index-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>' ;                            // 跳转到登录界面
+					window.location='front_boke-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>' ;                            // 跳转到登录界面
 			</script>
 		<%
 		}
@@ -286,13 +286,13 @@ if(Integer.parseInt(discuss_page)==0){
 	         					<a href="" target="_blank"><%=article.get(0).getStringView("tag4") %></a>
 	         					<%}%>
 	         					</p>
-	         					<h4 class="next-article-tilte"><a href="front_index-inner.jsp?page=0&tagid=<%=articlenext.get(0).getIntView("tagid")%>" target="_blank">下一篇：<%=articlenext.get(0).getStringView("title") %></a></h4>
+	         					<h4 class="next-article-tilte"><a href="front_boke-inner.jsp?page=0&tagid=<%=articlenext.get(0).getIntView("tagid")%>" target="_blank">下一篇：<%=articlenext.get(0).getStringView("title") %></a></h4>
 	         				</div>
 	         				<!--文章部分结束-->
 	         				<!--评价部分开始-->
 	         				<div class="evaluate">
 	         					<h4>发表评论</h4>
-	         					<form id="form_tj" action="front_index-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>" method="post"  class="clearfix mb20">
+	         					<form id="form_tj" action="front_boke-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>" method="post"  class="clearfix mb20">
 		         					<textarea placeholder="写出你的点评" id="discuss_content" rows="5" cols="35" name="content"></textarea>
 		         					<input type="submit" Name="Action" value="发表评论" class="submit-fb" >
 	         					</form>
@@ -307,7 +307,7 @@ if(Integer.parseInt(discuss_page)==0){
 						    	%>
 						    		<div class="cell" style="align-items:flex-start;">
 	         							<div class="pic-tx">
-	         								<img src="img/tx.png">
+	         								<img src="img/visitor.png">
 	         							</div>
 	         							<div class="cell_primary">
 	         								<h5 class="mb10"><%=visitorxx.get(0).getStringView("username") %></h5>
@@ -320,14 +320,14 @@ if(Integer.parseInt(discuss_page)==0){
 	         					</div>
 	         					<div class="nav-page">
 								    <ul class="pagination">
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=minus%>">«</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=0">1</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=1">2</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=2">3</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=minus%>">«</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=2">3</a></li>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page-1%>"><%=count_page%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=count_page%>"><%=count_page+1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_index-inner.jsp?page=<%=plus%>">»</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page-1%>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page%>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=plus%>">»</a></li>
 								  </ul>
 								</div>
 	         				</div>
@@ -363,7 +363,7 @@ if(Integer.parseInt(discuss_page)==0){
 		         				<ul>
 		         				<%List<Mapx<String, Object>> wzm=DB.getRunner().query("select title,tagid from news where newstype=?  order by newsid desc limit 6", new MapxListHandler(),"boke");
 		         				for(int index_wz=0;index_wz<wzm.size();index_wz++){ %>
-		         					<li><a href="front_index-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
+		         					<li><a href="front_boke-inner.jsp?page=0&tagid=<%=wzm.get(index_wz).getIntView("tagid") %>" target="_blank"><%=wzm.get(index_wz).getStringView("title") %></a></li>
 		         				<%} %>
 		         				</ul>
 		         			</div>
