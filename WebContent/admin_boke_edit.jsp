@@ -156,8 +156,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName1boke") %>" width="50px" height="50px"><br></center> 
 	<!-- 图片上传end -->
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
-		标题*：<br><input type="text" Name="title"  placeholder="标题"><br>
-		描述*：<br><center><textarea id="discuss_content" rows="3" cols="105" name="content1" placeholder="描述" ></textarea><br></center>
+		标题<span style="color:red;">*(最多20字)</span>：<br><input type="text" Name="title"  placeholder="标题"><br>
+		描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center><textarea id="discuss_content" rows="3" cols="105" name="content1" placeholder="描述" ></textarea><br></center>
 		内容*：<br>
 		<center><textarea id="discuss_content" rows="10" cols="105" name="content2" placeholder="填写内容" ></textarea><br></center>
 		词条标签（选填）：<br>

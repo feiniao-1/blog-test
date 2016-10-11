@@ -104,13 +104,13 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
-									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
-									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
-									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
+									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -124,11 +124,12 @@ if(Integer.parseInt(index_page)==1){
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
-						</li>
-						<li class="nLi">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
+						
 					</ul>
 
 
@@ -299,11 +300,6 @@ if(Integer.parseInt(index_page)==1){
         <!--页面底部板块开始-->
 		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
-        <!--返回顶部-->
-		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
-			<img style="width:50px; height:50px;" src="img/gotop.jpg">
-		</div>
-		<!--返回顶部结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
 	<script>

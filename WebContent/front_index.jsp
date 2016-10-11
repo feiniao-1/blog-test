@@ -123,13 +123,13 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
-									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
-									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
-									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
+									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -143,11 +143,12 @@ if(Integer.parseInt(index_page)==1){
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
-						</li>
-						<li class="nLi">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
+						
 					</ul>
 
 
@@ -252,16 +253,18 @@ if(Integer.parseInt(index_page)==1){
          		 <div class="row">
          			<div class="news bg_color-fff">
          				<h4 class="icon-zx">饺耳头条</h4>
-         				<a href="" class="look-more">查看更多>></a>
+         				<a href="front_boke.jsp" class="look-more">查看更多>></a>
          				<div class="txtMarquee-top">
 							<div class="bd">
 								<ul class="infoList">
-									<li class="just-line1"><span class="date">2016-9-24</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
-									<li class="just-line1"><span class="date">2016-9-23</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
-									<li class="just-line1"><span class="date">2016-9-22</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
-									<li class="just-line1"><span class="date">2016-9-21</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
-									<li class="just-line1"><span class="date">2016-9-20</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
-									<li class="just-line1"><span class="date">2016-9-19</span><a href="" target="_blank">中国打破了世界软件巨头规则</a></li>
+								<%
+								List<Mapx<String,Object>> tqbk=DB.getRunner().query("select substring(title,1,12) as  title ,substring(createtime,1,10) as  createtime ,tagid from article  order BY articleid DESC   limit 6", new MapxListHandler());
+								System.out.println(tqbk);
+								for(int i=0;i<tqbk.size();i++){
+									System.out.println(tqbk.get(i));
+								%>
+									<li class="just-line1"><span class="date"><%=tqbk.get(i).getIntView("createtime") %></span><a href="front_boke-inner.jsp?page=0&tagid=<%=tqbk.get(i).getIntView("tagid") %>" target="_blank"><%=tqbk.get(i).getStringView("title") %></a></li>
+									<%} %>
 								</ul>
 							</div>
 						</div>
@@ -353,11 +356,6 @@ if(Integer.parseInt(index_page)==1){
         <!--页面底部板块开始-->
 		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
-        <!--返回顶部-->
-		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
-			<img style="width:50px; height:50px;" src="img/gotop.jpg">
-		</div>
-		<!--返回顶部结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
 	<!--<script>

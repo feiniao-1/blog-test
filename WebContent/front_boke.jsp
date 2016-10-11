@@ -106,13 +106,13 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
-									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
-									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
-									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
+									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -125,12 +125,13 @@ if(Integer.parseInt(index_page)==1){
 									<li><a href="about-us.html">联系我们</a></li>
 								</ul>
 						</li>
-						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
-						</li>
 						<li class="nLi on">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
+
 					</ul>
 
         		</div>
@@ -211,7 +212,7 @@ if(Integer.parseInt(index_page)==1){
 								}
 								System.out.println("search yes"+"searchSql"+searchSql);
 								//获取新闻资讯的信息
-								String xinwenSql="select author,title,img1,content, createtime ,type,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,title,img1,content, createtime ,type,count,tagid from news where newstype=? and (del is NULL or del <>1) and (title LIKE '%"+searchtj+"%' or content like '%"+searchtj+"%' or  author=(select userid from user where username like '%"+searchtj+"%'))  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -238,7 +239,7 @@ if(Integer.parseInt(index_page)==1){
 							}else{
 								System.out.println("search no");
 								//获取新闻资讯的信息
-								String xinwenSql="select author,title,img1,content, createtime ,type ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
+								String xinwenSql="select author,title,img1,content, createtime ,type,count ,tagid from news where  newstype=? and  (del is NULL or del <>1)  order BY newsid DESC   limit "+page_ye+",5";
 								List<Mapx<String,Object>> xinwens =  DB.getRunner().query(xinwenSql, new MapxListHandler(),"boke");
 								for(int i=0;i<xinwens.size();i++){
 									Mapx<String,Object> one = xinwens.get(i);
@@ -535,16 +536,11 @@ if(Integer.parseInt(index_page)==1){
          		</div>
          	</div>
          </div>  
-       </div>  
+       </div>
         <!--博客主体内容结束-->
         <!--页面底部板块开始-->
 		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
-        <!--返回顶部-->
-		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
-			<img style="width:50px; height:50px;" src="img/gotop.jpg">
-		</div>
-		<!--返回顶部结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
 	<script>

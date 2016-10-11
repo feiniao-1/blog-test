@@ -26,8 +26,16 @@ if(username==null){
 	flag=1;
 }
 //文章信息
-List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,tag1,tag2,tag3,tag4,img1,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
-System.out.println(article);
+List<Mapx<String, Object>> article=DB.getRunner().query("select articleid,author,title,content1,content2,zcount,tag1,tag2,tag3,tag4,img1,createtime from article where tagid=?", new MapxListHandler(),request.getParameter("tagid"));
+int zcount;
+if(article.get(0).getIntView("zcount").equals("")){
+	zcount=0;
+}else{
+	zcount=Integer.parseInt(article.get(0).getIntView("zcount"));
+}
+//更新访问量加1
+DB.getRunner().update("update article set zcount=? where tagid=?",zcount+1,request.getParameter("tagid"));
+DB.getRunner().update("update news set count=? where tagid=?",zcount+1,request.getParameter("tagid"));
 //当前文章的下一条文章信息
 List<Mapx<String, Object>> articlenext=DB.getRunner().query("select title,tagid from article where articleid<? order by articleid desc limit 1", new MapxListHandler(),article.get(0).getIntView("articleid"));
 System.out.println(articlenext);
@@ -168,13 +176,13 @@ if(Integer.parseInt(discuss_page)==0){
 								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
-									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
-									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
-									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
+									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -187,12 +195,13 @@ if(Integer.parseInt(discuss_page)==0){
 									<li><a href="about-us.html">联系我们</a></li>
 								</ul>
 						</li>
-						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
-						</li>
 						<li class="nLi on">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
+
 					</ul>
 
 
@@ -251,7 +260,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         					<h3 class="color-dd2727 mb15"><%=article.get(0).getStringView("title") %></h3>
 	         					<div class="cell">
 	         						<div class="cell_primary">
-	         							<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span class="m_r_l-10">|</span><%=article.get(0).getStringView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600 m_r_l-10"></span>1377</p>
+	         							<p class="color-666666">来自：<%=authorxx.get(0).getStringView("username") %><span class="m_r_l-10">|</span><%=article.get(0).getStringView("createtime") %><span class="glyphicon glyphicon-eye-open color-ff6600 m_r_l-10"></span><%=zcount+1 %></p>
 	         						</div>
 	         						<div class="cell_primary">
 	         							<div class="bdsharebuttonbox">
@@ -407,11 +416,6 @@ if(Integer.parseInt(discuss_page)==0){
         <!--页面底部板块开始-->
 		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
-        <!--返回顶部-->
-		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
-			<img style="width:50px; height:50px;" src="img/gotop.jpg">
-		</div>
-		<!--返回顶部结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
 	<!--<script>

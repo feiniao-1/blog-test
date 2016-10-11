@@ -8,11 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title></title>
 </head>
 <body>
  <!--页面底部板块开始-->
-                <div class="footer">
+         <div class="footer">
         	<div class="container">
         		<div class="row">
         			<div class="cell">
@@ -26,8 +25,7 @@
         						<a href="" target="_blank">网站地图</a>
         					</p>
         					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
-        					<p><a href="" target="_blank">技术支持：寰宇汇智（北京）文化传媒有限公司  </a></p>
-        					<p><a href="" target="_blank">DESIGN BY IWISDOMS TEAM </a></p>
+        					<p><a href="" target="_blank">技术支持：DESIGN BY IWISDOMS TEAM </a></p>
         					<p class="icon-link">
         						<a href="" target="_blank"><img src="img/wb-icon_03.png"></a>
         						<a href="" target="_blank"><img src="img/kj-icon_03.png"></a>
@@ -44,5 +42,10 @@
         	</div>
         </div>
         <!--页面底部板块结束-->
+        <!--返回顶部-->
+		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 30px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
+			<img style="width:50px; height:50px;" src="img/gotop.jpg">
+		</div>
+		<!--返回顶部结束-->
 </body>
 </html>

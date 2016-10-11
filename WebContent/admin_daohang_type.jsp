@@ -70,7 +70,7 @@ int dluserid=10196;
 //设置标题栏信息
 String[] colNames={"ID","名字","分类级别","父级ID","排序权重","操作"};	
 //统计导航栏总页数
-List<Mapx<String,Object>> daohangpage=DB.getRunner().query("select count(1) as count from daohang_type  ", new MapxListHandler());
+List<Mapx<String,Object>> daohangpage=DB.getRunner().query("select count(1) as count from daohang_type where del=? ", new MapxListHandler(),"0");
 int pagetotal=Integer.parseInt(daohangpage.get(0).getIntView("count"))/10;
 System.out.println("总页数="+pagetotal);
 //如果urlpage为null
@@ -95,6 +95,7 @@ if(intdhpage==0){
 }else{
 	minus =intdhpage-1;
 }
+HashMap<String,String> param= G.getParamMap(request); 
 //导航栏信息
 //CREATE TABLE `daohang_type` (
 //  `id` int(11) DEFAULT '0',
@@ -105,7 +106,20 @@ if(intdhpage==0){
 //  `del` int(11) DEFAULT NULL
 //) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航分类';
 List<Mapx<String,Object>> daohang=DB.getRunner().query("select id ,level,name,parentid,paixu,del from daohang_type where del=? order by level,id limit "+intdhpage*10+", 10 ", new MapxListHandler(),"0");
-
+//删除
+String dhid;
+System.out.println("提交前"+param.get("Action"));  
+if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
+	dhid=new String(request.getParameter("dhid").getBytes("iso-8859-1"),"utf-8");
+		DB.getRunner().update("update daohang_type set del=? where id=?","1",dhid);
+		%>
+		<script type="text/javascript" language="javascript">
+				alert("删除成功");                                            // 弹出错误信息
+				window.location='admin_daohang_type.jsp' ;                            // 跳转到登录界面
+		</script>
+	<%
+	
+}
 %> 
 </head>
 <body>
@@ -114,8 +128,8 @@ List<Mapx<String,Object>> daohang=DB.getRunner().query("select id ,level,name,pa
 <h3>top导航栏信息</h3><br>
         <span style="margin-left:500px;">
         <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
-        
-        				<!-- 表格 start -->
+        <a href="#" class="btn btn-primary">添加</a>
+        		<!-- 表格 start -->
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -132,9 +146,18 @@ List<Mapx<String,Object>> daohang=DB.getRunner().query("select id ,level,name,pa
 							<td><%=daohang.get(j).getIntView("level") %></td>
 							<td><%=daohang.get(j).getIntView("parentid") %></td>
 							<td><%=daohang.get(j).getIntView("paixu") %></td>
-							<td><a
-								href="admin_daohang_type_publish.jsp?daohangid=<%=daohang.get(j).getIntView("id") %>">管理</a>|<a
-								href="admin_daohang_type_publish.jsp">删除</a>
+							<td>
+<script type="text/javascript">
+function guanli(){
+	window.location='admin_daohang_type_publish.jsp?daohangid=<%=daohang.get(j).getIntView("id") %>' ; 
+}
+</script>
+								<div style="width:100px;"><input type="button" value="管理" onclick="guanli()" style="float:left;">|
+								<form action="admin_daohang_type.jsp"  method="POST" style="float:right;">
+								<input type="hidden" value="<%=daohang.get(j).getIntView("id") %>" name="dhid">
+								<input type="submit" value="删除" name="Action">
+								</form>
+								</div>
 							</td>
 						</tr>
 <%} %>
@@ -149,8 +172,8 @@ List<Mapx<String,Object>> daohang=DB.getRunner().query("select id ,level,name,pa
 								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=1">2</a></li>
 								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=2">3</a></li>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=<%=pagetotal-2%>"><%=pagetotal-1%></a></li>
 								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
 								    <li><a href="${pageContext.request.contextPath}/admin_daohang_type.jsp?page=<%=plus%>">»</a></li>
 								  </ul>
 				</div>

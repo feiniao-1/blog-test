@@ -21,6 +21,13 @@ if(username==null){
 }else{
 	flag=1;
 }
+int cailei;
+if(request.getParameter("cailei")==null){
+	cailei=1;
+}else{
+	cailei=Integer.parseInt(request.getParameter("cailei"));
+}
+System.out.println("cailei"+cailei);
 //获取页数信息
 String index_page;
 if(request.getParameter("page")==null){
@@ -100,13 +107,13 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi on">
-								<h3><a href="front_product.jsp?page=0" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
 								<ul class="sub">
-									<li><a href="front_product.jsp?page=0">特色水饺</a></li>
-									<li><a href="front_product.jsp?page=0">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?page=0">精美热菜</a></li>
-									<li><a href="front_product.jsp?page=0">滋补汤锅</a></li>
-									<li><a href="front_product.jsp?page=0">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
+									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
+									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -120,11 +127,12 @@ if(Integer.parseInt(index_page)==1){
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
-						</li>
-						<li class="nLi">
 								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
 						</li>
+						<li class="nLi">
+								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+						</li>
+						
 					</ul>
 
 
@@ -148,15 +156,36 @@ if(Integer.parseInt(index_page)==1){
          	<div class="row product">
          		<div class="product-title"></div>
          		<div class="title-nav clearfix">
-							<div class="title-nav-item active">全部菜品</div>
-							<div class="title-nav-item">特色水饺</div>
-							<div class="title-nav-item">开胃凉菜</div>
-							<div class="title-nav-item">精美热菜</div>
-							<div class="title-nav-item">滋补汤锅</div>
-							<div class="title-nav-item">酒水饮料</div>
+							<a href="front_product.jsp?cailei=1"><div id="d1" class="title-nav-item">特色水饺</div></a>
+							<a href="front_product.jsp?cailei=2"><div id="d2" class="title-nav-item">开胃凉菜</div></a>
+							<a href="front_product.jsp?cailei=3"><div id="d3" class="title-nav-item">精美热菜</div></a>
+							<a href="front_product.jsp?cailei=4"><div id="d4" class="title-nav-item">滋补汤锅</div></a>
+							<a href="front_product.jsp?cailei=5"><div id="d5" class="title-nav-item">酒水饮料</div></a>
+							<a href="front_product.jsp?cailei=6"><div id="d6" class="title-nav-item">全部菜品</div></a>
 			    </div>
+			    <script type="text/javascript">
+if(<%=cailei%>==1){
+	$("#d1").addClass("active"); 
+}
+if(<%=cailei%>==2){
+	$("#d2").addClass("active"); 
+	}
+if(<%=cailei%>==3){
+	$("#d3").addClass("active"); 
+	}
+if(<%=cailei%>==4){
+	$("#d4").addClass("active"); 
+	}
+if(<%=cailei%>==5){
+	$("#d5").addClass("active"); 
+	}
+if(<%=cailei%>==6){
+	$("#d6").addClass("active"); 
+	}
+ </script>
 			    <div class="course-slide">
 			    	<!--板块一部分开始-->
+			    <%if(cailei==1){ %>
 			    	<div class="product-list">
 			    		<ul class="clearfix">
 			    			<li>
@@ -249,31 +278,13 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			
 			    		</ul>
 			    	</div>
+			    	<%} else if(cailei==2){ %>
 			    	<!--板块一部分结束-->
 			    	<!--板块二部分开始-->
-			    	<div class="product-list" style="display: none;">
+			    	<div class="product-list" >
 			    		<ul class="clearfix">
 			    			<li>
 			    				<a href="" target="_blank">
@@ -355,11 +366,22 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product01_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
 			    		</ul>
 			    	</div>
+			    	<%} else if(cailei==3){ %>
 			    	<!--板块二部分结束-->
 			    	<!--板块三部分开始-->
-			    	<div class="product-list" style="display: none;">
+			    	<div class="product-list" >
 			    		<ul class="clearfix">
 			    			<li>
 			    				<a href="" target="_blank">
@@ -441,11 +463,22 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product02_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
 			    		</ul>
 			    	</div>
+			    	<%} else if(cailei==4){ %>
 			    	<!--板块三部分结束-->
 			    	<!--板块四部分开始-->
-			    	<div class="product-list" style="display: none;">
+			    	<div class="product-list" >
 			    		<ul class="clearfix">
 			    			<li>
 			    				<a href="" target="_blank">
@@ -527,11 +560,22 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product03_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
 			    		</ul>
 			    	</div>
+			    	<%} else if(cailei==5){ %>
 			    	<!--板块四部分结束-->
 			    	<!--板块五部分开始-->
-			    	<div class="product-list" style="display: none;">
+			    	<div class="product-list" >
 			    		<ul class="clearfix">
 			    			<li>
 			    				<a href="" target="_blank">
@@ -613,11 +657,22 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product04_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
 			    		</ul>
 			    	</div>
+			    	<%} else if(cailei==6){ %>
 			    	<!--板块五部分结束-->
 			    	<!--板块六部分开始-->
-			    	<div class="product-list" style="display: none;">
+			    	<div class="product-list" >
 			    		<ul class="clearfix">
 			    			<li>
 			    				<a href="" target="_blank">
@@ -669,8 +724,49 @@ if(Integer.parseInt(index_page)==1){
 				    				</div>
 			    				</a>
 			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product05_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
+			    			<li>
+			    				<a href="" target="_blank">
+				    				<img src="img/product05_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
+			    			<li>
+			    				<a href="" target="_blank">
+				    				<img src="img/product05_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
+			    			<li class="mr0">
+			    				<a href="" target="_blank">
+				    				<img src="img/product05_03.jpg" class="img-responsive">
+				    				<div class="txt">
+				    					<h4>金牌水饺</h4>
+				    					<p>Gold Boiled dumplings</p>
+				    					<p>绝对的经典、美味，势不可挡。</p>
+				    				</div>
+			    				</a>
+			    			</li>
 			    		</ul>
 			    	</div>
+			    	<%} %>
 			    	<!--板块六部分结束-->
 			    </div>
          	</div>
@@ -680,22 +776,17 @@ if(Integer.parseInt(index_page)==1){
         <!--页面底部板块开始-->
 		<%@ include file="footer.jsp"%>
         <!--页面底部板块结束-->
-        <!--返回顶部-->
-		<div id="topcontrol" style="position: fixed; bottom: 80px; right: 60px;cursor: pointer; z-index: 9; display: none;" title="返回顶部">
-			<img style="width:50px; height:50px;" src="img/gotop.jpg">
-		</div>
-		<!--返回顶部结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
 	<script>
-	$(function(){
-	var $div_li=$('.title-nav .title-nav-item');
-	$div_li.click(function(){
-		$(this).addClass('active').siblings().removeClass('active');
-		var index =$div_li.index(this);
-		$('.course-slide >div').eq(index).show().siblings().hide();
-		});	
-	});
+	//$(function(){
+	//var $div_li=$('.title-nav .title-nav-item');
+	//$div_li.click(function(){
+		//$(this).addClass('active').siblings().removeClass('active');
+		//var index =$div_li.index(this);
+		//$('.course-slide >div').eq(index).show().siblings().hide();
+		//});	
+	//});
 	</script>
 	<!--导航下拉菜单js部分-->
 	<script src="js/jquery.SuperSlide.2.1.1.js"></script>
