@@ -147,8 +147,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
     <div style="text-align:center; ">
 <h3>菜品添加</h3><br>
         <span style="margin-left:500px;">
-         <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
-        <a href="admin_product.jsp" class="btn btn-primary">返回</a>
+         <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_index.jsp" class="btn btn-primary">首页</a></span><br>
+        <a href="admin_product.jsp" class="btn btn-primary">返回</a><span style="color:red;">操作说明：先上传图片，再填写内容</span>
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
@@ -179,9 +179,14 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 				<form role="form" action="admin_product_add.jsp?jishu=<%=val%>" method="POST" name="form1"	novalidate>
 
 					<div class="form-group">
-						<label>菜品类别*(请从该范围里面填写“：主食、热菜、凉菜、酒水饮料)</label> <input type="text" class="form-control" style="width:200px;"
-							name="productlei"
-							placeholder="菜品所属类别">
+						<label>菜品类别*</label> 
+							<br>
+							<select name="productlei">
+								<option>主食</option>
+								<option>热菜</option>
+								<option>凉菜</option>
+								<option>酒水饮料</option>
+							</select>
 							</div>
 					<div class="form-group">
 						<label>菜品名称*</label> <input type="text" class="form-control" style="width:200px;"

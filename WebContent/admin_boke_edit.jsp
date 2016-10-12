@@ -126,7 +126,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <h3>填写博客信息</h3><br>
 
         <span style="margin-left:500px;">
-        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_index.jsp" class="btn btn-primary">首页</a></span><br>
         说明：请先上传图片，后填写主体信息。
         <br/>
      <!-- 图片上传start  -->
