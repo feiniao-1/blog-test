@@ -222,6 +222,7 @@ h4.icon-heart{background: url(../img/icon-01.png) no-repeat 0 -977px; padding-le
 .article{ padding: 10px 15px 20px; border-bottom: 1px dashed #ccc; margin-bottom: 40px;}
 .summary{ margin: 15px 0; padding: 10px; background: #f5f5f5;}
 .article-pic img{ width: 100%;}
+.article-word img{ width: 100%;}
 .article-word p{ margin-bottom: 20px; color: #666; text-indent: 2em;}
 .lable{ text-align: right; margin-bottom: 20px;}
 .lable a{display: inline-block; padding: 3px 10px; color: #ffffff; background: #FF6600; margin-right: 15px;}

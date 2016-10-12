@@ -39,6 +39,10 @@ public class UploadServlet extends HttpServlet {
 			fhurl="admin_boke_edit.jsp";
 		}else if(url.equals("baike")){
 			fhurl="admin_baike_edit.jsp";
+		}else if(url.equals("product")){
+			fhurl="admin_product_add.jsp";
+		}else if(url.equals("productpublish")){
+			fhurl="admin_product_publish.jsp";
 		}
 		System.out.println("url="+url+";attr_file2="+request.getParameter("attr_file2")+";;photoname"+request.getParameter("photoname"));
 		try {
@@ -121,6 +125,10 @@ public class UploadServlet extends HttpServlet {
 				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName);
 			}else if(url.equals("baike")){
 				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName"+request.getParameter("shuzi")+"="+fullName+"&shuzi="+request.getParameter("shuzi"));
+			}else if(url.equals("product")){
+				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName);
+			}else if(url.equals("productpublish")){
+				response.sendRedirect(fhurl+"?fileName="+fileName+"&fullName="+fullName+"&caiid="+request.getParameter("caiid"));
 			}
 
 			e.printStackTrace();

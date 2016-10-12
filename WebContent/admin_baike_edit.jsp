@@ -169,7 +169,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 <h3>填写博客信息</h3><br>
 
         <span style="margin-left:500px;">
-        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
+        <a href="admin_boke_edit.jsp" class="btn btn-primary">发表博客</a>/<a  href="admin_baike_edit.jsp" class="btn btn-primary">发表百科</a>/<a href="admin_product.jsp" class="btn btn-primary">发表菜品</a>/<a href="front_boke.jsp?page=0" class="btn btn-primary">首页</a></span><br>
         说明：请先上传图片，后填写主体信息。
         <br/>
      <!-- 图片上传start 1 -->
@@ -202,7 +202,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
-  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName1") %>" width="50px" height="50px"><br></center> 
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName1") %>" style="width:50px!important;" height="50px"><br></center> 
 	<!-- 图片上传end  1-->
 	     <!-- 图片上传start 2 -->
  	  	 <br/>
@@ -234,7 +234,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
-  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName2") %>" width="50px" height="50px"><br></center> 
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName2") %>" style="width:50px!important;" height="50px"><br></center> 
 	<!-- 图片上传end  2-->
 	<!-- 图片上传start 3 -->
  	  	 <br/>
@@ -266,7 +266,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
-  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName3") %>" width="50px" height="50px"><br></center> 
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName3") %>" style="width:50px!important;" height="50px"><br></center> 
 	<!-- 图片上传end  3-->
 	<!-- 图片上传start 4 -->
  	  	 <br/>
@@ -298,7 +298,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			<%} %>
 		<input type="submit" value="上传">  	</div>
   	 </form><br>
-  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName4") %>" width="50px" height="50px"><br></center> <BR>
+  	   	<center><img alt="" src="upload/<%=(String)session.getAttribute("fullName4") %>" style="width:50px!important;" height="50px"><br></center> <BR>
   	 <br><BR>
   	 <br><BR>
   	 

@@ -170,13 +170,13 @@ if(Integer.parseInt(discuss_page)==0){
         		<div class="row">
 			    	<ul id="nav2" class="nav2 clearfix">
 						<li class="nLi">
-								<h3><a href="front_index.jsp" target="_blank">首页</a></h3>
+								<h3><a href="front_index.jsp" >首页</a></h3>
 						</li>
 						<li class="nLi ">
-								<h3><a href="front_news.jsp" target="_blank">饺耳咨讯</a></h3>
+								<h3><a href="front_news.jsp" >饺耳咨讯</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="front_product.jsp?cailei=1" target="_blank">饺耳菜品</a></h3>
+								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
@@ -186,7 +186,7 @@ if(Integer.parseInt(discuss_page)==0){
 								</ul>
 						</li>
 						<li class="nLi">
-								<h3><a href="about-us.html" target="_blank">关于饺耳</a></h3>
+								<h3><a href="about-us.html" >关于饺耳</a></h3>
 								<ul class="sub">
 									<li><a href="about-us.html">公司介绍</a></li>
 									<li><a href="about-us.html">公司文化</a></li>
@@ -196,10 +196,10 @@ if(Integer.parseInt(discuss_page)==0){
 								</ul>
 						</li>
 						<li class="nLi on">
-								<h3><a href="front_boke.jsp?page=0" target="_blank">饺耳博客</a></h3>
+								<h3><a href="front_boke.jsp?page=0" >饺耳博客</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" target="_blank">饺耳社区</a></h3>
+								<h3><a href="#" >饺耳社区</a></h3>
 						</li>
 
 					</ul>
@@ -274,7 +274,7 @@ if(Integer.parseInt(discuss_page)==0){
 	         					<div class="article-pic mb20">
 	         						<img src="<%=article.get(0).getStringView("img1") %>">
 	         					</div>
-	         					<div class="article-word">
+	         					<div class="article-word" >
 	         						<%=article.get(0).getStringView("content2") %>
 	         					</div>
 	         					<p class="lable color-ff6600"><%
