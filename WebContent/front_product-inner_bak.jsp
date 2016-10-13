@@ -10,16 +10,9 @@ HashMap<String,String> param= G.getParamMap(request);
 //获取url
 String  url  =  "http://"  +  request.getServerName()  +  ":"  +  request.getServerPort()  +  request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
 String url1 = request.getRequestURI(); 
-//获取当前url
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String caiid = "";
-try{
-caiid = request.getParameter("caiid");
-System.out.println("caiid"+request.getParameter("caiid"));
-}catch(Exception e){
-	
-}
+
+String url3=request.getRequestURI().toString(); //得到相对url 
+String url2=request.getRequestURI().toString(); //得到绝对URL
 //验证用户登陆
 String username = (String)session.getAttribute("username");
 int flag=0;
@@ -64,32 +57,7 @@ if(Integer.parseInt(index_page)==1){
 }
 //用户信息
 //List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
-//菜品列表信息
-//CREATE TABLE `productmenu` (
-// `productmenuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
-//  `productlei` varchar(255) DEFAULT NULL COMMENT '菜品类别',
-//  `productname` varchar(255) DEFAULT NULL COMMENT '菜名',
-//  `productEname` varchar(255) DEFAULT NULL COMMENT '菜英文名',
-//  `content1` text COMMENT '菜品简介',
-//  `img1` varchar(255) DEFAULT NULL COMMENT '图片1',
-//  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
-//  `updatetime` datetime DEFAULT NULL COMMENT '最新修改时间',
-//  `is_discuss` tinyint(1) DEFAULT NULL COMMENT '是否被评论',
-//  `del` int(11) DEFAULT NULL,
-//  `count` int(11) DEFAULT NULL COMMENT '销售量',
-//  `yprice` int(11) DEFAULT NULL COMMENT '原价格',
-//  `xprice` int(11) DEFAULT NULL COMMENT '现价格',
-//  `shoucang` int(11) DEFAULT NULL COMMENT '收藏量',
-//  `canshu_url` int(11) DEFAULT NULL,
-//  `tagid` int(22) DEFAULT NULL,
-//  `visitor` varchar(255) DEFAULT NULL,
-//  PRIMARY KEY (`productmenuid`)
-//) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-//获取菜品信息
 
-List<Mapx<String,Object>> caipinshow;
-caipinshow=DB.getRunner().query("select productname,productEname,content1,img1,createtime,updatetime from productmenu where del=? and productmenuid=? order by productmenuid desc limit 9", new MapxListHandler(), "0",caiid);
-System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
 <html>
@@ -181,7 +149,7 @@ System.out.println("caipinshow"+caipinshow);
          		  <li>当前页面</li>	
 				  <li><a href="#">饺耳</a></li>
 				  <li><a href="front_product.jsp">饺耳菜品</a></li>
-				  <li class="active"><%=caipinshow.get(0).getStringView("productname") %></li>
+				  <li class="active">饺耳红烧肉</li>
 				</ol>
          	</div>
          	<div class="row">
@@ -192,9 +160,9 @@ System.out.println("caipinshow"+caipinshow);
 	         					<div class="bdsharebuttonbox" style="position: absolute; right: 0px; top: 5px;">
 								    <a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
 								</div>
-		         				<h3 class="color-dd2727 mb20"><%=caipinshow.get(0).getStringView("productname") %></h3>
-		         				<img src="<%=caipinshow.get(0).getStringView("img1") %>" class="img-responsive mb20" style="width:100%"/>
-		         				<p class="txt-indent color-666666 mb30 dash-line"><%=caipinshow.get(0).getStringView("content1") %></p>
+		         				<h3 class="color-dd2727 mb20">饺耳红烧肉</h3>
+		         				<img src="img/big-pic01_03.jpg" class="img-responsive mb20" />
+		         				<p class="txt-indent color-666666 mb30 dash-line">红烧肉是热菜菜谱之一。以五花肉为制作主料，红烧肉的烹饪技巧以砂锅为主，肥瘦相间，香甜松软，入口即化。红烧肉在我国各地流传很广，是一道著名的大众菜肴。</p>
 	         					<h4 class="icon-cp mb20">菜品介绍</h4>
 	         					<img src="img/big-pic02_03.jpg" class="img-responsive mb20">
 	         					<h4 class="text-center color-ff6600 mb20">纯天然饲养的长白猪</h4>
@@ -220,24 +188,30 @@ System.out.println("caipinshow"+caipinshow);
 	         					</p>
 	         					<h4 class="icon-xg">店长推荐</h4>
 		         				<ul class="about-food clearfix">
-		         				<%List<Mapx<String,Object>> caipinshow2;
-		         				caipinshow2=DB.getRunner().query("select productmenuid,productname,img1 from productmenu where del=?  order by count desc limit 4", new MapxListHandler(), "0"); 
-		         				for(int i=0;i<caipinshow2.size();i++){%>
-		         				<%if(i==3){ %>
-		         					<li class="mr0">
-		         						<a href="front_product-inner.jsp?caiid=<%=caipinshow2.get(i).getIntView("productmenuid")%>" target="_blank">
-			         						<img src="<%=caipinshow2.get(i).getStringView("img1")%>">
-			         						<p><%=caipinshow2.get(i).getStringView("productname")%></p>
-		         						</a>
-		         					</li>
-		         					<%}else{ %>
 		         					<li>
-		         						<a href="front_product-inner.jsp?caiid=<%=caipinshow2.get(i).getIntView("productmenuid")%>" target="_blank">
-			         						<img src="<%=caipinshow2.get(i).getStringView("img1")%>">
-			         						<p><%=caipinshow2.get(i).getStringView("productname")%></p>
+		         						<a href="" target="_blank">
+			         						<img src="img/wh-pic02_03.jpg">
+			         						<p>蓝莓山药</p>
 		         						</a>
 		         					</li>
-		         				<%}} %>
+		         					<li>
+		         						<a href="" target="_blank">
+			         						<img src="img/wh-pic03_03.jpg">
+			         						<p>非诚勿扰</p>
+		         						</a>
+		         					</li>
+		         					<li>
+		         						<a href="" target="_blank">
+			         						<img src="img/wh-pic04_03.jpg">
+			         						<p>西红柿鸡蛋饺子</p>
+		         						</a>
+		         					</li>
+		         					<li class="mr0">
+		         						<a href="" target="_blank">
+			         						<img src="img/wh-pic05_03.jpg">
+			         						<p>金牌水饺</p>
+		         						</a>
+		         					</li>
 		         				</ul>
 	         				</div>
 	         			</div>
@@ -257,14 +231,26 @@ System.out.println("caipinshow"+caipinshow);
 		         			<h4  class="icon-tj">推荐</h4>
 		         			<table width="100%" border="0" cellspacing="0" class="recommend">
 		         				<tbody>
-		         				<%List<Mapx<String,Object>> caipinshow1;
-		         				caipinshow1=DB.getRunner().query("select productmenuid,productname from productmenu where del=?  order by productmenuid desc limit 10", new MapxListHandler(), "0"); 
-		         				for(int i=0;i<caipinshow1.size();i++){%>
 		         					<tr>
-		         						<td width="50%"><a href="front_product-inner.jsp?caiid=<%=caipinshow1.get(i).getIntView("productmenuid")%>" target="_blank"><%=caipinshow1.get(i).getStringView("productname") %></a></td>
-		         						<td width="50%"><a href="front_product-inner.jsp?caiid=<%=caipinshow1.get(i+1).getIntView("productmenuid")%>" target="_blank"><%=caipinshow1.get(i+1).getStringView("productname")%></a></td>
+		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
+		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
 		         					</tr>
-		         					<%i++;}%>
+		         					<tr>
+		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
+		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
+		         					</tr>
+		         					<tr>
+		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
+		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
+		         					</tr>
+		         					<tr>
+		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
+		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
+		         					</tr>
+		         					<tr>
+		         						<td width="50%"><a href="" target="_blank">红烧肉做法</a></td>
+		         						<td width="50%"><a href="" target="_blank">醋溜土豆丝做法</a></td>
+		         					</tr>
 		         				</tbody>
 		         			</table>
 	         			</div>

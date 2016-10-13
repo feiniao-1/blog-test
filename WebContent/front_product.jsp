@@ -64,7 +64,52 @@ if(Integer.parseInt(index_page)==1){
 }
 //用户信息
 //List<Mapx<String, Object>> user = DB.getRunner().query("select userid from user where username=? ",new MapxListHandler(), username);
-
+//菜品列表信息
+//CREATE TABLE `productmenu` (
+// `productmenuid` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
+//  `productlei` varchar(255) DEFAULT NULL COMMENT '菜品类别',
+//  `productname` varchar(255) DEFAULT NULL COMMENT '菜名',
+//  `productEname` varchar(255) DEFAULT NULL COMMENT '菜英文名',
+//  `content1` text COMMENT '菜品简介',
+//  `img1` varchar(255) DEFAULT NULL COMMENT '图片1',
+//  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+//  `updatetime` datetime DEFAULT NULL COMMENT '最新修改时间',
+//  `is_discuss` tinyint(1) DEFAULT NULL COMMENT '是否被评论',
+//  `del` int(11) DEFAULT NULL,
+//  `count` int(11) DEFAULT NULL COMMENT '销售量',
+//  `yprice` int(11) DEFAULT NULL COMMENT '原价格',
+//  `xprice` int(11) DEFAULT NULL COMMENT '现价格',
+//  `shoucang` int(11) DEFAULT NULL COMMENT '收藏量',
+//  `canshu_url` int(11) DEFAULT NULL,
+//  `tagid` int(22) DEFAULT NULL,
+//  `visitor` varchar(255) DEFAULT NULL,
+//  PRIMARY KEY (`productmenuid`)
+//) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+//获取菜品信息
+String leibie="";
+if(cailei==1){
+	leibie="特色水饺";
+}
+if(cailei==2){
+	leibie="开胃凉菜";
+	}
+if(cailei==3){
+	leibie="精美热菜"; 
+	}
+if(cailei==4){
+	leibie="主食";
+	}
+if(cailei==5){
+	leibie="酒水饮料";
+	}
+System.out.println(leibie);
+List<Mapx<String,Object>> caipinshow;
+if(cailei!=6){
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0",leibie);
+}else{
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1 from productmenu where del=? order by productmenuid desc limit 9", new MapxListHandler(), "0");
+}
+System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
 <html>
@@ -112,8 +157,8 @@ if(Integer.parseInt(index_page)==1){
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
 									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
-									<li><a href="front_product.jsp?cailei=4">滋补汤锅</a></li>
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
+									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
 						</li>
 						<li class="nLi">
@@ -156,12 +201,12 @@ if(Integer.parseInt(index_page)==1){
          	<div class="row product">
          		<div class="product-title"></div>
          		<div class="title-nav clearfix">
+         					<a href="front_product.jsp?cailei=6"><div id="d6" class="title-nav-item">全部菜品</div></a>
 							<a href="front_product.jsp?cailei=1"><div id="d1" class="title-nav-item">特色水饺</div></a>
 							<a href="front_product.jsp?cailei=2"><div id="d2" class="title-nav-item">开胃凉菜</div></a>
 							<a href="front_product.jsp?cailei=3"><div id="d3" class="title-nav-item">精美热菜</div></a>
-							<a href="front_product.jsp?cailei=4"><div id="d4" class="title-nav-item">滋补汤锅</div></a>
 							<a href="front_product.jsp?cailei=5"><div id="d5" class="title-nav-item">酒水饮料</div></a>
-							<a href="front_product.jsp?cailei=6"><div id="d6" class="title-nav-item">全部菜品</div></a>
+							<a href="front_product.jsp?cailei=4"><div id="d4" class="title-nav-item">美味主食</div></a>
 			    </div>
 			    <script type="text/javascript">
 if(<%=cailei%>==1){
@@ -186,99 +231,33 @@ if(<%=cailei%>==6){
 			    <div class="course-slide">
 			    	<!--板块一部分开始-->
 			    <%if(cailei==1){ %>
+
 			    	<div class="product-list">
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="front_product-inner.jsp" target="_blank">
-				    				<img src="img/wh-pic05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} else if(cailei==2){ %>
@@ -286,96 +265,30 @@ if(<%=cailei%>==6){
 			    	<!--板块二部分开始-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product01_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} else if(cailei==3){ %>
@@ -383,96 +296,30 @@ if(<%=cailei%>==6){
 			    	<!--板块三部分开始-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product02_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} else if(cailei==4){ %>
@@ -480,96 +327,30 @@ if(<%=cailei%>==6){
 			    	<!--板块四部分开始-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product03_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} else if(cailei==5){ %>
@@ -577,96 +358,30 @@ if(<%=cailei%>==6){
 			    	<!--板块五部分开始-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product04_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} else if(cailei==6){ %>
@@ -674,96 +389,30 @@ if(<%=cailei%>==6){
 			    	<!--板块六部分开始-->
 			    	<div class="product-list" >
 			    		<ul class="clearfix">
+			    		<%int q;for(q=0;q<caipinshow.size();q++){ %>
+			    			<%if((q!=2)&&(q!=5)&&(q!=8)){ %>
 			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    			<%}else{ %>
 			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
+			    				<a href="front_product-inner.jsp?caiid=<%=caipinshow.get(q).getIntView("productmenuid")%>" target="_blank">
+				    				<img src="<%=caipinshow.get(q).getStringView("img1") %>" class="img-responsive">
 				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
+				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
+				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
+				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
 				    				</div>
 			    				</a>
 			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li>
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
-			    			<li class="mr0">
-			    				<a href="" target="_blank">
-				    				<img src="img/product05_03.jpg" class="img-responsive">
-				    				<div class="txt">
-				    					<h4>金牌水饺</h4>
-				    					<p>Gold Boiled dumplings</p>
-				    					<p>绝对的经典、美味，势不可挡。</p>
-				    				</div>
-			    				</a>
-			    			</li>
+			    		<%}} %>
 			    		</ul>
 			    	</div>
 			    	<%} %>

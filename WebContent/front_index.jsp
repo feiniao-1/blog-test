@@ -203,37 +203,37 @@ if(Integer.parseInt(index_page)==1){
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic02_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">蓝莓山药</br>Blueberry yam </a>
 									</div>
 								</li>
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic03_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">非诚勿扰</br>Genuine replies only </a>
 									</div>
 								</li>
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic04_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">西红柿鸡蛋水饺</br>Tomato and egg Boiled dumplings </a>
 									</div>
 								</li>
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic05_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">饺耳金牌水饺</br>Gold Boiled dumplings dumplings </a>
 									</div>
 								</li>
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/big-pic05_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">红烧肉</br>Pork braised in brown sauce </a>
 									</div>
 								</li> 
 								<li>
 									<div class="pic"><a href="" target="_blank"><img src="img/wh-pic06_03.jpg" /></a></div>
 									<div class="foodname">
-										<a href="" target="_blank">金牌水饺</br>Gold Boiled dumplings </a>
+										<a href="" target="_blank">钵子扁豆角</br>Lentil pot </a>
 									</div>
 								</li>
 							</ul>
@@ -298,12 +298,12 @@ if(Integer.parseInt(index_page)==1){
          				<div class="picFocus">
 							<div class="bd">
 								<ul>
-									<li><a target="_blank" href=""><img src="img/wh-pic03_03.jpg" alt="非诚勿扰美味"/></a></li>
-									<li><a target="_blank" href=""><img src="img/wh-pic01_03.jpg" /></a></li>
-									<li><a target="_blank" href=""><img src="img/wh-pic02_03.jpg" /></a></li>
-									<li><a target="_blank" href=""><img src="img/wh-pic04_03.jpg" /></a></li>
-									<li><a target="_blank" href=""><img src="img/wh-pic05_03.jpg" /></a></li>
-									<li><a target="_blank" href=""><img src="img/wh-pic06_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic03_03.jpg" alt="非诚勿扰美味"/></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic01_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic02_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic04_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic05_03.jpg" /></a></li>
+									<li><a target="_blank" ><img src="img/wh-pic06_03.jpg" /></a></li>
 								</ul>
 							</div>
 							<div class="hd">

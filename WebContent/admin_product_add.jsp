@@ -28,16 +28,24 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String jishu = "";
 String fileName = "";
-String fullName = "";
+String fullName1 = "";
+String fullName2 = "";
+String shuzi = "";
 try{
 jishu = request.getParameter("jishu");
 fileName = request.getParameter("fileName");
-fullName = request.getParameter("fullName");
+fullName1 = request.getParameter("fullName1");
+fullName2 = request.getParameter("fullName2");
+shuzi = request.getParameter("shuzi");
 }catch(Exception e){
 	
 }
 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式  
 System.out.println(df.format(new Date()));// new Date()为获取当前系统时间 
+if(fileName==null){
+	session.removeAttribute("fullName1");
+	session.removeAttribute("fullName2");
+}
 //验证用户登陆
 Mapx<String,Object> user = G.getUser(request);
 String pageType = null;
@@ -102,11 +110,14 @@ String productname;
 String productEname;
 String yprice;
 String content1;
+String content2;
 String createtime;
 String count;
 String shoucang;
 String img1;
+String ydimg1;
 System.out.println("url_canshu:"+url_canshu+";canshu_url:"+canshu_url+";提交前img:"+(String)session.getAttribute("fullName1"));
+System.out.println("提交前img:fullName1="+(String)session.getAttribute("fullName1")+";;fullName2="+(String)session.getAttribute("fullName2"));
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	productlei=new String(request.getParameter("productlei").getBytes("iso-8859-1"),"utf-8");
@@ -114,10 +125,12 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	productEname=new String(request.getParameter("productEname").getBytes("iso-8859-1"),"utf-8");
 	yprice=new String(request.getParameter("yprice").getBytes("iso-8859-1"),"utf-8");
 	content1=new String(request.getParameter("content1").getBytes("iso-8859-1"),"utf-8");
+	content2=new String(request.getParameter("content2").getBytes("iso-8859-1"),"utf-8");
 	createtime=df.format(new Date());
 	count=new String("1");
 	shoucang=new String("1");
-	img1="upload/"+(String)session.getAttribute("fullNameproduct");
+	img1="upload/"+(String)session.getAttribute("fullName1");
+	ydimg1="upload/"+(String)session.getAttribute("fullName2");
 	if((productlei.equals("")||productlei.equals(null))||(productname.equals("")||productname.equals(null))||(yprice.equals("")||yprice.equals(null))||(content1.equals("")||content1.equals(null))){
 		%>
 			<script type="text/javascript" language="javascript">
@@ -126,8 +139,9 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 			</script>
 		<%
 	}else{
-		DB.getRunner().update("insert into productmenu(author,productlei,productname,productEname,content1,img1,createtime,del,count,canshu_url,yprice,shoucang) values(?,?,?,?,?,?,?,?,?,?,?,?)",10196,productlei,productname,productEname,content1,img1,df.format(new Date()),"0",count,url_canshu,yprice,shoucang);
-		session.removeAttribute("fullNameproduct");
+		DB.getRunner().update("insert into productmenu(author,productlei,productname,productEname,content1,content2,img1,ydimg1,createtime,del,count,canshu_url,yprice,shoucang) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",10196,productlei,productname,productEname,content1,content2,img1,ydimg1,df.format(new Date()),"0",count,url_canshu,yprice,shoucang);
+		session.removeAttribute("fullName1");
+		session.removeAttribute("fullName2");
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("发表成功");                                            // 弹出提示信息
@@ -152,40 +166,78 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<label>商品图片*</label> 
-						<form action="${pageContext.request.contextPath }/uploadServlet?url=product" method="post" enctype="multipart/form-data">
-							<input type="file" name="attr_file" style="display:inline-block;">
-							<div style="margin-top:-25px;margin-left:200px;">
-							<%if(fullName==null){
-								session.removeAttribute("fullNameproduct");
+        		<label>PC商品图片*</label> 
+					<form action="${pageContext.request.contextPath }/uploadServlet?url=product&shuzi=1" method="post" enctype="multipart/form-data">
+						<input type="file" name="attr_file1" style="display:inline-block;">
+						<div style="margin-top:-25px;margin-left:200px;">
+						<%if(shuzi!=null&&shuzi.equals("1")){
+							if(fullName1==null){
+								//session.removeAttribute("fullName2");
 							}else{
 								if(fileName=="") {%>
 									<script type="text/javascript" language="javascript">
 									document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
 								</script>
 								<%}else{ %>
-											<script type="text/javascript" language="javascript">
-									document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
-									
-								</script>
 								<%
-								session.setAttribute("fullNameproduct", fullName);
+								session.setAttribute("fullName1", fullName1);
 								} %>
-							<%}%>
-							<input type="submit" value="上传"></div>
-						 <img alt="" src="upload/<%=(String)session.getAttribute("fullNameproduct") %>" style="width:200px!important;" height="150px">
-						 </form>
+							<%}
+						}%>
+									<%
+							if((String)session.getAttribute("fullName1")!=null){%>
+									<script type="text/javascript" language="javascript">
+										document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+										
+									</script>
+							<%}else{ %>
+							<%} %>
+						<input type="submit" value="上传">  	</div>
+				  	 </form>
+				  	 <img alt="" src="upload/<%=(String)session.getAttribute("fullName1") %>" style="width:220px!important;" height="150px">
 				</div>
-				<form role="form" action="admin_product_add.jsp?jishu=<%=val%>" method="POST" name="form1"	novalidate>
+				<div class="form-group">
+        		<label>移动端商品图片*</label> 
+					<form action="${pageContext.request.contextPath }/uploadServlet?url=product&shuzi=2" method="post" enctype="multipart/form-data">
+						<input type="file" name="attr_file2" style="display:inline-block;">
+						<div style="margin-top:-25px;margin-left:200px;">
+						<%if(shuzi!=null&&shuzi.equals("2")){
+							if(fullName2==null){
+								//session.removeAttribute("fullName2");
+							}else{
+								if(fileName=="") {%>
+									<script type="text/javascript" language="javascript">
+									document.write('<span style="color:red;">上传失败</span>');          // 跳转到登录界面
+								</script>
+								<%}else{ %>
+								<%
+								session.setAttribute("fullName2", fullName2);
+								} %>
+							<%}
+						}%>
+									<%
+							if((String)session.getAttribute("fullName2")!=null){%>
+									<script type="text/javascript" language="javascript">
+										document.write('<span style="color:red;">上传成功</span>');          // 跳转到登录界面
+										
+									</script>
+							<%}else{ %>
+							<%} %>
+						<input type="submit" value="上传">  	</div>
+				  	 </form>
+				  	 <img alt="" src="upload/<%=(String)session.getAttribute("fullName2") %>" style="width:120px!important;" height="80px">
+				</div>
+				<form role="form" action="admin_product_add.jsp?jishu=<%=val%>&fileName=you" method="POST" name="form1"	novalidate>
 
 					<div class="form-group">
 						<label>菜品类别*</label> 
 							<br>
 							<select name="productlei">
-								<option>主食</option>
-								<option>热菜</option>
-								<option>凉菜</option>
+								<option>特色水饺</option>
+								<option>开胃凉菜</option>
+								<option>精美热菜</option>		
 								<option>酒水饮料</option>
+								<option>主食</option>
 							</select>
 							</div>
 					<div class="form-group">
@@ -204,8 +256,13 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							placeholder="请填写菜品价格">
 					</div>
 					<div class="form-group">
-						<label>菜品简介*(字数为6-7行或最多200字)</label> <textarea type="text" class="form-control"  rows="3" cols="105"
+						<label>菜品简介*(字数为1行或最多65字)</label> <textarea type="text" class="form-control"  rows="3" cols="105"
 							name="content1"
+							placeholder="请填写菜品简介"></textarea>
+					</div>
+					<div class="form-group">
+						<label>菜品介绍*</label> <textarea type="text" class="form-control"  rows="8" cols="105"
+							name="content2"
 							placeholder="请填写菜品介绍"></textarea>
 					</div>
 					<div class="form-group">

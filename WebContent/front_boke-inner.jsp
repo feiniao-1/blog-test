@@ -350,17 +350,17 @@ if(Integer.parseInt(discuss_page)==0){
 		         			<!--右边-板块一开始-->
 		         			<div class="celan celan1">
 		         				<h4>图片集</h4>
-		         						         				<ul class="clearfix">
+		         				<ul class="clearfix">
 		         				<%List<Mapx<String, Object>> wzt=DB.getRunner().query("select img1 ,substring(title,1,4) as  title,tagid from news where newstype=? order by newsid desc limit 9", new MapxListHandler(),"boke");
 		         				for(int index_tp=0;index_tp<9;index_tp++){ 
 		         				if(((index_tp+1)%3)!=0){%>
 		         					<li> 
-		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg" ></a>
+		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>" ></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%}else{ %>
 		         					<li  class="mr0">
-		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg"></a>
+		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%} }%>

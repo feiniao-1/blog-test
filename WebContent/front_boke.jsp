@@ -221,7 +221,7 @@ if(Integer.parseInt(index_page)==1){
 								%> 
 									<div class="cell">
 										<div class="pic">
-											<img src="img/240.jpg">
+											<img src="<%=one.getStringView("img1") %>">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
@@ -248,7 +248,7 @@ if(Integer.parseInt(index_page)==1){
 								%>
 									<div class="cell">
 										<div class="pic">
-											<img src="img/240.jpg">
+											<img src="<%=one.getStringView("img1") %>">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
@@ -473,12 +473,12 @@ if(Integer.parseInt(index_page)==1){
 		         				for(int index_tp=0;index_tp<9;index_tp++){ 
 		         				if(((index_tp+1)%3)!=0){%>
 		         					<li> 
-		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg" ></a>
+		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>" ></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%}else{ %>
 		         					<li  class="mr0">
-		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg"></a>
+		         						<a href="front_boke-inner.jsp?page=0&tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"></a>
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         					</li>
 		         					<%} }%>
