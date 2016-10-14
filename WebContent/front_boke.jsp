@@ -129,7 +129,7 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_boke.jsp?page=0" >饺耳博客</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" >饺耳社区</a></h3>
+								<h3><a href="community.html" >饺耳社区</a></h3>
 						</li>
 
 					</ul>
@@ -526,14 +526,6 @@ if(Integer.parseInt(index_page)==1){
 	         			</div>
          		</div>
          		<!--右边部分结束-->
-         	</div>
-        
-         	<!--友情链接开始-->
-         	<div class="row">
-         		<div class="link">
-	         			<h4>友情链接</h4>
-	         			<p><a href="" target="_blank">戛纳国际创意节</a><a href="" target="_blank">戛纳国际创意节</a><a href="" target="_blank">戛纳国际创意节</a><a href="" target="_blank">戛纳国际创意节</a></p>
-         		</div>
          	</div>
          </div>  
        </div>

@@ -19,10 +19,9 @@
         				<div class="cell_primary">
         					<p class="foot-link">
         						<a href="front_index.jsp" target="_blank">首页</a><span>|</span>
-        						<a href="" target="_blank">联系我们</a><span>|</span>
+        						<a href="about-us.html" target="_blank">联系我们</a><span>|</span>
         						<a href="front_baike.jsp?page=0" target="_blank">百科问答</a><span>|</span>
-        						<a href="" target="_blank">人才招聘</a><span>|</span>
-        						<a href="" target="_blank">网站地图</a>
+        						<a href="about-us.html" target="_blank">人才招聘</a>
         					</p>
         					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
         					<p><a href="" target="_blank">技术支持：DESIGN BY IWISDOMS TEAM </a></p>

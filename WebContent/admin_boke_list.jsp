@@ -67,7 +67,7 @@ if(jishu==null){
 int dluserid=10196;	
 HashMap<String,String> param= G.getParamMap(request); 
 //统计菜品总页数
-List<Mapx<String,Object>> menupage=DB.getRunner().query("select count(1) as count from productmenu where del=? ", new MapxListHandler(),"0");
+List<Mapx<String,Object>> menupage=DB.getRunner().query("select count(1) as count from article where del=? ", new MapxListHandler(),"0");
 int pagetotal=Integer.parseInt(menupage.get(0).getIntView("count"))/10;
 System.out.println("总页数="+pagetotal);
 //如果urlpage为null
@@ -120,14 +120,14 @@ if(intdhpage==0){
 //设置标题栏信息
 String[] colNames={"博客ID","标题","作者","创建时间","浏览量","操作"};
 //博客列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article order by articleid desc limit 10 ", new MapxListHandler());
+List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? order by articleid desc limit "+intdhpage*10+",10  ", new MapxListHandler(),"0");
 System.out.println(menu);
 //删除
 String dhid; 
 System.out.println("Action"+param.get("Action")+"dhid"+request.getParameter("dhid"));
 if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 	dhid=new String(request.getParameter("dhid").getBytes("iso-8859-1"),"utf-8");
-		DB.getRunner().update("update productmenu set del=? where productmenuid=?","1",dhid);
+		DB.getRunner().update("update article set del=? where articleid=?","1",dhid);
 		%>
 		<script type="text/javascript" language="javascript">
 				alert("删除成功");                                            // 弹出错误信息
@@ -165,12 +165,12 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 							<td><%=menu.get(j).getIntView("zcount") %></td>
 							<td>
 								<div style="width:150px;">
-								<a href="admin_product_publish.jsp?caiid=<%=menu.get(j).getIntView("productmenuid")%>">管理</a>|
-								<form action="admin_product.jsp" id="subform" method="POST" style="float:right;">
-									<input type="hidden" value="<%=menu.get(j).getIntView("productmenuid") %>" name="dhid">
+								<a href="admin_boke_publish.jsp?caiid=<%=menu.get(j).getIntView("articleid")%>">管理</a>
+								<!-- |<form action="admin_boke_list.jsp" id="subform" method="POST" style="float:right;">
+									<input type="hidden" value="<%=menu.get(j).getIntView("articleid") %>" name="dhid">
 									<input type="hidden" value="删除" name="Action">
 								</form>
-								<a class="zhuce"  name="删除" onclick="test_post()">删除</a>
+								<a class="zhuce"  name="删除" onclick="test_post()">删除</a> -->
 								</div>
 							</td>
 						</tr>
@@ -178,7 +178,7 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 <script type="text/javascript">
 function test_post() {
 var testform=document.getElementById("subform");
-testform.action="admin_product.jsp";
+testform.action="admin_boke_list.jsp";
 testform.submit();
 }
 </script>
@@ -188,16 +188,16 @@ testform.submit();
 				<!-- 分页start -->
 				<div class="nav-page">
 								    <ul class="pagination">
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=minus%>">«</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=0">1</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=1">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=<%=minus%>">«</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=0">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=1">2</a></li>
 								    <%if(pagetotal>=3){ %>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=2">3</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=2">3</a></li>
 								    <%} %>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/admin_product.jsp?page=<%=plus%>">»</a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=<%=pagetotal-1%>"><%=pagetotal%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=<%=pagetotal%>"><%=pagetotal+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/admin_boke_list.jsp?page=<%=plus%>">»</a></li>
 								  </ul>
 				</div>
 				<!-- 分页end -->

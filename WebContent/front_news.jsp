@@ -127,7 +127,7 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_boke.jsp?page=0" >饺耳博客</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" >饺耳社区</a></h3>
+								<h3><a href="community.html" >饺耳社区</a></h3>
 						</li>
 						
 					</ul>

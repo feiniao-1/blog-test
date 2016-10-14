@@ -128,7 +128,7 @@ if(Integer.parseInt(index_page)==1){
 								<h3><a href="front_boke.jsp?page=0" >饺耳博客</a></h3>
 						</li>
 						<li class="nLi">
-								<h3><a href="#" >饺耳社区</a></h3>
+								<h3><a href="community.html" >饺耳社区</a></h3>
 						</li>
 						
 					</ul>
@@ -210,13 +210,13 @@ if(Integer.parseInt(index_page)==1){
 		         				for(int index_tp=0;index_tp<8;index_tp++){ 
 		         				if((index_tp%2)!=0){%>
 		         					<li class="mr0"> 
-		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg">
+		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>" width="99px" height="75px">
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         						</a>
 		         					</li>
 		         					<%}else{ %>
 		         					<li>
-		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="img/240.jpg">
+		         						<a href="front_baike-inner.jsp?tagid=<%=wzt.get(index_tp).getIntView("tagid") %>" target="_blank"><img src="<%=wzt.get(index_tp).getStringView("img1")%>"  width="99px" height="75px">
 		         						<p><%=wzt.get(index_tp).getStringView("title")%></p>
 		         						</a>
 		         					</li>
@@ -252,7 +252,8 @@ if(Integer.parseInt(index_page)==1){
 								%>
 									<div class="cell">
 										<div class="pic">
-											<img src="img/240.jpg">
+											<!-- <img src="img/240.jpg"> -->
+											<img src="<%=one.getStringView("img1") %>">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
@@ -279,7 +280,7 @@ if(Integer.parseInt(index_page)==1){
 								%>
 									<div class="cell">
 										<div class="pic">
-											<img src="img/240.jpg">
+											<img src="<%=one.getStringView("img1") %>">
 											<span class="pic-tilte">资讯</span>
 										</div>
 										<div class="cell_primary">
