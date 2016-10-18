@@ -331,14 +331,11 @@ if(Integer.parseInt(index_page)==1){
 	         		<h4>合作伙伴</h4>
 	         		
 	         		<ul class="clearfix">
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
-	         			<li><a href="" target="_blank"><img src="img/pic21.jpg"></a></li>
+	         			<li><a href="http://fujiyuan.com.cn/" target="_blank"><img src="img/fujiyuan.jpg"></a></li>
+	         			<li><a href="http://www.bjjhrs.com/" target="_blank"><img src="img/jiaherisheng.jpg"></a></li>
+	         			<li><a href="http://www.sidingfund.cn/" target="_blank"><img src="img/sidingjijin.jpg"></a></li>
+	         			<li><a href="http://www.bjzhzh.com/" target="_blank"><img src="img/zonghengzhihui.jpg"></a></li>
+	         			<li><a href="http://www.iwisdoms.cn/" target="_blank"><img src="img/yuanyuhuizhi.jpg"></a></li>
 	         			
 	         		</ul>
          		</div>

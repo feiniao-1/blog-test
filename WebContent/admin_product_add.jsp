@@ -166,7 +166,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<label>PC商品图片*</label> 
+        		<label>PC商品图片*(370*247)</label> 
 					<form action="${pageContext.request.contextPath }/uploadServlet?url=product&shuzi=1" method="post" enctype="multipart/form-data">
 						<input type="file" name="attr_file1" style="display:inline-block;">
 						<div style="margin-top:-25px;margin-left:200px;">

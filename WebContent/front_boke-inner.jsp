@@ -329,14 +329,14 @@ if(Integer.parseInt(discuss_page)==0){
 	         					</div>
 	         					<div class="nav-page">
 								    <ul class="pagination">
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=minus%>">«</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=0">1</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=1">2</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=2">3</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=minus%>&tagid=<%=request.getParameter("tagid") %>">«</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=0&tagid=<%=request.getParameter("tagid") %>">1</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=1&tagid=<%=request.getParameter("tagid") %>">2</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=2&tagid=<%=request.getParameter("tagid") %>">3</a></li>
 								    <li><a>...</a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page-1%>"><%=count_page%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page%>"><%=count_page+1%></a></li>
-								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=plus%>">»</a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page-1%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=count_page%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page+1%></a></li>
+								    <li><a href="${pageContext.request.contextPath}/front_boke-inner.jsp?page=<%=plus%>&tagid=<%=request.getParameter("tagid") %>">»</a></li>
 								  </ul>
 								</div>
 	         				</div>

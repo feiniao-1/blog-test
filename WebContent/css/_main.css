@@ -53,7 +53,7 @@ abbr[title] {
   border-bottom: 1px dotted;
 }
 b,strong {
-  font-weight: normal;
+  font-weight: bold;
 }
 dfn {
   font-style: italic;

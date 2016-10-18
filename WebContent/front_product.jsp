@@ -105,9 +105,9 @@ if(cailei==5){
 System.out.println(leibie);
 List<Mapx<String,Object>> caipinshow;
 if(cailei!=6){
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0",leibie);
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where del=? and productlei=? order by shoucang desc,productmenuid desc limit 9", new MapxListHandler(), "0",leibie);
 }else{
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1 from productmenu where del=? order by productmenuid desc limit 9", new MapxListHandler(), "0");
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,img1,yprice from productmenu where del=? order by shoucang desc,productmenuid desc limit 9", new MapxListHandler(), "0");
 }
 System.out.println("caipinshow"+caipinshow);
 %>
@@ -154,9 +154,10 @@ System.out.println("caipinshow"+caipinshow);
 						<li class="nLi on">
 								<h3><a href="front_product.jsp?cailei=1" >饺耳菜品</a></h3>
 								<ul class="sub">
+									<li><a href="front_product.jsp?cailei=6">店长推荐</a></li>
 									<li><a href="front_product.jsp?cailei=1">特色水饺</a></li>
 									<li><a href="front_product.jsp?cailei=2">开胃凉菜</a></li>
-									<li><a href="front_product.jsp?cailei=3">精美热菜</a></li>
+									<li><a href="front_product.jsp?cailei=3">精品热菜</a></li>
 									<li><a href="front_product.jsp?cailei=5">酒水饮料</a></li>
 									<li><a href="front_product.jsp?cailei=4">美味主食</a></li>
 								</ul>
@@ -201,12 +202,12 @@ System.out.println("caipinshow"+caipinshow);
          	<div class="row product">
          		<div class="product-title"></div>
          		<div class="title-nav clearfix">
-         					<a href="front_product.jsp?cailei=6"><div id="d6" class="title-nav-item">全部菜品</div></a>
+         					<a href="front_product.jsp?cailei=6"><div id="d6" class="title-nav-item">店长推荐</div></a>
 							<a href="front_product.jsp?cailei=1"><div id="d1" class="title-nav-item">特色水饺</div></a>
 							<a href="front_product.jsp?cailei=2"><div id="d2" class="title-nav-item">开胃凉菜</div></a>
-							<a href="front_product.jsp?cailei=3"><div id="d3" class="title-nav-item">精美热菜</div></a>
-							<a href="front_product.jsp?cailei=5"><div id="d5" class="title-nav-item">酒水饮料</div></a>
+							<a href="front_product.jsp?cailei=3"><div id="d3" class="title-nav-item">精品热菜</div></a>
 							<a href="front_product.jsp?cailei=4"><div id="d4" class="title-nav-item">美味主食</div></a>
+							<a href="front_product.jsp?cailei=5"><div id="d5" class="title-nav-item">酒水饮料</div></a>
 			    </div>
 			    <script type="text/javascript">
 if(<%=cailei%>==1){
@@ -243,6 +244,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -254,6 +256,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -274,6 +277,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -285,6 +289,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -305,6 +310,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<pclass="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -316,6 +322,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -336,6 +343,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -347,6 +355,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -367,6 +376,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -378,6 +388,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -398,6 +409,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong>￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -409,6 +421,7 @@ if(<%=cailei%>==6){
 				    					<h4><%=caipinshow.get(q).getStringView("productname") %></h4>
 				    					<p><%=caipinshow.get(q).getStringView("productEname") %></p>
 				    					<p><%=caipinshow.get(q).getStringView("content1") %></p>
+				    					<p class="size18"><strong >￥<%=caipinshow.get(q).getIntView("yprice") %>/份</strong></p>
 				    				</div>
 			    				</a>
 			    			</li>
@@ -423,7 +436,9 @@ if(<%=cailei%>==6){
        </div>  
         <!--博客主体内容结束-->
         <!--页面底部板块开始-->
+        <div>
 		<%@ include file="footer.jsp"%>
+		</div>
         <!--页面底部板块结束-->
 	</body>
 	<!--主内容区左边标题导航tab切换js-->
@@ -455,7 +470,7 @@ if(<%=cailei%>==6){
 			<script>
             $(".product-list ul li").hover(function(){
                 $(this).find(".txt").stop().animate({height:"100%"},400);
-                $(this).find(".txt h4").stop().animate({paddingTop:"50px"},400);
+                $(this).find(".txt h4").stop().animate({paddingTop:"30px"},400);
             },function(){
                 $(this).find(".txt").stop().animate({height:"40px"},400);
                 $(this).find(".txt h4").stop().animate({paddingTop:"0px"},400);

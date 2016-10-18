@@ -163,7 +163,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
         </div>
         		<!-- 表格 start -->
         		<div class="form-group">
-        		<label>PC商品图片*</label> 
+        		<label>PC商品图片*(370*247)</label> 
 						<form action="${pageContext.request.contextPath }/uploadServlet?url=productpublish&caiid=<%= caiid%>&shuzi=1" method="post" enctype="multipart/form-data">
 						<input type="file" name="attr_file1" style="display:inline-block;">
 						<div style="margin-top:-25px;margin-left:200px;">
@@ -290,7 +290,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							value="<%=menu.get(0).getIntView("count") %>">
 					</div>
 					<div class="form-group">
-						<label>收藏量</label> <input type="text" class="form-control" style="width:200px;"
+						<label>收藏量(权重排序)</label> <input type="text" class="form-control" style="width:200px;"
 							name="shoucang"
 							value="<%=menu.get(0).getIntView("shoucang") %>">
 					</div>

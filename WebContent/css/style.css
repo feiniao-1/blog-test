@@ -10,9 +10,11 @@ img{ display: block;}
 a{ color: #313131; text-decoration: none;}
 a:hover{text-decoration: none; color: #FF9900;}/*9-21add*/
 a:link,a:visited{text-decoration: none;}/*9-30add*/
+b{font-weight:normal;}
 .txt-indent{ text-indent: 2em;}
 .dash-line{ padding-bottom: 20px; border-bottom: 1px dashed #CCCCCC;}
 .cursor{ cursor: pointer;}
+.size18{font-size:18px;}
 .color-dd2727{ color: #dd2727;}
 .color-ff6600{ color: #ff6600;}
 .color-ff9900{ color: #ff9900;}

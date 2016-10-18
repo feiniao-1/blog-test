@@ -26,10 +26,10 @@
         					<p>© Copyright 2008-2016. 京ICP备15008545号</p>
         					<p><a href="" target="_blank">技术支持：DESIGN BY IWISDOMS TEAM </a></p>
         					<p class="icon-link">
+        					    <a href="" target="_blank"><img src="img/wx-icon_03.png"></a>
         						<a href="" target="_blank"><img src="img/wb-icon_03.png"></a>
         						<a href="" target="_blank"><img src="img/kj-icon_03.png"></a>
         						<a href="" target="_blank"><img src="img/rr-icon_03.png"></a>
-        						<a href="" target="_blank"><img src="img/wx-icon_03.png"></a>
         					</p>
         				</div>
         				<div class="ewm-box">
