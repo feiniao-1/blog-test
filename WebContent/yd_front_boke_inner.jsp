@@ -198,18 +198,18 @@ if(Integer.parseInt(discuss_page)==0){
 		    	<%} %> 
 				</div>
 				<!--评价部分开始-->
-      				<div class="page">
-				    <ul>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=minus%>&tagid=<%=request.getParameter("tagid") %>">«</a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=0&tagid=<%=request.getParameter("tagid") %>">1</a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=1&tagid=<%=request.getParameter("tagid") %>">2</a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=2&tagid=<%=request.getParameter("tagid") %>">3</a></li>
-				    <li><a>...</a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=count_page-1%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page%></a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=count_page%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page+1%></a></li>
-				    <li><a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=plus%>&tagid=<%=request.getParameter("tagid") %>">»</a></li>
-				  </ul>
+      			<!-- <div class="nav-page">
+				<div class="pagination">
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=minus%>&tagid=<%=request.getParameter("tagid") %>">«</a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=0&tagid=<%=request.getParameter("tagid") %>">1</a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=1&tagid=<%=request.getParameter("tagid") %>">2</a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=2&tagid=<%=request.getParameter("tagid") %>">3</a>
+				    <a>...</a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=count_page-1%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page%></a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=count_page%>&tagid=<%=request.getParameter("tagid") %>"><%=count_page+1%></a>
+				    <a href="${pageContext.request.contextPath}/yd_front_boke_inner.jsp?page=<%=plus%>&tagid=<%=request.getParameter("tagid") %>">»</a>
 				</div>
+				</div> -->
        			<!--评价部分结束-->
 			</div>
 			<!--返回顶部按钮-->
