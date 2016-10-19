@@ -50,7 +50,7 @@ List<Mapx<String, Object>> juese=DB.getRunner().query("select userrole from user
 								<%if(flag==1){ 
 									if(juese.get(0).getStringView("userrole").equals("管理员")){
 									%>
-									<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>/<a href="admin_boke_edit.jsp">用户中心</a>
+									<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>/<a href="${pageContext.request.contextPath}/admin_boke_edit.jsp">用户中心</a>
 									<%}else{ %>
 									<span class="glyphicon glyphicon-user"></span><a><%=username %></a>/<a href="front_login.jsp" >退出</a>
 								<%}}else{ %>

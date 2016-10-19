@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
-<script type="text/javascript" src="js/nicEdit.js"></script>
-<script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
@@ -351,14 +351,12 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							value="<%= menu.get(0).getStringView("title") %>">
 					</div>
 					<div class="form-group">
-						<label>文章简介</label> <textarea type="text" class="form-control"  rows="8" cols="105"
-							name="content1"
-							value="<%=menu.get(0).getStringView("content1") %>"><%=menu.get(0).getStringView("content1") %></textarea>
+						<label>文章简介</label>
+							<script type="text/plain" id="myEditor" name="content1"><%=menu.get(0).getStringView("content1") %></script>
 					</div>
 					<div class="form-group">
-						<label>文章内容</label> <textarea type="text" class="form-control"  rows="3" cols="105"
-							name="content2"
-							value="<%=menu.get(0).getStringView("content2") %>"></textarea>
+						<label>文章内容</label>
+							<script type="text/plain" id="myEditor1" name="content2"><%=menu.get(0).getStringView("content2") %></script>
 					</div>
 					<div class="form-group">
 						<label>创建时间</label> <input type="text" class="form-control" style="width:200px;"
@@ -388,5 +386,9 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 			
   </div>
 </div>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:150});
+        var editor_a = UE.getEditor('myEditor1',{initialFrameHeight:150});
+    </script>
 </body>
 </html>

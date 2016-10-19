@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
-<script type="text/javascript" src="js/nicEdit.js"></script>
-<script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
@@ -100,7 +100,6 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 		%>
 			<script type="text/javascript" language="javascript">
 					alert("主体信息不能为空");                                            // 弹出错误信息
-					window.location='admin_boke_edit.jsp' ;                            // 跳转到登录界面
 			</script>
 		<%
 	}else{
@@ -158,9 +157,13 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传end -->
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 		标题<span style="color:red;">*(最多20字)</span>：<br><input type="text" Name="title"  placeholder="标题"><br>
-		描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center><textarea id="discuss_content" rows="3" cols="105" name="content1" placeholder="描述" ></textarea><br></center>
+		描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center>
+		<script type="text/plain" id="myEditor" name="content1"></script>
+		</center>
 		内容*：<br>
-		<center><textarea id="discuss_content" rows="10" cols="105" name="content2" placeholder="填写内容" ></textarea><br></center>
+		<center>
+		<script type="text/plain" id="myEditor1" name="content2"></script>
+		<br></center>
 		词条标签（选填）：<br>
 		<input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 		<input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
@@ -170,5 +173,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	</form>
   </div>
 </div>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:150});
+        var editor_a = UE.getEditor('myEditor1',{initialFrameHeight:250});
+    </script>
 </body>
 </html>

@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="css/style.css"/>
-<script type="text/javascript" src="js/nicEdit.js"></script>
-<script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <%
 //获取当前url
@@ -256,14 +256,12 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							placeholder="请填写菜品价格">
 					</div>
 					<div class="form-group">
-						<label>菜品简介*(字数为1行或最多65字)</label> <textarea type="text" class="form-control"  rows="3" cols="105"
-							name="content1"
-							placeholder="请填写菜品简介"></textarea>
+						<label>菜品简介*(字数为1行或最多65字)</label> 
+							<script type="text/plain" id="myEditor" name="content1"></script>
 					</div>
 					<div class="form-group">
-						<label>菜品介绍*</label> <textarea type="text" class="form-control"  rows="8" cols="105"
-							name="content2"
-							placeholder="请填写菜品介绍"></textarea>
+						<label>菜品介绍*</label>
+							<script type="text/plain" id="myEditor1" name="content2"></script>
 					</div>
 					<div class="form-group">
 						<label>创建时间</label> <input type="text" class="form-control" style="width:200px;"
@@ -275,5 +273,9 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 				<!-- 表格 end -->
   </div>
 </div>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:150});
+        var editor_a = UE.getEditor('myEditor1',{initialFrameHeight:150});
+    </script>
 </body>
 </html>

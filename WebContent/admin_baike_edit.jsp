@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>  
-    <script type="text/javascript" src="js/nicEdit.js"></script>
-<script type="text/javascript">
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
 <%
 //获取当前url
 String path = request.getContextPath();
@@ -305,7 +305,9 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传end  4-->
 <form id="form_tj" action="admin_baike_edit.jsp?jishu=<%=val%>" method="post" style="margin-top:-100px;">
 标题<span style="color:red;">*(最多20字)</span>：<br><input type="text" Name="title"  placeholder="标题"><br>
-描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center><textarea id="discuss_content" rows="3" cols="100" name="content1" placeholder="描述" ></textarea><br></center>
+描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center>
+ <script type="text/plain" id="myEditor" name="content1" placeholder="描述"></script>
+<br></center>
 摘要(选填)：<br>
 中文名：&nbsp;&nbsp;&nbsp;<input type="text" Name="chinaname"  placeholder="中文名" style="width:150px;"><br>
 英文名：&nbsp;&nbsp;&nbsp;<input type="text" Name="Englishname"  placeholder="英文名" style="width:150px;"><br>
@@ -315,13 +317,19 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 用时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" Name="usetime"  placeholder="用时" style="width:150px;"><br>
 做法：<br>
 步骤一：<br>
-<center><textarea id="discuss_content" rows="3" cols="100" name="step1" placeholder="步骤一" ></textarea><br></center>
+<center>
+ <script type="text/plain" id="myEditor1" name="step1" placeholder="步骤一"></script>
+<br></center>
 步骤二：<br>
-<center><textarea id="discuss_content" rows="3" cols="100" name="step2" placeholder="步骤二" ></textarea><br></center>
+<center>
+ <script type="text/plain" id="myEditor2" name="step2" placeholder="步骤一"></script>
+<br></center>
 步骤三：<br>
-<center><textarea id="discuss_content" rows="3" cols="100" name="step3" placeholder="步骤三" ></textarea><br></center>
+<center>
+ <script type="text/plain" id="myEditor3" name="step3" placeholder="步骤一"></script><br></center>
 步骤四：<br>
-<center><textarea id="discuss_content" rows="3" cols="100" name="step4" placeholder="步骤四" ></textarea><br></center>
+<center>
+ <script type="text/plain" id="myEditor4" name="step4" placeholder="步骤一"></script><br></center>
 关键词（选填）：<br>
 <input type="text" Name="tag1"  placeholder="标签1" style="width:50px;">
 <input type="text" Name="tag2"  placeholder="标签2" style="width:50px;">
@@ -331,5 +339,12 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 </form>
 </div>
 </div>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:150});
+        var editor_a = UE.getEditor('myEditor1',{initialFrameHeight:100});
+        var editor_a = UE.getEditor('myEditor2',{initialFrameHeight:100});
+        var editor_a = UE.getEditor('myEditor3',{initialFrameHeight:100});
+        var editor_a = UE.getEditor('myEditor4',{initialFrameHeight:100});
+    </script>
 </body>
 </html>
