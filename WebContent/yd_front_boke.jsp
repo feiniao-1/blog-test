@@ -60,7 +60,7 @@ String searchtj;
 		<div class="container">
 			<div class="head head-rel">
 				<p>饺耳博客</p>
-				<a href="" class="back02"><img src="images/back.png"></a>
+				<a href="yd_front_index.jsp" class="back02"><img src="images/back.png"></a>
 			</div>
 			<!--博客列表部分开始-->
 			<div class="blog-list">

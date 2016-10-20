@@ -209,6 +209,7 @@ a {
 .tellbox h3{ color: #FFFFFF; background: url(../images/tell.png) no-repeat 15px 0; background-size:30px; line-height: 30px; padding-left: 50px; box-sizing: border-box;}
 .tellbox h3 a{ color: #FFFFFF;}
 .tellbox h3 span{ font-size: 24px; margin-right: 5px;}
+.load-more{ width: 100%; line-height: 32px; text-align: center; background: rgba(237,61,61,0.7); color: #FFFFFF;  font-size: 18px; margin-bottom: 15px;}
 /*产品页结束*/
 /*产品内页开始*/
 .product-inner .plate{ background: #FFFFFF; padding: 10px 15px; box-sizing: border-box; margin-bottom: 10px;}

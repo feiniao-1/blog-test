@@ -118,9 +118,9 @@ if(intdhpage==0){
 //  PRIMARY KEY (`articleid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 //设置标题栏信息
-String[] colNames={"博客ID","标题","作者","创建时间","浏览量","操作"};
+String[] colNames={"博客ID","标题","类型","作者","创建时间","浏览量","操作"};
 //博客列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? order by articleid desc limit "+intdhpage*10+",10  ", new MapxListHandler(),"0");
+List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,title,author,substring(createtime,1,19) as createtime,zcount,tagid from article where del=? order by articleid desc limit "+intdhpage*10+",10  ", new MapxListHandler(),"0");
 System.out.println(menu);
 //删除
 String dhid; 
@@ -160,6 +160,7 @@ if((param.get("Action")!=null)&&(param.get("Action").equals("删除"))){
 						<tr>
 							<td><%=menu.get(j).getIntView("articleid") %></td>
 							<td><%=menu.get(j).getStringView("title") %></td>
+							<td><%=menu.get(j).getStringView("articletype") %></td>
 							<td><%=users.get(0).getStringView("username") %></td>
 							<td><%=menu.get(j).getIntView("createtime") %></td>
 							<td><%=menu.get(j).getIntView("zcount") %></td>

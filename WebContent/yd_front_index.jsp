@@ -104,7 +104,7 @@ if(cailei==5){
 	}
 System.out.println(leibie);
 List<Mapx<String,Object>> caipinshow;
-	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? order by productmenuid desc limit 6", new MapxListHandler(), "0");
+	caipinshow=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? order by shoucang desc,productmenuid desc limit 6", new MapxListHandler(), "0");
 System.out.println("caipinshow"+caipinshow);
 %>
 <!DOCTYPE html>
@@ -192,7 +192,7 @@ System.out.println("caipinshow"+caipinshow);
 	            				<h4><%=caipinshow.get(i).getStringView("productname")%></h4>
 	            				<p class="color-999999"><%=caipinshow.get(i).getStringView("productEname")%></p>
 	            				<p class="color-666666 mb5">月售<%=caipinshow.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-	            				<p><span class="color-dd2727 size16">￥<%=caipinshow.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">38</del></p>
+	            				<p><span class="color-dd2727 size16">￥<%=caipinshow.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 	            			</div>
             		</div>
             		</a>

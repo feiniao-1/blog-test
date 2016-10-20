@@ -113,7 +113,7 @@ HashMap<String,String> param= G.getParamMap(request);
 //  PRIMARY KEY (`articleid`)
 //) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 //博客列表信息
-List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,author,title,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
+List<Mapx<String,Object>> menu=DB.getRunner().query("select articleid,articletype,author,title,content1,content2,img1,img2,ydimg1,ydimg2,articletype,substring(createtime,1,19) as createtime,substring(updatetime,1,19) as updatetime,zcount,tag1,tag2,tag3,tag4,tagid  from article where del=? and articleid=?", new MapxListHandler(),"0",caiid);
 System.out.println(menu);
 //显示该博客的随机数信息
 List<Mapx<String,Object>> showdiscuss1 = DB.getRunner().query("select canshu_url as canshu_url from article where  articleid=? ",new MapxListHandler(),caiid);
@@ -130,6 +130,7 @@ String img1;
 String img2;
 String ydimg1;
 String ydimg2;
+String leixing;
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	title=param.get("title");
@@ -139,6 +140,7 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 	tag2=param.get("tag2");
 	tag3=param.get("tag3");
 	tag4=param.get("tag4");
+	leixing=new String(request.getParameter("leixing").getBytes("iso-8859-1"),"utf-8");
 	if((String)session.getAttribute("upimg1")==null){
 		img1=menu.get(0).getStringView("img1");
 	}else{
@@ -160,8 +162,8 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 		ydimg2="upload/"+(String)session.getAttribute("upydimg2");
 	}
 	System.out.println("图片"+img1+img2+ydimg1+ydimg2);
-		DB.getRunner().update("update article set title=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=? where articleid=?",title,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,caiid);
-		DB.getRunner().update("update news set title=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=? where tagid=?",title,content1,"boke",img1,ydimg1,df.format(new Date()),menu.get(0).getIntView("tagid"));
+		DB.getRunner().update("update article set title=?,content1=?,content2=?,tag1=?,tag2=?,tag3=?,tag4=?,updatetime=?,canshu_url=?,img1=?,img2=?,ydimg1=?,ydimg2=?,articletype=? where articleid=?",title,content1,content2,tag1,tag2,tag3,tag4,df.format(new Date()),url_canshu,img1,img2,ydimg1,ydimg2,leixing,caiid);
+		DB.getRunner().update("update news set title=?,content=?,newstype=?,img1=?,ydimg1=?,updatetime=?,type=? where tagid=?",title,content1,"boke",img1,ydimg1,df.format(new Date()),leixing,menu.get(0).getIntView("tagid"));
 		session.removeAttribute("upimg1");
 		session.removeAttribute("upimg2");
 		session.removeAttribute("upydimg1");
@@ -333,18 +335,14 @@ if(param.get("Action")!=null && param.get("Action").equals("确定")){
 							name="author" readOnly="true"
 							value="<%= menu.get(0).getStringView("author") %>">
 					</div>
-					<div class="form-group" style="display:none;">
-						<label>文章类型</label>
-							<br>
-							<select name="productlei">
-								<option></option>
-								<option>特色水饺</option>
-								<option>开胃凉菜</option>
-								<option>精美热菜</option>
-								<option>酒水饮料</option>
-								<option>主食</option>
+					<label>文章类别*</label> 
+					<select name="leixing">
+								<option><%=menu.get(0).getStringView("articletype") %></option>
+								<option>热门</option>
+								<option>美食</option>
+								<option>体育</option>		
+								<option>娱乐</option>
 							</select>
-					</div>
 					<div class="form-group">
 						<label>文章标题</label> <input type="text" class="form-control" style="width:200px;"
 							name="title"

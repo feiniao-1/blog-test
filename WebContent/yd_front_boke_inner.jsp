@@ -170,7 +170,7 @@ if(Integer.parseInt(discuss_page)==0){
 				<!--发表评论-->
 				<div class="blog-plate">
 					<h3 class="mb10">发表评论</h3>
-					<form id="form_tj" action="front_boke-inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>" method="post"  class="form">
+					<form id="form_tj" action="yd_front_boke_inner.jsp?page=0&jishu=<%=val%>&tagid=<%=request.getParameter("tagid") %>" method="post"  class="form">
        					<textarea placeholder="发表你的评价" name="content"></textarea>
        					<div class="clearfix"><input type="submit" Name="Action" value="发表评论" class="submit" ></div>
       				</form>

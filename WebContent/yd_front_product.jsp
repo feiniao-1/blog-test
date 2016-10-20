@@ -105,7 +105,7 @@ System.out.println(leibie);
 List<Mapx<String,Object>> caipinshowlc;
 	caipinshowlc=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0","开胃凉菜");
 List<Mapx<String,Object>> caipinshowrc;
-	caipinshowrc=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0","精品热菜");
+	caipinshowrc=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0","精美热菜");
 List<Mapx<String,Object>> caipinshowsj;
 	caipinshowsj=DB.getRunner().query("select productmenuid,productname,productEname,substring(content1,1,64) as content1,count,yprice,img1 from productmenu where del=? and productlei=? order by productmenuid desc limit 9", new MapxListHandler(), "0","特色水饺");
 List<Mapx<String,Object>> caipinshowzs;
@@ -145,7 +145,6 @@ List<Mapx<String,Object>> caipinshowjs;
 			    <!--内容部分开始-->
 			    <div class="course-slide">
 			    	<div class="product-type" style="display: none;">
-			    		1
 			    		<%for(int i=0;i<caipinshowlc.size();i++){ %>
 	            		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshowlc.get(i).getIntView("productmenuid")%>">
 	            		<div class="cell bg-white">
@@ -156,14 +155,13 @@ List<Mapx<String,Object>> caipinshowjs;
 		            				<h4><%=caipinshowlc.get(i).getStringView("productname")%></h4>
 		            				<p class="color-999999"><%=caipinshowlc.get(i).getStringView("productname")%></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshowlc.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size16">￥<%=caipinshowlc.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">42</del></p>
+		            				<p><span class="color-dd2727 size16">￥<%=caipinshowlc.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 42 --></del></p>
 		            			</div>
 	            		</div>
 	            		</a>
 	            		<%} %>
 			    	</div>
 			    	<div class="product-type" style="display: none;">
-			    		2
 			    		<%for(int i=0;i<caipinshowrc.size();i++){ %>
 	            		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshowrc.get(i).getIntView("productmenuid")%>">
 	            		<div class="cell bg-white">
@@ -174,15 +172,13 @@ List<Mapx<String,Object>> caipinshowjs;
 		            				<h4><%=caipinshowrc.get(i).getStringView("productname")%></h4>
 		            				<p class="color-999999"><%=caipinshowrc.get(i).getStringView("productname")%></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshowrc.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size16">￥<%=caipinshowrc.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">42</del></p>
+		            				<p><span class="color-dd2727 size16">￥<%=caipinshowrc.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 		            			</div>
 	            		</div>
 	            		</a>
 	            		<%} %>
 			    	</div>
 			    	<div class="product-type">
-			    		
-			    		3
 			    		<%for(int i=0;i<caipinshowsj.size();i++){ %>
 			    		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshowsj.get(i).getIntView("productmenuid")%>">
 	            		<div class="cell bg-white">
@@ -193,14 +189,13 @@ List<Mapx<String,Object>> caipinshowjs;
 		            				<h4><%=caipinshowsj.get(i).getStringView("productname")%></h4>
 		            				<p class="color-999999"><%=caipinshowsj.get(i).getStringView("productname")%></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshowsj.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size16">￥<%=caipinshowsj.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">42</del></p>
+		            				<p><span class="color-dd2727 size16">￥<%=caipinshowsj.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 		            			</div>
 	            		</div>
 	            		</a>
 	            		<%} %>
 			    	</div>
 			    	<div class="product-type" style="display: none;">
-			    		4
 	            		<%for(int i=0;i<caipinshowzs.size();i++){ %>
 	            		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshowzs.get(i).getIntView("productmenuid")%>">
 	            		<div class="cell bg-white">
@@ -211,14 +206,13 @@ List<Mapx<String,Object>> caipinshowjs;
 		            				<h4><%=caipinshowzs.get(i).getStringView("productname")%></h4>
 		            				<p class="color-999999"><%=caipinshowzs.get(i).getStringView("productname")%></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshowzs.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size16">￥<%=caipinshowzs.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">42</del></p>
+		            				<p><span class="color-dd2727 size16">￥<%=caipinshowzs.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 		            			</div>
 	            		</div>
 	            		</a>
 	            		<%} %>
 			    	</div>
 			    	<div class="product-type" style="display: none;">
-			    		5
 			    		<%for(int i=0;i<caipinshowjs.size();i++){ %>
 			    		<a href="yd_front_product_inner.jsp?caiid=<%=caipinshowjs.get(i).getIntView("productmenuid")%>">
 	            		<div class="cell bg-white">
@@ -229,7 +223,7 @@ List<Mapx<String,Object>> caipinshowjs;
 		            				<h4><%=caipinshowjs.get(i).getStringView("productname")%></h4>
 		            				<p class="color-999999"><%=caipinshowjs.get(i).getStringView("productname")%></p>
 		            				<p class="color-666666 mb5">月售<%=caipinshowjs.get(i).getIntView("count")%><span class="ml10">好评率100%</span></p>
-		            				<p><span class="color-dd2727 size16">￥<%=caipinshowjs.get(i).getIntView("yprice")%></span><del class="color-666666 ml10">42</del></p>
+		            				<p><span class="color-dd2727 size16">￥<%=caipinshowjs.get(i).getIntView("yprice")%></span><del class="color-666666 ml10"><!-- 38 --></del></p>
 		            			</div>
 	            		</div>
 	            		</a>

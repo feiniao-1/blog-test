@@ -84,6 +84,7 @@ String tag2;
 String tag3;
 String tag4;
 String img1;
+String leixing;
 System.out.println("url_canshu:"+url_canshu+";canshu_url:"+canshu_url+";提交前img:"+(String)session.getAttribute("fullName1"));
 if(url_canshu!=canshu_url){
 if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
@@ -94,6 +95,7 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	tag2=new String(request.getParameter("tag2").getBytes("iso-8859-1"),"utf-8");
 	tag3=new String(request.getParameter("tag3").getBytes("iso-8859-1"),"utf-8");
 	tag4=new String(request.getParameter("tag4").getBytes("iso-8859-1"),"utf-8");
+	leixing=new String(request.getParameter("leixing").getBytes("iso-8859-1"),"utf-8");
 	img1="upload/"+(String)session.getAttribute("fullName1boke");
 	System.out.println("img1"+img1);
 	if((title.equals("")||title.equals(null))||(content1.equals("")||content1.equals(null))||(content2.equals("")||content2.equals(null))){
@@ -103,8 +105,8 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 			</script>
 		<%
 	}else{
-		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,tagid,del) values(?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,tagid,"0");
-		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid) values(?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid);
+		DB.getRunner().update("insert into article(author,title,content1,content2,createtime,tag1,tag2,tag3,tag4,canshu_url,img1,tagid,del,articletype) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",dluserid,title,content1,content2,df.format(new Date()),tag1,tag2,tag3,tag4,url_canshu,img1,tagid,"0",leixing);
+		DB.getRunner().update("insert into news(author,title,content,createtime,newstype,img1,tagid,type) values(?,?,?,?,?,?,?,?)",dluserid,title,content1,df.format(new Date()),"boke",img1,tagid,leixing);
 		session.removeAttribute("fullName1boke");
 		%>
 		<script type="text/javascript" language="javascript">
@@ -157,6 +159,13 @@ if(param.get("Action")!=null && param.get("Action").equals("发表文章")){
 	<!-- 图片上传end -->
 	<form id="form_tj" action="admin_boke_edit.jsp?jishu=<%=val%>" method="post" >
 		标题<span style="color:red;">*(最多20字)</span>：<br><input type="text" Name="title"  placeholder="标题"><br>
+						<label>文章类别*</label> 
+							<center><select name="leixing">
+								<option>热门</option>
+								<option>美食</option>
+								<option>体育</option>		
+								<option>娱乐</option>
+							</select></center>
 		描述<span style="color:red;">*(建议3-4行；最多200字)</span>：<br><center>
 		<script type="text/plain" id="myEditor" name="content1"></script>
 		</center>
