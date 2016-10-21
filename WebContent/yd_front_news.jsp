@@ -101,7 +101,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<!--加载更多 模块一 start  -->
 	            		<%if(Integer.parseInt(count1.get(0).getIntView("count"))>10){ %>
-	   					<div id=box01 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+	   					<div id="box01" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 						<% 
 			    		int max11;
 			    		if(Integer.parseInt(count1.get(0).getIntView("count"))<20){
@@ -126,7 +126,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<!--加载更多 模块二 start  -->
 	            				<%if(Integer.parseInt(count1.get(0).getIntView("count"))>20){ %>
-			            		<div id=box02 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+			            		<div id="box02" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 								<% int max12;
 					    		if(Integer.parseInt(count1.get(0).getIntView("count"))<30){
 					    			max12=Integer.parseInt(count1.get(0).getIntView("count"));
@@ -203,7 +203,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count2.get(0).getIntView("count"))>10){ %>
 	            		<!--加载更多 模块一 start  -->
-	   					<div id=box11 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+	   					<div id="box11" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 						<% 	int max21;
 			    		if(Integer.parseInt(count2.get(0).getIntView("count"))<20){
 			    			max21=Integer.parseInt(count2.get(0).getIntView("count"));
@@ -227,7 +227,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count2.get(0).getIntView("count"))>20){ %>
 	            				<!--加载更多 模块二 start  -->
-			            		<div id=box12 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+			            		<div id="box12" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 								<% 	int max22;
 					    		if(Integer.parseInt(count2.get(0).getIntView("count"))<30){
 					    			max22=Integer.parseInt(count2.get(0).getIntView("count"));
@@ -293,7 +293,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count3.get(0).getIntView("count"))>10){ %>
 	            		<!--加载更多 模块一 start  -->
-	   					<div id=box21 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+	   					<div id="box21" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 						<% 	int max31;
 			    		if(Integer.parseInt(count3.get(0).getIntView("count"))<20){
 			    			max31=Integer.parseInt(count3.get(0).getIntView("count"));
@@ -317,7 +317,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count3.get(0).getIntView("count"))>20){ %>
 	            				<!--加载更多 模块二 start  -->
-			            		<div id=box22 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+			            		<div id="box22" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 								<% 	int max32;
 					    		if(Integer.parseInt(count3.get(0).getIntView("count"))<30){
 					    			max32=Integer.parseInt(count3.get(0).getIntView("count"));
@@ -382,7 +382,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count4.get(0).getIntView("count"))>10){ %>
 	            		<!--加载更多 模块一 start  -->
-	   					<div id=box31 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+	   					<div id="box31" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 						<%	int max41;
 			    		if(Integer.parseInt(count4.get(0).getIntView("count"))<20){
 			    			max41=Integer.parseInt(count4.get(0).getIntView("count"));
@@ -406,7 +406,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count4.get(0).getIntView("count"))>20){ %>
 	            				<!--加载更多 模块二 start  -->
-			            		<div id=box32 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+			            		<div id="box32" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 								<% 	int max42;
 					    		if(Integer.parseInt(count4.get(0).getIntView("count"))<30){
 					    			max42=Integer.parseInt(count4.get(0).getIntView("count"));
@@ -472,7 +472,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count5.get(0).getIntView("count"))>10){ %>
 	            		<!--加载更多 模块一 start  -->
-	   					<div id=box41 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+	   					<div id="box41" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 						<% 	int max51;
 			    		if(Integer.parseInt(count5.get(0).getIntView("count"))<20){
 			    			max51=Integer.parseInt(count5.get(0).getIntView("count"));
@@ -496,7 +496,7 @@ String searchtj;
 	            		</a><%} %>
 	            		<%if(Integer.parseInt(count5.get(0).getIntView("count"))>20){ %>
 	            				<!--加载更多 模块二 start  -->
-			            		<div id=box42 style="DISPLAY: none" style="behavior:url(#default#savehistory)">
+			            		<div id="box42" style="DISPLAY: none" style="behavior:url(#default#savehistory)">
 								<% 	int max52;
 					    		if(Integer.parseInt(count5.get(0).getIntView("count"))<30){
 					    			max52=Integer.parseInt(count5.get(0).getIntView("count"));
